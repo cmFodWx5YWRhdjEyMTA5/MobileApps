@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en</string>
+	<key>CFBundleDisplayName</key>
+	<string>Gymonkee</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.1.6</string>
+	<key>CFBundleSignature</key>
+	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>fb1633120493468657</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.1023271343111-21paobt8h7q0qdh6pujrbaqcj8l1fa59</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.gymonkee</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.363912616541-o5nfrfhkc48qfr5vr05p98r99oiqj5gd</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>q9tw5.app.goo.gl</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.gymonkee</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>4</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>c8edc21dbc225d79f036798941412a04fa9b608b</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
+	<key>FacebookAppID</key>
+	<string>1633120493468657</string>
+	<key>FacebookDisplayName</key>
+	<string>Gymonkee</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>fbapi</string>
+		<string>fb-messenger-share-api</string>
+		<string>fbauth2</string>
+		<string>fbshareextension</string>
+	</array>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsArbitraryLoads</key>
+		<true/>
+		<key>NSExceptionDomains</key>
+		<dict>
+			<key>example.com</key>
+			<dict>
+				<key>NSExceptionAllowsInsecureHTTPLoads</key>
+				<true/>
+				<key>NSIncludesSubdomains</key>
+				<true/>
+			</dict>
+		</dict>
+	</dict>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Gymonkee needs your permission to access your media</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>Gymonkee needs your permission to access your bluetooth</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Gymonkee needs your permission to access your calendars</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Gymonkee needs your permission to access your camera to upload the profile picture</string>
+	<key>NSContactsUsageDescription</key>
+	<string>Gymonkee need your permission to access your contacts</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Gymonkee needs your location to show you gyms nearby</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Gymonkee needs your location to show you gyms nearby</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Gymonkee needs your location to show you gyms nearby</string>
+	<key>NSMotionUsageDescription</key>
+	<string>Gymonkee needs your permission to access your motion</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Gymonkee needs your permission to access your photo library to upload the profile picture</string>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Gymonkee needs your permission to access your speech recognition</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>MyriadPro-Bold.otf</string>
+		<string>MyriadPro-BoldCond.otf</string>
+		<string>MyriadPro-BoldCondIt.otf</string>
+		<string>MyriadPro-BoldIt.otf</string>
+		<string>MyriadPro-Cond.otf</string>
+		<string>MyriadPro-CondIt.otf</string>
+		<string>MyriadPro-It.otf</string>
+		<string>MyriadPro-Regular.otf</string>
+		<string>MyriadPro-Semibold.otf</string>
+		<string>MyriadPro-SemiboldIt.otf</string>
+		<string>SFUIDisplay-Black.otf</string>
+		<string>SFUIDisplay-Bold.otf</string>
+		<string>SFUIDisplay-Heavy.otf</string>
+		<string>SFUIDisplay-Light.otf</string>
+		<string>SFUIDisplay-Medium.otf</string>
+		<string>SFUIDisplay-Regular.otf</string>
+		<string>SFUIDisplay-Semibold.otf</string>
+		<string>SFUIDisplay-Thin.otf</string>
+		<string>SFUIDisplay-Ultralight.otf</string>
+	</array>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
+	<key>UIRequiredDeviceCapabilities</key>
+	<array>
+		<string>armv7</string>
+	</array>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+</dict>
+</plist>

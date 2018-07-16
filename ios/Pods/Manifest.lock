@@ -1,0 +1,74 @@
+PODS:
+  - Crashlytics (3.10.1):
+    - Fabric (~> 1.7.5)
+  - Fabric (1.7.6)
+  - Firebase/Core (4.13.0):
+    - FirebaseAnalytics (= 4.2.0)
+    - FirebaseCore (= 4.0.20)
+  - Firebase/DynamicLinks (4.13.0):
+    - Firebase/Core
+    - FirebaseDynamicLinks (= 2.3.2)
+  - FirebaseAnalytics (4.2.0):
+    - FirebaseCore (~> 4.0)
+    - FirebaseInstanceID (~> 2.0)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+    - nanopb (~> 0.3)
+  - FirebaseCore (4.0.20):
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
+  - FirebaseDynamicLinks (2.3.2):
+    - FirebaseAnalytics (~> 4.0)
+  - FirebaseInstanceID (2.0.10):
+    - FirebaseCore (~> 4.0)
+  - GoogleMaps (2.7.0):
+    - GoogleMaps/Maps (= 2.7.0)
+  - GoogleMaps/Base (2.7.0)
+  - GoogleMaps/Maps (2.7.0):
+    - GoogleMaps/Base
+  - GoogleToolboxForMac/Defines (2.1.4)
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
+    - GoogleToolboxForMac/Defines (= 2.1.4)
+  - nanopb (0.3.8):
+    - nanopb/decode (= 0.3.8)
+    - nanopb/encode (= 0.3.8)
+  - nanopb/decode (0.3.8)
+  - nanopb/encode (0.3.8)
+  - Stripe (13.0.0)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - Firebase/Core
+  - Firebase/DynamicLinks
+  - GoogleMaps
+  - Stripe
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseDynamicLinks
+    - FirebaseInstanceID
+    - GoogleMaps
+    - GoogleToolboxForMac
+    - nanopb
+    - Stripe
+
+SPEC CHECKSUMS:
+  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Firebase: 5ec5e863d269d82d66b4bf56856726f8fb8f0fb3
+  FirebaseAnalytics: 7ef69e76a5142f643aeb47c780e1cdce4e23632e
+  FirebaseCore: 90cb1c53d69b556f112a1bf72b5fcfaad7650790
+  FirebaseDynamicLinks: 38b68641d24e78d0277a9205d988ce22875d5a25
+  FirebaseInstanceID: 8d20d890d65c917f9f7d9950b6e10a760ad34321
+  GoogleMaps: f79af95cb24d869457b1f961c93d3ce8b2f3b848
+  GoogleToolboxForMac: 91c824d21e85b31c2aae9bb011c5027c9b4e738f
+  nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
+  Stripe: 542f2c4493ce31a99fa041fe4973206e8c868f29
+
+PODFILE CHECKSUM: 2cb3423a43d8a8d9050c9271cbebc58ecc2891f6
+
+COCOAPODS: 1.5.0

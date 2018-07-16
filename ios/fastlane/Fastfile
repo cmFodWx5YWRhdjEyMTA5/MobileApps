@@ -1,0 +1,204 @@
+# This is the minimum version number required.
+# Update this, if you use features of a newer version
+# fastlane update_fastlane
+
+fastlane_version "2.43.0"
+
+default_platform :ios
+
+ENV["iOS_APP_NAME"] = 'Gymonkee'
+ENV["USER_NAME"] = 'Sujal Bandhara'
+ENV["USER_EMAIL"] = 'sujal.bandhara@bypt.in'
+ENV["USER_EMAIL2"] = 'jaydeep.patel@bypt.in'
+ENV["SLACK_URL"] = "https://hooks.slack.com/services/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"
+ENV["COMPANEY_NAME"] = "byPeopleTechnologies"
+ENV["SLACK_CHANNEL"] = "#gymonkee"
+ENV["crashlytics_api_token"] = "c8edc21dbc225d79f036798941412a04fa9b608b"
+ENV["crashlytics_build_secret"] = "f45add3cfd02d6a064d9530bb5bb24b50ee1923a0e6f07c71472e19e3edbbe98"
+ENV["INFO_PLIST_PATH"] = "./#{ENV["iOS_APP_NAME"]}/Info.plist"
+# test_email
+# release_note
+# build_number
+
+platform :ios do
+
+#===========================================
+ 	# 1
+  	desc "Creating a code signing certificate and provisioning profile"
+  	lane :provision do
+  	# 3
+  	  produce(
+  	    app_name: '#{ENV["iOS_APP_NAME"]}',
+  	    language: 'English',
+  	    app_version: '1.0',
+	    company_name: '#{ENV["COMPANEY_NAME"]}',
+  	    sku: '#{ENV["iOS_APP_NAME"]}5Mar2018063813'
+  	  )
+  	  # 4
+  	  cert —development
+   	 # 5
+   	 sigh(force: true)
+ 	 end
+
+#===========================================
+
+desc "Take screenshots"
+  lane :screenshot do
+    snapshot
+  end
+#===========================================
+
+desc "Create ipa"
+  lane :build do
+    increment_build_number
+    gym
+  end
+#===========================================
+	
+	# Create a new build iPa file.
+	desc "======> Creating new build file"
+
+	lane :bypt_create_build do | values |
+
+	gym(
+		clean: true,
+		output_directory: "./fastlane/build/",
+		derived_data_path: "./fastlane/build/",
+		archive_path: "./fastlane/build/#{ENV["iOS_APP_NAME"]}.xcarchive",
+		scheme: "#{ENV["iOS_APP_NAME"]}",
+     		workspace: "#{ENV["iOS_APP_NAME"]}.xcworkspace",
+     	 	export_method: 'development',
+      	 	include_bitcode: true
+	   )
+end	
+#===========================================
+
+# upload to Beta by Crashlytics
+	desc "======> Upload to Beta by Crashlytics"
+	
+	 # #emails = prompt(text: "Enter the Email Addresses that you need to send build through fabric")
+
+  	lane :bypt_crashlytics do | values |
+ 	
+ 	emails = values[:test_email] ? values[:test_email] : ["#{ENV["USER_EMAIL"]}","#{ENV["USER_EMAIL2"]}"] # You can list more emails here
+	groups = values[:test_email] ? nil : nil # You can define groups on the web and reference them here
+
+   	crashlytics(api_token: "#{ENV["crashlytics_api_token"]}",
+            	     build_secret: "#{ENV["crashlytics_build_secret"]}",
+                     emails: emails,
+                     groups: groups,
+                     notes: values[:release_note] ? values[:release_note] : 'Distributed with fastlane', 		    
+		     # Check out the changelog_from_git_commits action
+		    crashlytics_path: "./Pods/Crashlytics/",
+		    ipa_path: "./fastlane/build/#{ENV["iOS_APP_NAME"]}.ipa",
+            	    notifications: true) # Should this distribution notify your testers via email?
+
+ # for all available options run 'fastlane action crashlytics'
+end
+
+#===========================================
+	desc "Notify your team in chat that a beta build has been uploaded"
+  
+ 	lane :bypt_slack do |values|
+    	# You can notify your team in chat that a beta build has been uploaded
+
+	version_number = get_info_plist_value(path: "#{ENV["INFO_PLIST_PATH"]}", key: "CFBundleShortVersionString")
+	build_number = get_info_plist_value(path: "#{ENV["INFO_PLIST_PATH"]}", key: "CFBundleVersion")
+	#bundleIdentifier = get_info_plist_value(path: "#{ENV["INFO_PLIST_PATH"]}", key: "CFBundleIdentifier")
+	release_note = values[:release_note] ? values[:release_note] : 'Distributed with fastlane'
+	slack(
+ 		 message: "Successfully uploaded new build to Fabric \n\n*Release note :* #{release_note}\n\n *Version:* #{version_number} (#{build_number})",
+ 		 channel: "#{ENV["SLACK_CHANNEL"]}",
+  		 success: true,
+  		 payload: {
+   		  'Build Date' => Time.new.to_s,
+    		  'Built by' => "#{ENV["USER_NAME"]} ( #{ENV["USER_EMAIL"]} )"
+  		})
+  end
+
+#===========================================
+
+	lane :beta do | values |
+ 	 # cocoapods
+
+ 	 # build your iOS app
+ 	 # set 'export_method' to 'ad-hoc' if your Crashlytics Beta distribution uses ad-hoc provisioning
+  	
+
+	#increment_build_number
+	if values[:build_number] 
+		increment_build_number(
+		
+			build_number: values[:build_number], 
+			xcodeproj: "./#{ENV["iOS_APP_NAME"]}.xcodeproj"
+		)
+	end
+  	
+	bypt_create_build values
+	bypt_crashlytics values
+	bypt_slack values
+end	
+#===========================================
+
+	lane :uploadfabric do | values |
+	bypt_crashlytics values
+	bypt_slack values
+end	
+#===========================================
+desc "Register new Devices"
+  lane :registerByptDevices do | values |
+    
+	#register_devices(
+ 	# devices: {
+   	#	'Luka iPhone 6' => '1234567890123456789012345678901234567890',
+    	#	'Felix iPad Air 2' => 'abcdefghijklmnopqrstvuwxyzabcdefghijklmn',
+  	#	}
+	#    )
+
+	# Alternatively provide a standard UDID export .txt file, see the Apple Sample (https://devimages.apple.com.edgekey.net/downloads/devices/Multiple-Upload-Samples.zip)
+
+	register_devices(
+  	     devices_file: './fastlane/bypt_devices.txt'
+	)	
+  end
+#===========================================
+  # Add New devices.
+	lane :add_device do
+      		device_name = prompt(text: "Enter the device name: ")
+     		 device_udid = prompt(text: "Enter the device UDID: ")
+     		 device_hash = {}
+     		 device_hash[device_name] = device_udid
+     
+	 register_devices(
+       		 devices: device_hash
+     		 )
+   	 refresh_profiles
+  	end
+#===========================================
+
+  # A helper lane for refreshing provisioning profiles.
+  lane :refresh_profiles do
+    match(
+      force_for_new_devices: true
+   )
+  end
+#===========================================
+
+desc "Upload to App Store and submit for review"
+  lane :upload do
+    deliver(
+      submit_for_review: true,
+    )
+  end
+
+#===========================================
+desc "Provision, take screenshots, build and upload to App Store"
+  lane :do_everything do
+    provision
+    screenshot
+    build
+    upload
+  end
+#===========================================
+# fastlane ios beta test_email:"sujal.bandhara@bypt.in,sandeep.patel@bypt.in" release_note:"Distributed with fastlane command from terminal" build_number:"0"
+end

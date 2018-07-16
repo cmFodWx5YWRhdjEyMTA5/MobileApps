@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Gymonkee</string>
+   <!-- development-->
+    <!--<string name="facebook_app_id">170663477061499</string>-->
+
+    <!-- Production-->
+    <string name="facebook_app_id">1633120493468657</string>
+
+
+
+</resources>
