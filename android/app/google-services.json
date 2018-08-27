@@ -1,35 +1,27 @@
 {
   "project_info": {
-    "project_number": "363912616541",
-    "firebase_url": "https://gymonkee-8b57b.firebaseio.com",
-    "project_id": "gymonkee-8b57b",
-    "storage_bucket": "gymonkee-8b57b.appspot.com"
+    "project_number": "283237532917",
+    "firebase_url": "https://gymonkeetest-adcd6.firebaseio.com",
+    "project_id": "gymonkeetest-adcd6",
+    "storage_bucket": "gymonkeetest-adcd6.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:363912616541:android:a055ce14a3882f97",
+        "mobilesdk_app_id": "1:283237532917:android:a055ce14a3882f97",
         "android_client_info": {
           "package_name": "com.gymonkee"
         }
       },
       "oauth_client": [
         {
-          "client_id": "363912616541-9isndbhl2gn95t0nqjfkl8j3uvisddk0.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.gymonkee",
-            "certificate_hash": "f89eab48a51ac72a4c91fe138c254cea65b9e927"
-          }
-        },
-        {
-          "client_id": "363912616541-518n7mv7rhvr3g49195plllje03uoh7a.apps.googleusercontent.com",
+          "client_id": "283237532917-n8tub2l5a0rjpnbfedsicbvc9kc1tm7n.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCChTeufcTmvw6K1gBkmZ2HbkmJkuc--h4"
+          "current_key": "AIzaSyDQ14AM7zt2i06OqBk-4duWBWETo0q1JKQ"
         }
       ],
       "services": {
@@ -37,20 +29,8 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "363912616541-vnbp19cedh5d5eb1f0dq5jvllpcs05cn.apps.googleusercontent.com",
-              "client_type": 2,
-              "ios_info": {
-                "bundle_id": "com.bypeople.gymonkee"
-              }
-            },
-            {
-              "client_id": "363912616541-518n7mv7rhvr3g49195plllje03uoh7a.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
+          "status": 1,
+          "other_platform_oauth_client": []
         },
         "ads_service": {
           "status": 2

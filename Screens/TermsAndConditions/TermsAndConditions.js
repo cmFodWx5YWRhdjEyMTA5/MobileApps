@@ -53,7 +53,7 @@ const MyStatusBar = ({ backgroundColor, ...props }) => (
 var user;
 var cur_user_id;
 var serverTime;
-
+var moment = require('moment');
 class TermsAndConditions extends Component {
 
   constructor(props) {
@@ -73,8 +73,13 @@ class TermsAndConditions extends Component {
       city: '',
       state: '',
       userCoin: '',
+      paygCoin: '',
+      monthlyCoin: '',
+      monthlyUsableCoin: 0,
+      paygUsableCoin: 0,
       user_id: '',
       loader: false,
+
 
     }
   }
@@ -93,8 +98,24 @@ class TermsAndConditions extends Component {
   //Life Cycle Methods
   componentWillMount() {
     console.log("=====> You are in : ", this.props.navigation.state.routeName);
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+    NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
   }
   componentDidMount() {
+    NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+    NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
+    NetInfo.isConnected.fetch().done((isConnected) => {
+      this.setState({ netStatus: isConnected });
+      console.log("this.state.arrContactUploadArr", this.state.arrContactUploadArr);
+      if (isConnected) {
+        this.setState({
+          loader: true
+        })
+      }
+      else {
+         Alert.alert(Strings.gymonkee, Strings.internet_offline);
+      }
+    });
 
     AsyncStorage.getItem("gym_id").then((value) => {
       console.log("Gym_Id: ", value);
@@ -141,9 +162,25 @@ class TermsAndConditions extends Component {
 
         var userData = data.val();
         this.setState({
-          userCoin: userData.coinBalance
+          userCoin: userData.coinBalance,
+          paygCoin: userData.paygCoin,
+          monthlyCoin: userData.monthlyCoin
         });
+
+        if (this.state.paygCoin === undefined) {
+          this.setState({
+            paygCoin: 0
+          })
+        }
+        if (this.state.monthlyCoin === undefined) {
+          this.setState({
+            monthlyCoin: 0
+          })
+        }
+
         console.log("UserCoin", this.state.userCoin);
+        console.log("paygCoin", this.state.paygCoin);
+        console.log("monthlyCoin", this.state.monthlyCoin);
 
       })
 
@@ -151,7 +188,17 @@ class TermsAndConditions extends Component {
     }, 700)
   }
 
+ //handle Internetconnection
+  handleConnectionChange = (isConnected) => {
+    this.setState({ netStatus: isConnected });
+    console.log(`is connected: ${this.state.netStatus}`);
+  }
 
+  _loaderOff() {
+    this.setState({
+      loader: false
+    })
+  }
   getGymDataByGymId() {
     var gymData = firebase.database().ref().child('Gyms').child(this.state.gym_id)
     gymData.on('value', (data) => {
@@ -178,10 +225,36 @@ class TermsAndConditions extends Component {
     const { dataGymDetails } = this.state;
 
     console.log("Gym Charge Coin", this.state.dataGymDetails.coins);
-    console.log("Current User Coin", this.state.userCoin);
+    console.log("Current User Coin Balance", this.state.userCoin);
+    console.log("Current User Payg Coin", this.state.paygCoin);
+    console.log("Current User Monthly Coin", this.state.monthlyCoin);
+
+
     var userCoin = this.state.userCoin;
+    var paygCoin = this.state.paygCoin;
+    var monthlyCoin = this.state.monthlyCoin;
     var gymChargeCoin = this.state.dataGymDetails.coins;
+
+
     if (userCoin >= gymChargeCoin) {
+      if (monthlyCoin >= gymChargeCoin) {
+        this.setState({
+          monthlyUsableCoin: gymChargeCoin
+        })
+      } else {
+        if (monthlyCoin === 0) {
+          this.setState({
+            paygUsableCoin: gymChargeCoin
+          })
+        } else {
+          var remainCountCoin = gymChargeCoin - monthlyCoin;
+          this.setState({
+            monthlyUsableCoin: monthlyCoin,
+            paygUsableCoin: remainCountCoin
+          })
+
+        }
+      }
       this.setState({ loader: true });
       var gymCode = state.params.gymBarCode;
       var gymName = state.params.gymName;
@@ -213,14 +286,10 @@ class TermsAndConditions extends Component {
             };
             barcodeRef.update(updateDict1).then(() => {
               console.log("Successfully updated to status 1:::");
-
               console.log("Found Barcode With 0 Status", dataGymDetails.Barcodes[getBarcodeKeys[i]]);
               console.log("Found Barcode With Id", getBarcodeKeys[i]);
               var data = dataGymDetails.Barcodes[getBarcodeKeys[i]]
-
               //Set Data to user check in data
-
-
               var userCheckInDict = {
                 gymId: this.state.gym_id,
                 gymName: this.state.dataGymDetails.name,
@@ -283,8 +352,16 @@ class TermsAndConditions extends Component {
                     //Push Data to Gym Table
                     pushKey = data.key
                     var afterCheckInUserCoins = parseInt(userCoin) - parseInt(gymChargeCoin);
+                    var afterCheckInPaygCoin = paygCoin - this.state.paygUsableCoin;
+                    var afterCheckInMonthlyCoin = monthlyCoin - this.state.monthlyUsableCoin;
+
                     this.setState({ loader: false });
-                    this.props.navigation.navigate('Scanner', { comingFrom: 'normal', userKeyInGym: userKeyInGym, gymBarCode: gymCode, gymName: gymName, gymId: this.state.gym_id, checkinKey: pushKey, checkinGymKey: userKeyInGym, barcodeId: getBarcodeKeys[i], barcodeURL: dataGymDetails.Barcodes[getBarcodeKeys[i]].barcodeURL, afterCheckInUserCoins: afterCheckInUserCoins.toString() });
+                    let getTime = new Date()
+                    console.log("Current Time is", getTime)
+                    AsyncStorage.setItem("check-in-time", getTime)
+                    AsyncStorage.setItem("checkinKey", pushKey)
+                    AsyncStorage.setItem("checkinGymKey", userKeyInGym)
+                    this.props.navigation.navigate('Scanner', { comingFrom: 'normal', userKeyInGym: userKeyInGym, gymBarCode: gymCode, gymName: gymName, gymId: this.state.gym_id, checkinKey: pushKey, checkinGymKey: userKeyInGym, barcodeId: getBarcodeKeys[i], barcodeURL: dataGymDetails.Barcodes[getBarcodeKeys[i]].barcodeURL, afterCheckInUserCoins: afterCheckInUserCoins.toString(), afterCheckInPaygCoin: afterCheckInPaygCoin.toString(), afterCheckInMonthlyCoin: afterCheckInMonthlyCoin.toString() ,gymChargeCoin:gymChargeCoin});
                   })
                 })
                 console.log("Gym Check in Dict", gymCheckInDict);
@@ -390,8 +467,9 @@ class TermsAndConditions extends Component {
           <WebView
             automaticallyAdjustContentInsets={true}
             javaScriptEnabled={true}
-            source={{ uri: 'https://firebasestorage.googleapis.com/v0/b/gymonkee-3cad2.appspot.com/o/Resources%2FTermsAndCondition.html?alt=media' }}
+            source={{ uri: Strings.terms_conditions_url }}
             style={{ backgroundColor: 'rgba(211, 211, 211 , 0)' }}
+            onLoad={() => this._loaderOff()}
           />
         </View>
         <View>

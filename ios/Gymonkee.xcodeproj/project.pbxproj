@@ -63,6 +63,7 @@
 		B24AA133205A3F61008893BE /* libAirMaps.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B24AA108205A3F4C008893BE /* libAirMaps.a */; };
 		B256A3C3206383D500BB7C10 /* libRNFetchBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B256A3C1206383C300BB7C10 /* libRNFetchBlob.a */; };
 		B256A3CA2063882300BB7C10 /* libRNImagePicker.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B256A3C9206387F300BB7C10 /* libRNImagePicker.a */; };
+		B2B7D70E2122A06000FE8D35 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = B2B7D6DB2122A06000FE8D35 /* GoogleService-Info.plist */; };
 		BB758697AC7A4502B57AF1EE /* SFUIDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 680FDE3F80034C75B1570F49 /* SFUIDisplay-Ultralight.otf */; };
 		BE1EF1E9F9244812AA27FC25 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72890819719943D9986A854E /* SystemConfiguration.framework */; };
 		BE38A4037BE345229AF339C2 /* SFUIDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5E0516A821A94A9DB6E80D87 /* SFUIDisplay-Bold.otf */; };
@@ -536,6 +537,7 @@
 		B24AA103205A3F4C008893BE /* AirMaps.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = AirMaps.xcodeproj; path = "../node_modules/react-native-maps/lib/ios/AirMaps.xcodeproj"; sourceTree = "<group>"; };
 		B256A392206383C300BB7C10 /* RNFetchBlob.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNFetchBlob.xcodeproj; path = "../node_modules/react-native-fetch-blob/ios/RNFetchBlob.xcodeproj"; sourceTree = "<group>"; };
 		B256A3C4206387F300BB7C10 /* RNImagePicker.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RNImagePicker.xcodeproj; path = "../node_modules/react-native-image-picker/ios/RNImagePicker.xcodeproj"; sourceTree = "<group>"; };
+		B2B7D6DB2122A06000FE8D35 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		B4B769A7A75A49A6A36A6BDB /* SFUIDisplay-Thin.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Thin.otf"; path = "../Fonts/SFUIDisplay-Thin.otf"; sourceTree = "<group>"; };
 		B4D552C697E24BEC9FC75E2E /* SFUIDisplay-Heavy.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Heavy.otf"; path = "../Fonts/SFUIDisplay-Heavy.otf"; sourceTree = "<group>"; };
 		BDE1914BB4AB49798C5131C7 /* SFUIDisplay-Semibold.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "SFUIDisplay-Semibold.otf"; path = "../Fonts/SFUIDisplay-Semibold.otf"; sourceTree = "<group>"; };
@@ -822,6 +824,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				B2B7D6DB2122A06000FE8D35 /* GoogleService-Info.plist */,
 				B24AA08F205A38D6008893BE /* AirGoogleMaps */,
 				13B07FAE1A68108700A75B9A /* Gymonkee */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1062,6 +1065,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				FA3AEA8E204E5DB50005893E /* ShellScript */,
 				9EFFE67C608C44C32E24733F /* [CP] Copy Pods Resources */,
+				806018BE54D9C4208A1DA15E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1085,6 +1089,9 @@
 						DevelopmentTeam = P525Q57S33;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplePay = {
+								enabled = 1;
+							};
 							com.apple.SafariKeychain = {
 								enabled = 1;
 							};
@@ -1579,6 +1586,7 @@
 				FAB1A8DD204D1DE4008F69A7 /* IQKeyboardManager.bundle in Resources */,
 				B15025E198334CF6B0893CCD /* MyriadPro-Regular.otf in Resources */,
 				FA32E7562074B92A0003E22C /* main.jsbundle in Resources */,
+				B2B7D70E2122A06000FE8D35 /* GoogleService-Info.plist in Resources */,
 				FA7003452099CD150096DEEC /* GoogleService-Info.plist in Resources */,
 				FC8E9DB2AF4543E39154C7ED /* MyriadPro-Semibold.otf in Resources */,
 				FA3AEB70204ECE2B0005893E /* GoogleSignIn.bundle in Resources */,
@@ -1611,6 +1619,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		806018BE54D9C4208A1DA15E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gymonkee/Pods-Gymonkee-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		8701383CADB7CB6EEF3AB548 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1895,6 +1918,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;

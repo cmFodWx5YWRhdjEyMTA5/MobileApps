@@ -110,8 +110,8 @@ class FriendListScreen extends Component {
 
     //getting current logged in user id and stored it in our state
     var currentUser = firebase.auth().currentUser;
-    this.setState({ user_id: currentUser.uid },()=>{
-      console.log("User _ id is::",this.state.user_id)
+    this.setState({ user_id: currentUser.uid }, () => {
+      console.log("User _ id is::", this.state.user_id)
     })
 
     if (Platform.OS === 'ios') {
@@ -179,7 +179,7 @@ class FriendListScreen extends Component {
         var cont = tempArr[index].phoneNumber
         setTimeout(() => {
           var inviteURL = this.state.inviteURL
-          Communications.textWithoutEncoding(cont, inviteText +' '+inviteURL);
+          Communications.textWithoutEncoding(cont, inviteText + ' ' + inviteURL);
         }, 600)
       }
     })
@@ -221,15 +221,15 @@ class FriendListScreen extends Component {
   getFriendList() {
     NetInfo.isConnected.fetch().done((isConnected) => {
       this.setState({ netStatus: isConnected });
-
-      if (isConnected) {        
+      console.log("this.state.arrContactUploadArr", this.state.arrContactUploadArr);
+      if (isConnected) {
         var url = Strings.base_URL + 'friendContactList'
         fetch(url, {
           method: 'POST',
           headers:
-          {
-            'Content-Type': 'application/json'
-          },
+            {
+              'Content-Type': 'application/json'
+            },
           body: JSON.stringify({ userId: this.state.user_id, contactList: this.state.arrContactUploadArr })
         }).then((response) => response.json())
           .then((responseData) => {
@@ -241,7 +241,7 @@ class FriendListScreen extends Component {
               let checkIsUser = data.hasOwnProperty("userId")
               let checkIsFrnd = data.hasOwnProperty("isFriend")
 
-              if (data.givenName !== '') {                
+              if (data.givenName !== '') {
                 tempData.push({ "name": data.givenName, "phoneNumber": data.phoneNumbers[0].number, "isSend": false, "userId": (checkIsUser) ? data.userId : '', "isFriend": (checkIsFrnd) ? data.isFriend : '' })
               } else if (data.familyName !== '') {
                 tempData.push({ "name": data.familyName, "phoneNumber": data.phoneNumbers[0].number, "isSend": false, "userId": (checkIsUser) ? data.userId : '', "isFriend": (checkIsFrnd) ? data.isFriend : '' })
@@ -250,7 +250,7 @@ class FriendListScreen extends Component {
             })
             this.setState({
               contactsArrMain: tempData,
-              srchData:tempData
+              srchData: tempData
             })
           }).catch((error) => {
             this.setState({ loader: false });
@@ -284,7 +284,7 @@ class FriendListScreen extends Component {
       frndDictionary = {
         email: frndData.email,
         name: frndData.firstname,
-        profileImage: (frndData.hasOwnProperty('profileImage')) ? frndData.profileImage : 'https://firebasestorage.googleapis.com/v0/b/gymonkee-3cad2.appspot.com/o/Resources%2Fplaceholder_img.png?alt=media'
+        profileImage: (frndData.hasOwnProperty('profileImage')) ? frndData.profileImage : Strings.profile_pic_url_storage
       }
     })
 
@@ -296,13 +296,13 @@ class FriendListScreen extends Component {
       currUserDict = {
         email: userData.email,
         name: userData.firstname,
-        profileImage: (userData.hasOwnProperty('profileImage')) ? userData.profileImage : 'https://firebasestorage.googleapis.com/v0/b/gymonkee-3cad2.appspot.com/o/Resources%2Fplaceholder_img.png?alt=media'
+        profileImage: (userData.hasOwnProperty('profileImage')) ? userData.profileImage : Strings.profile_pic_url_storage
       }
     })
     setTimeout(() => {
       var frndRef = firebase.database().ref('Friendship').child(friendId);
       var currentUserRef = firebase.database().ref('Friendship').child(currentUserId)
-
+   
       //Setting up data in frind table friend user id 
       frndRef.child(currentUserId).set(currUserDict).then(() => {
         //Setting up data in frind table current user id 
@@ -351,7 +351,7 @@ class FriendListScreen extends Component {
             contactsArrMain: tempArr
           }, () => {
             Alert.alert(Strings.gymonkee, "Successfully remove from the friend")
-          })          
+          })
         })
       })
     }, 600)
@@ -551,17 +551,17 @@ const styles = StyleSheet.create({
     height: APPBAR_HEIGHT,
   },
   logo:
-  {
-    width: null,
-    height: null,
-    flex: 1,
-  },
+    {
+      width: null,
+      height: null,
+      flex: 1,
+    },
   logo1:
-  {
-    width: null,
-    height: null,
-    flex: 0.8,
-  },
+    {
+      width: null,
+      height: null,
+      flex: 0.8,
+    },
   back_icon: {
     height: 20,
     width: 20,

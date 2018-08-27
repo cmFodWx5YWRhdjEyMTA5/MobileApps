@@ -141,7 +141,7 @@ static navigationOptions = ({navigation, screenProps}) => {
                 var userRef=firebase.database().ref('User');
                 userRef.on('value', (snapshot) => {
                     console.log("UserSnapshot",snapshot.val());
-                    Alert.alert("UserSnapshot",snapshot.val())
+                   // Alert.alert("UserSnapshot",snapshot.val())
                   })
 
 
@@ -154,6 +154,7 @@ static navigationOptions = ({navigation, screenProps}) => {
                       },500)
                 }).catch((error)=>{
                       this.setState({loader:false})
+                      console.log("Forgot Pass Error",error);
                       setTimeout(()=>{
                           Alert.alert(Strings.gymonkee,error.message);
                       },500)

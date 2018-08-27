@@ -250,6 +250,9 @@ static navigationOptions = ({navigation, screenProps}) => {
     {
       Alert.alert(Strings.gymonkee,"Please enter valid email")
     }
+    else if(phone_number===''){
+      Alert.alert(Strings.gymonkee,"Please enter phone number")
+    }
     else if(city==='')
     {
       Alert.alert(Strings.gymonkee,"Please enter city")

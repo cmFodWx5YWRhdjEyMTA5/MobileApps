@@ -91,11 +91,13 @@ class EditProfileScreen extends Component {
       state: "",
       isState: false,
       isCity: false,
+      isPhone:false,
       isEmergencyContactName: false,
       isEmergencyContactNumber: false,
       emergencyContactName: "",
       emergencyContactNumber: "",
       firstTime: Platform.OS === "ios" ? false : true,
+      phone_number:"",
       stateList: [
         "Alabama",
         "Alaska",
@@ -416,7 +418,13 @@ class EditProfileScreen extends Component {
       this.setState({
         isEmail: true
       });
-    } else if (txtName === "state") {
+    } 
+    else if (txtName === "phone") {
+      this.setState({
+        isPhone: true
+      });
+    }
+    else if (txtName === "state") {
       this.setState({
         isState: true
       });
@@ -447,7 +455,11 @@ class EditProfileScreen extends Component {
       this.setState({
         isEmail: false
       });
-    } else if (txtName === "state") {
+    }  else if (txtName === "phone") {
+      this.setState({
+        isPhone: false
+      });
+    }else if (txtName === "state") {
       this.setState({
         isState: false
       });
@@ -667,7 +679,7 @@ class EditProfileScreen extends Component {
                   this.setState({
                     profileImage: url
                   });
-                  const { fname, lname, bdayMain, state } = this.state;
+                  const { fname, lname, bdayMain, state,phone_number} = this.state;
 
                   var CurrentuserId = firebase
                     .database()
@@ -682,10 +694,14 @@ class EditProfileScreen extends Component {
                       Strings.gymonkee,
                       "Please enter valid first name"
                     );
-                  } else if (state === "state") {
+                  }  else if(phone_number===''){
+                    this.setState({ isConfirm: false })
+                    Alert.alert(Strings.gymonkee,"Please enter phone number")
+                  }else if (state === "state") {
                     this.setState({ isConfirm: false });
                     Alert.alert(Strings.gymonkee, "Please select state");
                   }
+                 
                   // else if(lname==='')
                   // {
                   //   this.setState({isConfirm:false})
@@ -722,11 +738,13 @@ class EditProfileScreen extends Component {
                         updatedAt: firebase.database.ServerValue.TIMESTAMP,
                         updatedBy: this.state.user_id,
                         city: this.state.city,
-                        state: this.state.state
+                        state: this.state.state,
+                        phone_number:this.state.phone_number,
                       });
                       AsyncStorage.setItem("birthdate", this.state.bday);
                       AsyncStorage.setItem("firstname", this.state.fname);
                       AsyncStorage.setItem("lastname", this.state.lname);
+                      AsyncStorage.setItem("phone_number",this.state.phone_number);
                       AsyncStorage.setItem(
                         "profileImage",
                         this.state.profileImage
@@ -770,11 +788,13 @@ class EditProfileScreen extends Component {
                         updatedAt: firebase.database.ServerValue.TIMESTAMP,
                         updatedBy: this.state.user_id,
                         city: this.state.city,
-                        state: this.state.state
+                        state: this.state.state,
+                        phone_number:this.state.phone_number,
                       });
                       AsyncStorage.setItem("birthdate", this.state.bday);
                       AsyncStorage.setItem("firstname", this.state.fname);
                       AsyncStorage.setItem("lastname", this.state.lname);
+                      AsyncStorage.setItem("phone_number",this.state.phone_number);
                       AsyncStorage.setItem(
                         "profileImage",
                         this.state.profileImage
@@ -807,7 +827,7 @@ class EditProfileScreen extends Component {
           }
           //with out selecting profile image
           else {
-            const { fname, lname, bday, bdayMain, state } = this.state;
+            const { fname, lname, bday, bdayMain, state ,phone_number} = this.state;
 
             var CurrentuserId = firebase
               .database()
@@ -823,7 +843,10 @@ class EditProfileScreen extends Component {
             } else if (!this.validateForAphabatic(fname)) {
               this.setState({ isConfirm: false });
               Alert.alert(Strings.gymonkee, "Please enter valid first name");
-            } else if (state === "state") {
+            }  else if(phone_number===''){
+              this.setState({ isConfirm: false })
+              Alert.alert(Strings.gymonkee,"Please enter phone number")
+            }else if (state === "state") {
               this.setState({ isConfirm: false });
               Alert.alert(Strings.gymonkee, "Please select state");
             }
@@ -857,11 +880,13 @@ class EditProfileScreen extends Component {
                   updatedAt: firebase.database.ServerValue.TIMESTAMP,
                   updatedBy: this.state.user_id,
                   city: this.state.city,
-                  state: this.state.state
+                  state: this.state.state,
+                  phone_number:this.state.phone_number,
                 });
                 AsyncStorage.setItem("birthdate", this.state.bday);
                 AsyncStorage.setItem("firstname", this.state.fname);
                 AsyncStorage.setItem("lastname", this.state.lname);
+                AsyncStorage.setItem("phone_number",this.state.phone_number);
                 AsyncStorage.setItem(
                   "emergencyContactName",
                   this.state.emergencyContactName !== null
@@ -895,11 +920,13 @@ class EditProfileScreen extends Component {
                   updatedAt: firebase.database.ServerValue.TIMESTAMP,
                   updatedBy: this.state.user_id,
                   city: this.state.city,
-                  state: this.state.state
+                  state: this.state.state,
+                  phone_number:this.state.phone_number,
                 });
                 AsyncStorage.setItem("birthdate", this.state.bday);
                 AsyncStorage.setItem("firstname", this.state.fname);
                 AsyncStorage.setItem("lastname", this.state.lname);
+                AsyncStorage.setItem("phone_number",this.state.phone_number);
                 AsyncStorage.setItem(
                   "city",
                   this.state.city !== null ? this.state.city : ""
@@ -919,7 +946,7 @@ class EditProfileScreen extends Component {
         }
         //With out image url
         else {
-          const { fname, lname, bdayMain, state } = this.state;
+          const { fname, lname, bdayMain, state,phone_number} = this.state;
 
           var CurrentuserId = firebase
             .database()
@@ -935,7 +962,10 @@ class EditProfileScreen extends Component {
           } else if (!this.validateForAphabatic(fname)) {
             this.setState({ isConfirm: false });
             Alert.alert(Strings.gymonkee, "Please enter valid first name");
-          } else if (state === "state") {
+          }  else if(phone_number===''){
+            this.setState({ isConfirm: false })
+            Alert.alert(Strings.gymonkee,"Please enter phone number")
+          }else if (state === "state") {
             this.setState({ isConfirm: false });
             Alert.alert(Strings.gymonkee, "Please select state");
           }
@@ -969,11 +999,13 @@ class EditProfileScreen extends Component {
                 updatedAt: firebase.database.ServerValue.TIMESTAMP,
                 updatedBy: this.state.user_id,
                 city: this.state.city,
-                state: this.state.state
+                state: this.state.state,
+                phone_number:this.state.phone_number,
               });
               AsyncStorage.setItem("birthdate", this.state.bday);
               AsyncStorage.setItem("firstname", this.state.fname);
               AsyncStorage.setItem("lastname", this.state.lname);
+              AsyncStorage.setItem("phone_number",this.state.phone_number);
               AsyncStorage.setItem(
                 "emergencyContactName",
                 this.state.emergencyContactName !== null
@@ -1005,11 +1037,13 @@ class EditProfileScreen extends Component {
                 updatedAt: firebase.database.ServerValue.TIMESTAMP,
                 updatedBy: this.state.user_id,
                 city: this.state.city,
-                state: this.state.state
+                state: this.state.state,
+                phone_number:this.state.phone_number,
               });
               AsyncStorage.setItem("birthdate", this.state.bday);
               AsyncStorage.setItem("firstname", this.state.fname);
               AsyncStorage.setItem("lastname", this.state.lname);
+              AsyncStorage.setItem("phone_number",this.state.phone_number);
               AsyncStorage.setItem(
                 "emergencyContactName",
                 this.state.emergencyContactName !== null
@@ -1291,7 +1325,7 @@ class EditProfileScreen extends Component {
                   onFocus={() => this.onFocusText("lname")}
                   onBlur={() => this.onBlurText("lname")}
                   returnKeyType="next"
-                  onSubmitEditing={() => this.refs["city"].focus()}
+                  onSubmitEditing={() => this.refs["phone"].focus()}
                 />
               </View>
             </View>
@@ -1340,6 +1374,52 @@ class EditProfileScreen extends Component {
                 editable={false}
               />
             </View>
+
+            <View
+              style={{
+                flex: 1,
+                borderBottomWidth: 1,
+                borderBottomColor:
+                  this.state.isPhone === true
+                    ? Colors.header_red
+                    : Colors.white_underline,
+                marginLeft: 20,
+                marginRight: 20
+              }}
+            >
+              <TextInput
+                 placeholder='phone number'
+                style={{
+                  fontFamily: Fonts.regular,
+                  fontSize: Platform.OS === "android" ? 16 : 15,
+                  color: Colors.header_red,
+                  borderWidth: 0,
+                  paddingTop: 25,
+                  paddingBottom: 5,
+                  marginLeft: 5,
+                  marginTop:
+                    Platform.OS === "android"
+                      ? 0
+                      : DeviceInfo.getModel() === "iPhone SE" ||
+                        DeviceInfo.getModel() === "iPhone 5s" ||
+                        DeviceInfo.getModel() === "iPhone 5c"
+                        ? 0
+                        : 8,
+                  flex: 1
+                }}
+                ref='phone'
+                keyboardType="numeric"
+                placeholderTextColor="rgb(115,119,118)"
+                underlineColorAndroid="transparent"
+                onChangeText={text => this.setState({ phone_number: text })}
+                value={this.state.phone_number}
+                onFocus={() => this.onFocusText("phone")}
+                onBlur={() => this.onBlurText("phone")}
+                returnKeyType="next"
+                onSubmitEditing={() => this.refs["city"].focus()}
+              />
+            </View>
+
             <View
               style={{
                 flex: 1,
@@ -1387,10 +1467,8 @@ class EditProfileScreen extends Component {
                   value={this.state.city}
                   onFocus={() => this.onFocusText("city")}
                   onBlur={() => this.onBlurText("city")}
-                  returnKeyType="next"
-                  onSubmitEditing={() =>
-                    this.refs["emergencyContactName"].focus()
-                  }
+                  returnKeyType="done"
+
                 />
               </View>
 
@@ -1423,8 +1501,8 @@ class EditProfileScreen extends Component {
                 />
               </View>
             </View>
-           
-            {(this.state.hideEmergencyContact)&&<View
+
+            {(this.state.hideEmergencyContact) && <View
               style={{
                 flex: 1,
                 borderWidth: 0,

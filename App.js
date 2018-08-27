@@ -46,8 +46,8 @@ var FriendListScreen=require('./Screens/FriendList/FriendListScreen');
 var ViewGym=require('./Screens/Dashboard/ViewGym');
 var PaymentDetails = require('./Screens/Payment_Details/PaymentDetails');
 var PaymentDetailsAddCard = require('./Screens/Payment_Details/PaymentDetailsAddCard');
-var OpenCameraView=require('./Screens/Scanner/OpenCameraView');
-var Help=require('./Screens/help/Help');
+var OpenCameraView= require('./Screens/Scanner/OpenCameraView');
+var Help= require('./Screens/help/Help');
 
 const ScreenList= StackNavigator({
 
@@ -60,7 +60,7 @@ const ScreenList= StackNavigator({
   PaymentDetails: {
     screen: PaymentDetails,
     navigationOptions: ({ navigation }) => ({
-                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon"}} style={styles.menu_icon} /></View></TouchableOpacity>
+                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon_white"}} style={styles.menu_icon} /></View></TouchableOpacity>
         }),
   },
   PaymentDetailsAddCard: {

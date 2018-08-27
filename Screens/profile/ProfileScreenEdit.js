@@ -77,11 +77,11 @@ class ProfileScreenEdit extends Component {
       isFirstname: false,
       isLastname: false,
       isEmail: false,
-      isPhone:false,
+      isPhone: false,
       fname: '',
       lname: '',
       email: '',
-      phone_number:'',
+      phone_number: '',
       bday: (Platform.OS === 'ios') ? new Date() : null,
       bdayMain: null,
       user_id: '',
@@ -134,103 +134,206 @@ class ProfileScreenEdit extends Component {
         this.setState({ loader: false })
       }, 5000)
     }
+
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
     NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
 
-    //get initial data from local
-    AsyncStorage.getItem("firstname").then((value) => {
-      this.setState({ fname: value })
-    }).done();
 
-    AsyncStorage.getItem("lastname").then((value) => {
-      console.log("Last name Async:", value);
-      if (value === null) {
-        this.setState({ lname: '' })
-      } else {
-        this.setState({ lname: value })
-      }
+    var currentUser = firebase.auth().currentUser;
+    var currentUserRef = firebase.database().ref('User').child(currentUser.uid);
 
-    }).done();
-
-    AsyncStorage.getItem("email").then((value) => {
-      this.setState({ email: value })
-    }).done();
-
-    AsyncStorage.getItem("phone_number").then((value) => {
-      console.log("Phone number value:",value)
-      if(value !== null){
-        this.setState({ phone_number: value })
-      }
-    }).done();
-
-    AsyncStorage.getItem("city").then((value) => {
-      this.setState({ city: value })
-    }).done();
-
-    AsyncStorage.getItem("state").then((value) => {
-      if (value === null) {
-        this.setState({ state: 'state' })
-      }
-      else {
-        this.setState({ state: value })
-      }
-
-    }).done();
-
-    AsyncStorage.getItem("emergencyContactName").then((value) => {
-      this.setState({ emergencyContactName: value })
-    }).done();
-
-    AsyncStorage.getItem("emergencyContactNumber").then((value) => {
-      this.setState({ emergencyContactNumber: value })
-    }).done();
+    // console.log("User Friends:",currentUserRef);
+    currentUserRef.once('value', (data) => {
+      // console.log("Data from login",data);
+      var userData = data.val();
+      var keys = Object.keys(userData);
+      if (keys.length > 0) {
+        //     this.setState({
+        //       fname: currentUser.firstname,
+        //       lname: userData.lastname,
+        //       email: userData.email,
+        //       phone_number: userData.phone_number,
+        //       city: userData.city,
+        //       state: userData.state,
+        //       birthdate:userData.birthdate,
+        //       user_id:userData.uid,
+        //       profileImage:userData.profileImage,
+        // })
 
 
-    AsyncStorage.getItem("birthdate").then((value) => {
-
-      if (value === null) {
         this.setState({
-          bday: new Date(),
-        })
-      } else {
+          fname: userData.firstname
+        });
 
-        // var timezone = "UTC+5.30";
+        if (userData.lastname) {
+          if (userData.lastname === null) {
+            this.setState({ lname: '' })
+          } else {
+            this.setState({ lname: userData.lastname })
+          }
+        }
 
-        var localDate = moment.utc(value)
-        var local = localDate.local()
-        var date = moment(local).toString() + ' (+0530)'
-
-        console.log("Date IST", date);
-        //Fri Feb 17 1995 00:00:00 GMT+0530 (IST)
-        //Tue Mar 06 2018 18:14:00 GMT+0530 (+0530)
         this.setState({
-          bday: moment(date).toDate(),
-          bdayMain: moment(date).toDate(),
-        })
-        setTimeout(() => {
-          this.onChangeDateData(this.state.bday)
-        }, 4000)
-        console.log("Current Date From State", this.state.bday);
-        console.log("AsyncStorage birthdate", date);
+          email: userData.email,
+        });
+
+        if (userData.phone_number) {
+          if (userData.phone_number !== null) {
+            this.setState({ phone_number: userData.phone_number })
+          }
+        }
+
+        this.setState({
+          city: userData.city,
+        });
+       
+        if (userData.state) {
+          if (userData.state === null) {
+            this.setState({ state: 'state' })
+          } else {
+            this.setState({ state: userData.state })
+          }
+        }
+
+        if (userData.birthdate) {
+          if (userData.birthdate === null) {
+            this.setState({
+              bday: new Date(),
+            })
+          } else {
+            var localDate = moment.utc(userData.birthdate)
+            var local = localDate.local()
+            var date = moment(local).toString() + ' (+0530)'
+
+            console.log("Date IST", date);
+            //Fri Feb 17 1995 00:00:00 GMT+0530 (IST)
+            //Tue Mar 06 2018 18:14:00 GMT+0530 (+0530)
+            this.setState({
+              bday: moment(date).toDate(),
+              bdayMain: moment(date).toDate(),
+            })
+            setTimeout(() => {
+              this.onChangeDateData(this.state.bday)
+            }, 4000)
+            console.log("Current Date From State", this.state.bday);
+            console.log("AsyncStorage birthdate", date);
+          }
+          }
+        
+          this.setState({
+            user_id:data.key,
+          });
+         
+          if (userData.profileImage) {
+            if (userData.profileImage === null) {
+              this.setState({ profileImage: 'placeholder_img' })
+            } else {
+              this.setState({ profileImage: userData.profileImage })
+            }
+          }
+  
+
+       
+
+      
+
       }
-    }).done();
+    })
+
+    // //get initial data from local
+    // AsyncStorage.getItem("firstname").then((value) => {
+    //   this.setState({ fname: value })
+    // }).done();
+
+    // AsyncStorage.getItem("lastname").then((value) => {
+    //   console.log("Last name Async:", value);
+    //   if (value === null) {
+    //     this.setState({ lname: '' })
+    //   } else {
+    //     this.setState({ lname: value })
+    //   }
+
+    // }).done();
+
+    // AsyncStorage.getItem("email").then((value) => {
+    //   this.setState({ email: value })
+    // }).done();
+
+    // AsyncStorage.getItem("phone_number").then((value) => {
+    //   console.log("Phone number value:",value)
+    //   if(value !== null){
+    //     this.setState({ phone_number: value })
+    //   }
+    // }).done();
+
+    // AsyncStorage.getItem("city").then((value) => {
+    //   this.setState({ city: value })
+    // }).done();
+
+    // AsyncStorage.getItem("state").then((value) => {
+    //   if (value === null) {
+    //     this.setState({ state: 'state' })
+    //   }
+    //   else {
+    //     this.setState({ state: value })
+    //   }
+
+    // }).done();
+
+    // AsyncStorage.getItem("emergencyContactName").then((value) => {
+    //   this.setState({ emergencyContactName: value })
+    // }).done();
+
+    // AsyncStorage.getItem("emergencyContactNumber").then((value) => {
+    //   this.setState({ emergencyContactNumber: value })
+    // }).done();
 
 
-    AsyncStorage.getItem("user_id").then((value) => {
-      console.log("Edit Profile AsyncStorage user_id", value);
-      this.setState({ user_id: value })
-    }).done();
+    // AsyncStorage.getItem("birthdate").then((value) => {
 
-    AsyncStorage.getItem("profileImage").then((value) => {
-      console.log("Edit Profile AsyncStorage profileImage", value);
-      if (value == null) {
-        this.setState({ profileImage: 'placeholder_img' })
-      }
-      else {
-        this.setState({ profileImage: value })
-      }
+    //   if (value === null) {
+    //     this.setState({
+    //       bday: new Date(),
+    //     })
+    //   } else {
 
-    }).done();
+    //     // var timezone = "UTC+5.30";
+
+    //     var localDate = moment.utc(value)
+    //     var local = localDate.local()
+    //     var date = moment(local).toString() + ' (+0530)'
+
+    //     console.log("Date IST", date);
+    //     //Fri Feb 17 1995 00:00:00 GMT+0530 (IST)
+    //     //Tue Mar 06 2018 18:14:00 GMT+0530 (+0530)
+    //     this.setState({
+    //       bday: moment(date).toDate(),
+    //       bdayMain: moment(date).toDate(),
+    //     })
+    //     setTimeout(() => {
+    //       this.onChangeDateData(this.state.bday)
+    //     }, 4000)
+    //     console.log("Current Date From State", this.state.bday);
+    //     console.log("AsyncStorage birthdate", date);
+    //   }
+    // }).done();
+
+
+    // AsyncStorage.getItem("user_id").then((value) => {
+    //   console.log("Edit Profile AsyncStorage user_id", value);
+    //   this.setState({ user_id: value })
+    // }).done();
+
+    // AsyncStorage.getItem("profileImage").then((value) => {
+    //   console.log("Edit Profile AsyncStorage profileImage", value);
+    //   if (value == null) {
+    //     this.setState({ profileImage: 'placeholder_img' })
+    //   }
+    //   else {
+    //     this.setState({ profileImage: value })
+    //   }
+
+    // }).done();
   }
 
   //loader
@@ -529,7 +632,7 @@ class ProfileScreenEdit extends Component {
   };
 
   _onClickConfirm() {
-    console.log("Onclick done get data",this.state.phone_number)
+    console.log("Onclick done get data", this.state.phone_number)
     this.setState({ isConfirm: true })
     NetInfo.isConnected.fetch().done((isConnected) => {
       this.setState({ netStatus: isConnected });
@@ -546,6 +649,10 @@ class ProfileScreenEdit extends Component {
             return new Promise((resolve, reject) => {
               const uploadUri = Platform.OS === 'ios' ? uri.replace('file://', '') : uri
               let uploadBlob = null
+
+              this.setState({
+                loader:true
+              })
 
               const imageRef = firebase.storage().ref('userProfile').child(this.state.user_id)
 
@@ -564,22 +671,43 @@ class ProfileScreenEdit extends Component {
                 .then((url) => {
                   console.log("Url", url);
                   this.setState({
-                    profileImage: url
+                    profileImage: url,
+                    loader:false
                   })
-                  const { fname, lname, bdayMain, state,phone_number } = this.state;
+                  const { fname, lname, bdayMain, state, phone_number } = this.state;
 
                   var CurrentuserId = firebase.database().ref('User').child(this.state.user_id);
                   if (fname === '') {
                     this.setState({ isConfirm: false })
-                    Alert.alert(Strings.gymonkee, "Please enter first name")
+                    setTimeout(() => {
+                      Alert.alert(Strings.gymonkee, "Please enter first name")
+                    }, 500)
+                    
+                   
                   }
                   else if (!this.validateForAphabatic(fname)) {
                     this.setState({ isConfirm: false })
-                    Alert.alert(Strings.gymonkee, "Please enter valid first name")
+                    setTimeout(() => {
+                      Alert.alert(Strings.gymonkee, "Please enter valid first name")
+                    }, 500)
+                    
+                   
+                  } else if (phone_number === '') {
+                    this.setState({ isConfirm: false })
+
+                    setTimeout(() => {
+                    Alert.alert(Strings.gymonkee, "Please enter phone number")
+                      
+                    }, 500)
+                    
                   }
                   else if (state === 'state') {
                     this.setState({ isConfirm: false })
+                    setTimeout(() => {
                     Alert.alert(Strings.gymonkee, "Please select state")
+                      
+                    }, 500)
+                    
                   }
                   // else if(lname==='')
                   // {
@@ -606,25 +734,33 @@ class ProfileScreenEdit extends Component {
                     //   AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
                     //   Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
                     // } else {
-                      CurrentuserId.update({ phone_number:this.state.phone_number,firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, profileImage: this.state.profileImage, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
-                      AsyncStorage.setItem("birthdate", this.state.bday);
-                      AsyncStorage.setItem("firstname", this.state.fname);
-                      AsyncStorage.setItem("lastname", this.state.lname);
-                      AsyncStorage.setItem("profileImage", this.state.profileImage);
-                      AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
-                      AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
-                      AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
-                      Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
+                    CurrentuserId.update({ phone_number: this.state.phone_number, firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, profileImage: this.state.profileImage, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
+                    AsyncStorage.setItem("birthdate", this.state.bday);
+                    AsyncStorage.setItem("firstname", this.state.fname);
+                    AsyncStorage.setItem("lastname", this.state.lname);
+                    AsyncStorage.setItem("profileImage", this.state.profileImage);
+                    AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
+                    AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
+                    AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
+
+                    setTimeout(() => {
+                    Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
+                      
+                    }, 500)
+                    
                     // }
                   }
                 }).catch((error) => {
                   reject(error)
+                  this.setState({
+                    loader:false
+                  })
                 })
             })
           }
           //with out selecting profile image
           else {
-            const { fname, lname, bday, bdayMain, state, phone_number} = this.state;
+            const { fname, lname, bday, bdayMain, state, phone_number } = this.state;
 
             var CurrentuserId = firebase.database().ref('User').child(this.state.user_id);
             console.log("With out image url this.state.user_id", this.state.user_id);
@@ -635,6 +771,10 @@ class ProfileScreenEdit extends Component {
             else if (!this.validateForAphabatic(fname)) {
               this.setState({ isConfirm: false })
               Alert.alert(Strings.gymonkee, "Please enter valid first name")
+            }
+            else if (phone_number === '') {
+              this.setState({ isConfirm: false })
+              Alert.alert(Strings.gymonkee, "Please enter phone number")
             }
             else if (state === 'state') {
               this.setState({ isConfirm: false })
@@ -662,14 +802,14 @@ class ProfileScreenEdit extends Component {
               //   AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
               //   Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
               // } else {
-                CurrentuserId.update({ phone_number:this.state.phone_number,firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
-                AsyncStorage.setItem("birthdate", this.state.bday);
-                AsyncStorage.setItem("firstname", this.state.fname);
-                AsyncStorage.setItem("lastname", this.state.lname);
-                AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
-                AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
-                AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
-                Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
+              CurrentuserId.update({ phone_number: this.state.phone_number, firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
+              AsyncStorage.setItem("birthdate", this.state.bday);
+              AsyncStorage.setItem("firstname", this.state.fname);
+              AsyncStorage.setItem("lastname", this.state.lname);
+              AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
+              AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
+              AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
+              Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
               // }
             }
           }
@@ -677,7 +817,7 @@ class ProfileScreenEdit extends Component {
         }
         //With out image url
         else {
-          const { fname, lname, bdayMain, state, phone_number} = this.state;
+          const { fname, lname, bdayMain, state, phone_number } = this.state;
 
           var CurrentuserId = firebase.database().ref('User').child(this.state.user_id);
           console.log("With out image url this.state.user_id", this.state.user_id);
@@ -688,6 +828,10 @@ class ProfileScreenEdit extends Component {
           else if (!this.validateForAphabatic(fname)) {
             this.setState({ isConfirm: false })
             Alert.alert(Strings.gymonkee, "Please enter valid first name")
+          }
+          else if (phone_number === '') {
+            this.setState({ isConfirm: false })
+            Alert.alert(Strings.gymonkee, "Please enter phone number")
           }
           else if (state === 'state') {
             this.setState({ isConfirm: false })
@@ -715,16 +859,16 @@ class ProfileScreenEdit extends Component {
             //   AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
             //   Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
             // } else {
-              CurrentuserId.update({ phone_number:this.state.phone_number,firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
-              AsyncStorage.setItem("birthdate", this.state.bday);
-              AsyncStorage.setItem("firstname", this.state.fname);
-              AsyncStorage.setItem("lastname", this.state.lname);
-              AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
-              // AsyncStorage.setItem("emergencyContactName", (this.state.emergencyContactName !== null) ? this.state.emergencyContactName : '');
-              // AsyncStorage.setItem("emergencyContactNumber", (this.state.emergencyContactNumber !== null) ? this.state.emergencyContactNumber : '');
-              AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
-              AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
-              Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
+            CurrentuserId.update({ phone_number: this.state.phone_number, firstname: this.state.fname, lastname: this.state.lname, birthdate: this.state.bday, updatedAt: firebase.database.ServerValue.TIMESTAMP, updatedBy: this.state.user_id, city: this.state.city, state: this.state.state });
+            AsyncStorage.setItem("birthdate", this.state.bday);
+            AsyncStorage.setItem("firstname", this.state.fname);
+            AsyncStorage.setItem("lastname", this.state.lname);
+            AsyncStorage.setItem("phone_number", (this.state.phone_number !== null) ? this.state.phone_number : '');
+            // AsyncStorage.setItem("emergencyContactName", (this.state.emergencyContactName !== null) ? this.state.emergencyContactName : '');
+            // AsyncStorage.setItem("emergencyContactNumber", (this.state.emergencyContactNumber !== null) ? this.state.emergencyContactNumber : '');
+            AsyncStorage.setItem("city", (this.state.city !== null) ? this.state.city : '');
+            AsyncStorage.setItem("state", (this.state.state !== null) ? this.state.state : '');
+            Alert.alert(Strings.gymonkee, "Profile Updated Successfully..", [{ text: 'OK', onPress: () => this._goToProfileScreen() }])
             // }
           }
         }
@@ -917,7 +1061,7 @@ class ProfileScreenEdit extends Component {
                   onFocus={() => this.onFocusText("lname")}
                   onBlur={() => this.onBlurText("lname")}
                   returnKeyType="next"
-                  onSubmitEditing={() => this.refs['city'].focus()}
+                  onSubmitEditing={() => this.refs['phone'].focus()}
                 />
               </View>
             </View>
@@ -952,9 +1096,9 @@ class ProfileScreenEdit extends Component {
                 value={this.state.phone_number}
                 onFocus={() => this.onFocusText("phone")}
                 onBlur={() => this.onBlurText("phone")}
-                returnKeyType="done"
+                returnKeyType="next"
                 editable={true}
-
+                onSubmitEditing={() => this.refs['city'].focus()}
               />
             </View>
             <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
@@ -969,8 +1113,8 @@ class ProfileScreenEdit extends Component {
                   value={this.state.city}
                   onFocus={() => this.onFocusText("city")}
                   onBlur={() => this.onBlurText("city")}
-                  returnKeyType="next"
-                  onSubmitEditing={() => this.refs['emergencyContactName'].focus()}
+                  returnKeyType="done"
+
                 />
               </View>
 
@@ -992,7 +1136,7 @@ class ProfileScreenEdit extends Component {
               </View>
             </View>
 
-            {(this.state.hideEmergencyContact)&&<View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
+            {(this.state.hideEmergencyContact) && <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
               <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: Colors.white_underline, }}>
                 <Text style={styles.labelText}>Emergency Contact:</Text>
               </View>
@@ -1014,7 +1158,7 @@ class ProfileScreenEdit extends Component {
               </View>
             </View>}
 
-            {(this.state.hideEmergencyContact)&&<View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
+            {(this.state.hideEmergencyContact) && <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
               <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: Colors.white_underline }}>
                 <Text style={styles.labelText}>Emergency Contact #:</Text>
               </View>

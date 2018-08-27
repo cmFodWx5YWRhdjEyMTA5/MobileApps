@@ -33,7 +33,7 @@ import DeviceInfo from "react-native-device-info";
 import { NavigationActions } from "react-navigation";
 import * as firebase from "firebase";
 import Strings from "./../Utils/Strings";
-import { AccessToken, LoginManager } from "react-native-fbsdk";
+import { AccessToken, LoginManager, GraphRequest, GraphRequestManager } from "react-native-fbsdk";
 import { GoogleSignin } from "react-native-google-signin";
 import Spinner from "react-native-loading-spinner-overlay";
 import LinkedInModal from "react-native-linkedin";
@@ -59,13 +59,15 @@ class Login extends Component {
     super(props);
     this.state = {
       loader: false,
-      birthdate: new Date()
+      birthdate: new Date(),
+      facebook_profile_pic_url: ''
     };
     this.userRef = firebase
       .database()
       .ref()
       .child("User");
   }
+  
   //handle Internet Connection
   handleConnectionChange = isConnected => {
     this.setState({ netStatus: isConnected });
@@ -133,11 +135,33 @@ class Login extends Component {
           })
           .then(data => {
             // Create a new Firebase credential with the token
+            console.log("FBLogin Data is::", data.accessToken)
+            const currentAccessToken = data.accessToken
+
+            const graphRequest = new GraphRequest('/me', {
+              accessToken: currentAccessToken.accessToken,
+              parameters: {
+                fields: {
+                  string: 'picture.type(large)',
+                },
+              },
+            }, (error, result) => {
+              if (error) {
+                console.error(error)
+              } else {
+                this.setState({
+                  facebook_profile_pic_url: result.picture.data.url
+                })
+                console.log("Profile Picture is:", result.picture.data.url)
+              }
+            })
+
+            new GraphRequestManager().addRequest(graphRequest).start()
+
             const credential = firebase.auth.FacebookAuthProvider.credential(
               data.accessToken
             );
 
-            // Login with the credential
             return firebase.auth().signInWithCredential(credential);
           })
           .then(user => {
@@ -146,7 +170,7 @@ class Login extends Component {
             // `onAuthStateChanged` listener we set up in App.js earlier
             this.setState({ loader: false });
             setTimeout(() => {
-              console.log("Facebook User : ", user);
+              console.log("Facebook User: ", user);
               console.log("Facebook User uid", user.uid);
               console.log("Facebook User Email", user.email);
               console.log("Facebook User name", user.displayName);
@@ -191,24 +215,42 @@ class Login extends Component {
                       console.log("Response UserEmail is", user.email);
 
                       var temp = this.userRef.child(user.uid);
+                      if (this.state.facebook_profile_pic_url !== '') {
+                        temp.update({
+                          email: user.email,
+                          firstname: user.displayName.split(" ")[0],
+                          lastname: user.displayName.split(" ")[1],
+                          stripe_cust_id: responseData.id,
+                          coinBalance: 0,
+                          createdAt: firebase.database.ServerValue.TIMESTAMP,
+                          createdBy: user.uid,
+                          status: 1,
+                          updatedAt: firebase.database.ServerValue.TIMESTAMP,
+                          updatedBy: user.uid,
+                          signInMethod: "Facebook",
+                          birthdate: new Date(),
+                          profileImage: this.state.facebook_profile_pic_url
+                        });
+                      } else {
+                        temp.update({
+                          email: user.email,
+                          firstname: user.displayName.split(" ")[0],
+                          lastname: user.displayName.split(" ")[1],
+                          stripe_cust_id: responseData.id,
+                          coinBalance: 0,
+                          createdAt: firebase.database.ServerValue.TIMESTAMP,
+                          createdBy: user.uid,
+                          status: 1,
+                          updatedAt: firebase.database.ServerValue.TIMESTAMP,
+                          updatedBy: user.uid,
+                          signInMethod: "Facebook",
+                          birthdate: new Date(),
+                        });
+                      }
 
-                      temp.update({
-                        email: user.email,
-                        firstname: user.displayName.split(" ")[0],
-                        lastname: user.displayName.split(" ")[1],
-                        stripe_cust_id: responseData.id,
-                        coinBalance: 0,
-                        createdAt: firebase.database.ServerValue.TIMESTAMP,
-                        createdBy: user.uid,
-                        status: 1,
-                        updatedAt: firebase.database.ServerValue.TIMESTAMP,
-                        updatedBy: user.uid,
-                        signInMethod: "Facebook",
-                        birthdate: new Date()
-                      });
 
                       AsyncStorage.setItem("email", user.email);
-
+                      AsyncStorage.setItem("profileImage", this.state.facebook_profile_pic_url);
                       AsyncStorage.setItem(
                         "firstname",
                         user.displayName.split(" ")[0]
@@ -302,10 +344,13 @@ class Login extends Component {
                       AsyncStorage.setItem("state", userData.state);
                     }
                     if (userData.hasOwnProperty("profileImage")) {
-                      AsyncStorage.setItem(
-                        "profileImage",
-                        userData.profileImage
-                      );
+                      if (this.state.facebook_profile_pic_url !== '') {
+                        console.log("Inside not null profile url", this.state.facebook_profile_pic_url)
+                        AsyncStorage.setItem("profileImage", this.state.facebook_profile_pic_url);
+                      } else {
+                        console.log("Inside  null profile url", this.state.facebook_profile_pic_url)
+                        AsyncStorage.setItem("profileImage", userData.profileImage);
+                      }
                     }
                     if (userData.hasOwnProperty("stripe_cust_id")) {
                       AsyncStorage.setItem(
@@ -713,14 +758,15 @@ class Login extends Component {
                     console.log("Error message : ", error.UserInfo);
                     const { code, message } = error;
                     this.setState({ loader: false });
-                    setTimeout(() => {
-                      Alert.alert(Strings.gymonkee, error.message);
-                    }, 500);
+                    // setTimeout(() => {
+                    //   Alert.alert(Strings.gymonkee, error.message);
+                    // }, 500);
                   });
               });
             })
             .catch(error => {
               this.setState({ loader: false });
+              console.log("Google Sign In Error",error);
               setTimeout(() => {
                 Alert.alert(Strings.gymonkee, error.message);
               }, 500);
@@ -1030,9 +1076,9 @@ class Login extends Component {
                       const { code, message } = error;
                       console.log("Google error", error.message);
                       this.setState({ loader: false });
-                      setTimeout(() => {
-                        Alert.alert(Strings.gymonkee, error.message);
-                      }, 500);
+                      // setTimeout(() => {
+                      //   Alert.alert(Strings.gymonkee, error.message);
+                      // }, 500);
                     });
                 })
                 .catch(err => {
@@ -1102,11 +1148,14 @@ class Login extends Component {
             .database()
             .ref("User")
             .child(currentUser.uid);
-          console.log("Current User Ref:", currentUserRef);
+          console.log("Current User Ref UID:", currentUserRef.uid);
 
           currentUserRef.on("value", data => {
             console.log("Data from login", data);
             var userData = data.val();
+
+            console.log("UserData",userData);
+
             var keys = Object.keys(userData);
             AsyncStorage.setItem("user_id", currentUser.uid);
             console.log("Login Fid", currentUser.uid);

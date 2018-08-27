@@ -66,17 +66,51 @@ class Help extends Component{
   }
 
 
-  componentWillMount() {
+ //Life Cycle Methods
+ componentWillMount() {
+  NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+  NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
+}
 
+//Life Cycle Methods
+componentDidMount() {
+  NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
+  NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
+
+  NetInfo.isConnected.fetch().done((isConnected) => {
+    this.setState({ netStatus: isConnected });
+    console.log("this.state.arrContactUploadArr", this.state.arrContactUploadArr);
+    if (isConnected) {
+      this.setState({
+        loader: true
+      })
+    }
+    else {
+      Alert.alert(Strings.gymonkee, Strings.internet_offline);
+   }
+  });
+}
+//handle Internetconnection
+handleConnectionChange = (isConnected) => {
+  this.setState({ netStatus: isConnected });
+  console.log(`is connected: ${this.state.netStatus}`);
+}
+//loader
+loader() {
+  if (this.state.loader) {
+    return (
+      <View>
+        <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#c32439' }} color="#c32439" />
+      </View>
+    )
   }
+}
 
-  //Life Cycle Methods
-
-  componentDidMount()
-  {
-
-  }
-
+_loaderOff() {
+  this.setState({
+    loader: false
+  })
+}
     //loader
     loader()
     {
@@ -131,6 +165,7 @@ class Help extends Component{
                                 javaScriptEnabled={true}
                                 source={{uri: 'http://www.gymonkee.com/faq/'}}
                                 style={{backgroundColor: 'rgba(211, 211, 211 , 0)'}}
+                                onLoad={() => this._loaderOff()}
                               />
                         </View>
 
