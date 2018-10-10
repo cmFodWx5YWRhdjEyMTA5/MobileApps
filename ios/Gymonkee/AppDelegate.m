@@ -28,7 +28,7 @@
   [[FBSDKApplicationDelegate sharedInstance] application:application
                            didFinishLaunchingWithOptions:launchOptions];
   
-  //Developement
+ 
   NSURL *jsCodeLocation;
   [GMSServices provideAPIKey:@"AIzaSyC0Ofkxg64Ldw3tz_LTgYNGCgdD-CfF7jM"];
   [FIRApp configure];
@@ -39,10 +39,10 @@
    */
   
   //Production
-    
-   jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
-  
-//jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
+  // jsCodeLocation = [[NSBundle mainBundle] URLForResource:@"main" withExtension:@"jsbundle"];
+   //Developement
+
+  jsCodeLocation = [[RCTBundleURLProvider sharedSettings] jsBundleURLForBundleRoot:@"index" fallbackResource:nil];
 
   
   RCTRootView *rootView = [[RCTRootView alloc] initWithBundleURL:jsCodeLocation

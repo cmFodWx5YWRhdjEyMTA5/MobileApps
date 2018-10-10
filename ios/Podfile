@@ -1,3 +1,5 @@
+# Disable sending stats
+ENV['COCOAPODS_DISABLE_STATS'] = 'true'
 # Uncomment the next line to define a global platform for your project
 # platform :ios, '9.0'
 
@@ -7,7 +9,7 @@ target 'Gymonkee' do
 
   # Pods for Gymonkee
   #pod 'Yoga', :path => '../node_modules/react-native/ReactCommon/yoga/Yoga.podspec'
-  pod 'Stripe'
+  pod 'Stripe', '~> 11.2.0'
   pod 'GoogleMaps'  
   pod 'Fabric'
   pod 'Crashlytics'
