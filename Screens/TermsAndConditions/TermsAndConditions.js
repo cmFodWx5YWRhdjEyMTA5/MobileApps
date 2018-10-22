@@ -456,6 +456,7 @@ class TermsAndConditions extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
         <MyStatusBar
           backgroundColor={Colors.theme_background}
           barStyle="light-content"
@@ -482,6 +483,7 @@ class TermsAndConditions extends Component {
           </TouchableOpacity>
 
         </View>
+        </ImageBackground>
       </View>
     )
   }

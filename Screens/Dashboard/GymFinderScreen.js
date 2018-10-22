@@ -534,14 +534,14 @@ class GymFinderScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
+        
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
 
-        <View style={{ flex: 10, backgroundColor: Colors.theme_background, }}>
+        <View style={{ flex: 10,}}>
           <View style={{ flex: 3, borderWidth: 0 }}>
-            <ImageBackground source={{ uri: 'shape_red_top' }} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -20 : -10 }}>
+            <ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -40 : -10 }}>
 
             </ImageBackground>
           </View>
@@ -566,21 +566,20 @@ class GymFinderScreen extends Component {
               <View style={{ flex: 1, height: 50, borderWidth: 0, alignItems: 'flex-end', justifyContent: 'center' }}>
 
                 <View style={{ flex: 1, borderWidth: 1, borderRadius: 40, borderColor: Colors.header_red, flexDirection: 'row' }}>
-                  <View style={{ justifyContent: 'center' }}>
-                    <Image source={{ uri: 'location_pin' }} resizeMode="contain" style={{ height: 24, width: 24 }} />
+                  <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#ff3300', }}>
+                    
+                    <TextInput
+                      placeholder='Search by City/State/ Zip code'
+                      style={{ flex: 1, borderWidth: 1, fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: 'black', borderWidth: 0, paddingTop: 5, paddingBottom: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : -10,marginLeft:20 }}
+                      ref='search_text'
+                      placeholderTextColor="rgb(115,119,118)"
+                      underlineColorAndroid='transparent'
+                      onChangeText={(text) => this._changeSearchText(text)}
+                      onSubmitEditing={this.searchSubmit}
+                      value={this.state.search_text}
+                      returnKeyType="search"
+                    />
                   </View>
-                  <TextInput
-                    placeholder='city, state or zip code'
-                    style={{ flex: 1, borderWidth: 1, fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 5, paddingBottom: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8 }}
-                    ref='search_text'
-                    placeholderTextColor="rgb(115,119,118)"
-                    underlineColorAndroid='transparent'
-                    onChangeText={(text) => this._changeSearchText(text)}
-                    onSubmitEditing={this.searchSubmit}
-                    value={this.state.search_text}
-                    returnKeyType="search"
-                  />
-
                   <View style={{ justifyContent: 'center', alignItems: 'flex-end' }}>
                     {
                       (this.state.searchCancelVisible) ?

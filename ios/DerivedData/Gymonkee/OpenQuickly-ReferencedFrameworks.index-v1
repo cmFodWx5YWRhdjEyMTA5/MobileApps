@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>FBSDKShareKit</string>
+	<string>MapKit</string>
+	<string>FirebaseCore</string>
+	<string>libkern</string>
+	<string>PassKit</string>
+	<string>Photos</string>
+	<string>folly</string>
+	<string>CoreLocation</string>
+	<string>RCTAnimation</string>
+	<string>ImageIO</string>
+	<string>GoogleMaps</string>
+	<string>FirebaseDatabase</string>
+	<string>AssetsLibrary</string>
+	<string>yoga</string>
+	<string>Firebase</string>
+	<string>RNGoogleSignin</string>
+	<string>mach</string>
+	<string>AVFoundation</string>
+	<string>FirebaseMessaging</string>
+	<string>os</string>
+	<string>GoogleMobileAds</string>
+	<string>MobileCoreServices</string>
+	<string>FirebaseInstanceID</string>
+	<string>CoreText</string>
+	<string>FBSDKLoginKit</string>
+	<string>FBSDKCoreKit</string>
+	<string>JavaScriptCore</string>
+	<string>cxxreact</string>
+	<string>Crashlytics</string>
+	<string>FirebasePerformance</string>
+	<string>Contacts</string>
+	<string>XCTest</string>
+	<string>Accelerate</string>
+	<string>CommonCrypto</string>
+	<string>FirebaseRemoteConfig</string>
+	<string>GoogleSignIn</string>
+	<string>CoreMotion</string>
+	<string>fishhook</string>
+	<string>FirebaseCrash</string>
+	<string>QuartzCore</string>
+	<string>AudioToolbox</string>
+	<string>SystemConfiguration</string>
+	<string>FirebaseAnalytics</string>
+	<string>Security</string>
+	<string>LocalAuthentication</string>
+	<string>AddressBook</string>
+	<string>Stripe</string>
+	<string>CoreGraphics</string>
+	<string>ContactsUI</string>
+	<string>objc</string>
+	<string>CoreMedia</string>
+	<string>FirebaseDynamicLinks</string>
+	<string>UIKit</string>
+	<string>UserNotifications</string>
+	<string>jschelpers</string>
+	<string>CoreTelephony</string>
+	<string>Foundation</string>
+	<string>Fabric</string>
+	<string>sys</string>
+	<string>React</string>
+	<string>FirebaseFirestore</string>
+</array>
+</plist>

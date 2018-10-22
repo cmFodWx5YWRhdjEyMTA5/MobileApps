@@ -131,7 +131,7 @@ class GetCoins extends Component {
           oldCoin: userData.coinBalance,
           oldpaygCoin: userData.paygCoin,
           oldmonthlyCoin: userData.monthlyCoin,
-          lastSubscribePlan: userData.subscriptionPlan.planId,
+          //lastSubscribePlan: userData.subscriptionPlan.planId,
 
         });
 
@@ -276,7 +276,7 @@ class GetCoins extends Component {
       }
     });
   }
-
+  renderPlanList
   openConfirmDialog150(planType, coin, doller_price) {
     // Alert.alert(Strings.gymonkee,"Are you sure want to purchase 150 coins?",
     //    [
@@ -651,7 +651,7 @@ class GetCoins extends Component {
 
       const { planType, planCoin, planDollerPrice, planBasicType, cardId } = this.state;
       if (planBasicType === "PAYG") {
-        Alert.alert(Strings.gymonkee, "By confirming purchase, you are agreeing to the terms and conditions of Gymonkee, LLC. Confirm Purchase ?",
+        Alert.alert(Strings.gymonkee, "By confirming purchase, you are agreeing to the terms and conditions of Gymonkee, LLC. Confirm Purchase ?",renderPlanList
           [
             { text: 'Yes', onPress: () => this._subScribePlan(planType, planCoin, planDollerPrice) },
             { text: 'No', style: 'cancel' }
@@ -795,28 +795,28 @@ class GetCoins extends Component {
         if (index === 0) {
           return (
             <View>
-              <View style={{ flex: 0.7, marginTop: 10, marginBottom: 10, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontFamily: Fonts.regular, color: Colors.header_red, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 17 : 20 }}>PAY AS YOU GO</Text>
+              <View style={{ flex: 0.7, marginBottom: 10, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}>
+                <Text style={{ fontFamily: Fonts.regular, color: Colors.white, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 17 : 20 }}>PAY AS YOU GO</Text>
               </View>
 
 
               <TouchableOpacity onPress={() => this.openConfirmDialog150(data.planId_live, data.coins, data.price)}>
-                <View style={{ borderWidth: 0, backgroundColor: Colors.custom_black, marginLeft: 20, marginRight: 20, borderRadius: 6 }}>
+                <View style={{ borderWidth: 0, backgroundColor: Colors.white, marginLeft: 20, marginRight: 20, borderRadius: 6 }}>
                   <View style={{ flex: 1.5, flexDirection: 'row' }}>
 
-                    <View style={{ flex: 0.7, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
+                    <View style={{ flex: 0.7, borderWidth: 0, borderColor: 'black', justifyContent: 'center' }}>
                       <View style={{ flex: 0.5, borderWidth: 0, borderColor: 'white' }}>
-                        <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: 'white' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: 'white' }}>Coins</Text></Text>
+                        <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: '#d66924' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: '#d66924' }}>Coins</Text></Text>
                       </View>
 
                       <View style={{ flex: 0.5, marginLeft: 20, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 15, color: 'white' }}>{data.description} </Text>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 15, color: 'white' }}>{data.workout_days}</Text>
+                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 15, color: 'black' }}>{data.description} </Text>
+                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 15, color: 'black' }}>{data.workout_days}</Text>
                       </View>
                     </View>
 
                     <View style={{ flex: 0.3, borderWidth: 0, borderColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'white' }}>${data.price}</Text>
+                      <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'black' }}>${data.price}</Text>
                     </View>
                   </View>
 
@@ -830,11 +830,11 @@ class GetCoins extends Component {
           return (
             <View>
               <TouchableOpacity onPress={() => this.openConfirmDialog(data.planId_dev, data.coins, data.price)}>
-                <View style={{ flex: (Platform.OS === 'android') ? 1.7 : 1.5, borderWidth: 0, backgroundColor: Colors.buy_coins_orange_bg, marginLeft: 20, marginRight: 20, borderRadius: 6, marginTop: 8 }}>
+                <View style={{ flex: (Platform.OS === 'android') ? 1.7 : 1.5, borderWidth: 0, backgroundColor: Colors.white, marginLeft: 20, marginRight: 20, borderRadius: 6, marginTop: 8 }}>
                   <View style={{ flex: 1.5, flexDirection: 'row' }}>
                     <View style={{ flex: 0.7, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
                       <View style={{ flex: 0.5, borderWidth: 0, borderColor: 'white', flexDirection: 'row' }}>
-                        <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: 'white' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: 'white' }}>Coins</Text></Text>
+                        <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: '#d66924' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: '#d66924' }}>Coins</Text></Text>
                         <View style={{ borderWidth: 0, marginLeft: 6, marginTop: 8 }}>
                           <Image source={{ uri: ' ' }} style={{ height: 35, width: 35, borderWidth: 0 }} resizeMode="contain" />
                         </View>
@@ -845,14 +845,14 @@ class GetCoins extends Component {
                       </View>
 
                       <View style={{ flex: 0.5, marginLeft: 20, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'white' }}>{data.description}</Text>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'white', }}>{data.workout_days}</Text>
+                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'black' }}>{data.description}</Text>
+                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'black', }}>{data.workout_days}</Text>
                       </View>
                     </View>
 
                     <View style={{ flex: 0.3, borderWidth: 0, borderColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'white' }}>${data.price}</Text>
-                      <Text style={{ marginTop: -5, marginLeft: 15, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 10 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : 14, color: 'white' }}>per month</Text>
+                      <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'black' }}>${data.price}</Text>
+                      <Text style={{ marginTop: -5, marginLeft: 15, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 10 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : 14, color: 'black' }}>per month</Text>
                       {(this.state.storedPlanId === data.planId_dev) ? <Image source={{ uri: 'accept_icon' }} style={{ height: 20, width: 20, borderWidth: 0 }} resizeMode="contain" /> : <View />}
                     </View>
                   </View>
@@ -864,10 +864,10 @@ class GetCoins extends Component {
               </TouchableOpacity>
 
               <View style={{ flex: 1.6, borderWidth: 0, alignItems: 'center' }}>
-                <Text style={{ marginTop: 20, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: Colors.header_red }}>Coins will reload after 30 days</Text>
-                <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: Colors.header_red }}>of purchase</Text>
+                <Text style={{ marginTop: 20, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: 'black' }}>Coins will reload after 30 days</Text>
+                <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: 'black' }}>of purchase</Text>
                 {(this.state.storedPlanId !== '') ? <TouchableOpacity onPress={() => this.authenticateUnsubscribe()} style={{ borderBottomWidth: 1, borderColor: Colors.header_red }}>
-                  <Text style={{ marginTop: 20, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: Colors.header_red }}>Unsubscribe plan</Text>
+                  <Text style={{ marginTop: 20, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 18 : 18, color: 'black' }}>Unsubscribe plan</Text>
                 </TouchableOpacity> : <View />}
               </View>
 
@@ -880,37 +880,38 @@ class GetCoins extends Component {
                 <View style={{ flex: 0.7 }} />
 
                 <View style={{ flex: 0.7, alignItems: 'center', justifyContent: 'center' }}>
-                  <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 22 : 22, color: Colors.header_red }}>MONTHLY SUBSCRIPTIONS</Text>
+                  <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 16 : (DeviceInfo.getModel() === 'iPhone X') ? 22 : 22, color: Colors.white }}>MONTHLY SUBSCRIPTIONS</Text>
                 </View>
               </View>
 
-
+            
               <TouchableOpacity onPress={() => this.openConfirmDialog(data.planId_dev, data.coins, data.price)}>
-                <View style={{ flex: (Platform.OS === 'android') ? 1.7 : 1.5, borderWidth: 0, backgroundColor: Colors.buy_coins_orange_bg, marginLeft: 20, marginRight: 20, borderRadius: 6, marginTop: 8 }}>
+                <View style={{ flex: (Platform.OS === 'android') ? 1.7 : 1.5, borderWidth: 0, backgroundColor: Colors.white, marginLeft: 20, marginRight: 20, borderRadius: 6, marginTop: 8 }}>
                   <View style={{ flex: 1.5, flexDirection: 'row' }}>
-                    <View style={{ flex: 0.7, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
-                      <View style={{ flex: 0.5, borderWidth: 0, borderColor: 'white', flexDirection: 'row' }}>
-                        <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: 'white' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: 'white' }}>Coins</Text></Text>
-                        <View style={{ borderWidth: 0, marginLeft: 6, marginTop: 8 }}>
-                          <Image source={{ uri: ' ' }} style={{ height: 35, width: 35, borderWidth: 0 }} resizeMode="contain" />
-                        </View>
-                        <View style={{ borderWidth: 0, marginTop: 4 }}>
-                          <Text style={{ fontFamily: Fonts.regular, color: 'white', fontSize: 10 }}> </Text>
+                  
+                      <View style={{ flex: 0.7, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
+                        <View style={{ flex: 0.5, borderWidth: 0, borderColor: 'white', flexDirection: 'row' }}>
+                          <Text style={{ marginLeft: 20, marginTop: (DeviceInfo.getModel() === 'iPhone X') ? 10 : (Platform.OS === 'android') ? 0 : 8, fontFamily: Fonts.SFU_BOLD, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 30 : (Platform.OS === 'android' && deviceHeight <= 640) ? 35 : 40, color: '#d66924' }}>{data.coins} <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 18 : (Platform.OS === 'android' && deviceHeight <= 640) ? 18 : 22, color: '#d66924' }}>Coins</Text></Text>
+                          <View style={{ borderWidth: 0, marginLeft: 6, marginTop: 8 }}>
+                            <Image source={{ uri: ' ' }} style={{ height: 35, width: 35, borderWidth: 0 }} resizeMode="contain" />
+                          </View>
+                          <View style={{ borderWidth: 0, marginTop: 4 }}>
+                            <Text style={{ fontFamily: Fonts.regular, color: 'white', fontSize: 10 }}> </Text>
 
+                          </View>
+                        </View>
+
+                        <View style={{ flex: 0.5, marginLeft: 20, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
+                          <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'black' }}>{data.description}</Text>
+                          <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'black', }}>{data.workout_days}</Text>
                         </View>
                       </View>
 
-                      <View style={{ flex: 0.5, marginLeft: 20, borderWidth: 0, borderColor: 'white', justifyContent: 'center' }}>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'white' }}>{data.description}</Text>
-                        <Text style={{ fontFamily: Fonts.SFU_REGULAR, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 11 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : (Platform.OS === 'android' && deviceHeight <= 640) ? 14 : 14, color: 'white', }}>{data.workout_days}</Text>
+                      <View style={{ flex: 0.3, borderWidth: 0, borderColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
+                        <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'black' }}>${data.price}</Text>
+                        <Text style={{ marginTop: -5, marginLeft: 15, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 10 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : 14, color: 'black' }}>per month</Text>
+                        {(this.state.storedPlanId === data.planId_dev) ? <Image source={{ uri: 'accept_icon' }} style={{ height: 20, width: 20, borderWidth: 0 }} resizeMode="contain" /> : <View />}
                       </View>
-                    </View>
-
-                    <View style={{ flex: 0.3, borderWidth: 0, borderColor: 'white', justifyContent: 'center', alignItems: 'center' }}>
-                      <Text style={{ fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 22 : (DeviceInfo.getModel() === 'iPhone X') ? 30 : 30, color: 'white' }}>${data.price}</Text>
-                      <Text style={{ marginTop: -5, marginLeft: 15, fontFamily: Fonts.regular, fontSize: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 10 : (DeviceInfo.getModel() === 'iPhone X') ? 14 : 14, color: 'white' }}>per month</Text>
-                      {(this.state.storedPlanId === data.planId_dev) ? <Image source={{ uri: 'accept_icon' }} style={{ height: 20, width: 20, borderWidth: 0 }} resizeMode="contain" /> : <View />}
-                    </View>
                   </View>
 
                   {(Platform.OS === 'android') ? <View style={{ height: 10 }} /> : <View style={{ height: 20 }} />}
@@ -929,22 +930,23 @@ class GetCoins extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View style={{ alignItems: 'center' }}>
-          {this.loader()}
-        </View>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
+        <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
+          <View style={{ alignItems: 'center' }}>
+            {this.loader()}
+          </View>
+          <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
         <View style={{ flex: 3, borderWidth: 0 }}>
-          <ImageBackground source={{ uri: 'shape_red_top' }} resizeMode="contain" style={{ height: null, width: null, flex: 1, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -20 : -10 }}>
+          
 
-          </ImageBackground>
+          
         </View>
 
         <View style={{ flex: 7, borderWidth: 0, marginBottom: 10, marginTop: (Platform.OS === 'android') ? -100 : (DeviceInfo.getModel() === ModelIphoneX) ? -120 : -80 }}>
           {/*Logo View*/}
           <View style={{ height: 100, borderWidth: 0, justifyContent: 'center', alignItems: 'center', marginTop: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -20 : -(Platform.OS === 'android') ? 0 : -20 }}>
-            <Image source={{ uri: 'logo_vector' }} resizeMode="contain" style={{ height: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 50 : 60, width: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 50 : 60 }} />
+           
           </View>
-          <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={{ marginBottom: 0 }}>
+          <ScrollView bounces={false} showsVerticalScrollIndicator={false}>
             {this.renderPlanList()}
           </ScrollView>
           <ActionSheet
@@ -954,6 +956,7 @@ class GetCoins extends Component {
             onPress={this.handlePress}
           />
         </View>
+        </ImageBackground>  
       </View >
     )
   }

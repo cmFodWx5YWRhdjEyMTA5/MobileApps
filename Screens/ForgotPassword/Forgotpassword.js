@@ -60,19 +60,6 @@ class Forgotpassword extends Component{
     }
   }
 
-
-
-static navigationOptions = ({navigation, screenProps}) => {
-     const params = navigation.state.params || {};
-    return {
-          title:'',
-          gesturesEnabled:true,
-          headerStyle:{ backgroundColor: Colors.header_red,borderBottomWidth: 0,shadowColor: 'transparent',elevation:0,marginTop: (Platform.OS==='android')?20:0},
-          headerTitleStyle:HeaderStyle.titleCenter,
-          headerLeft: <TouchableOpacity onPress={()=> navigation.goBack()}><View style={{marginRight:10}}><Image source={{uri: "back_arrow"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
-        }
-   }
-
   //Life Cycle Methods
   componentWillMount()
   {
@@ -165,63 +152,57 @@ static navigationOptions = ({navigation, screenProps}) => {
   //Main View Rendering
   render(){
     return(
-        <View style={styles.container}>
-            <View style={{alignItems:'center'}}>
-                {this.loader()}
-            </View>
-            <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false}/>
-          <View style={{flex:3,borderWidth:0}}>
-              <ImageBackground source={{uri:'shape_red_top'}} resizeMode="contain" style={{height:null,width:null,flex:3,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?-95:(deviceHeight >600 && Platform.OS==='ios')?-120:(Platform.OS==='android')?-90:-80}}>
-                    <View style={{flex:3,justifyContent:'center',alignItems:'center',marginBottom:(Platform.OS==='android')?30:60}}>
-                          <Image source={{uri:'logo_white'}} resizeMode="contain" style={{height:(deviceHeight >600)?40:35,width:Dimensions.get('window').width-100,borderWidth:0}} />
-                    </View>
-              </ImageBackground>
-          </View>
-
-            <View style={{flex:7,borderWidth:0}}>
-
-
-                  <View style={{flex:3,borderWidth:0}}>
-                      <View style={{flex:1.3,borderWidth:0,justifyContent:'center',alignItems:'center'}}>
-                            <Text style={{fontFamily:Fonts.regular,color:Colors.orange_text,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>Enter your email address and</Text>
-                            <Text style={{fontFamily:Fonts.regular,color:Colors.orange_text,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>we will send you</Text>
-                            <Text style={{fontFamily:Fonts.regular,color:Colors.orange_text,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>a link to reset your password</Text>
-                      </View>
-
-
-                      <View style={{flex:0.3}} />
-
-                      <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isEmail===true)?Colors.orange_text:Colors.white_underline,marginLeft:50,marginRight:50}}>
-                          <TextInput
-                              placeholder='E-mail'
-                              style={{fontSize:15,color:Colors.orange_text,borderWidth:0,marginLeft:5,marginTop:12,flex:1}}
-                              ref='email'
-                              placeholderTextColor="rgb(115,119,118)"
-                              underlineColorAndroid='transparent'
-                              onChangeText={(text) => this.setState({email: text})}
-                              value={this.state.email}
-                              keyboardType="email-address"
-                              onFocus={()=>this.onFocusText("email")}
-                              onBlur={()=>this.onBlurText("email")}
-                          />
-                      </View>
-                      <View style={{flex:0.3,marginLeft:50,marginRight:50,alignItems:'flex-end',marginTop:5}}>
-
-                      </View>
-                  </View>
-                  <View style={{flex:2,borderWidth:0,justifyContent:'center',alignItems:'center'}}>
-                        <TouchableOpacity onPress={()=>this.onClickSend()}>
-                          <ImageBackground source={{uri:'btn_signup_big'}}  style={{height:(deviceHeight >600)?110:80,width:(deviceHeight >600)?320:250}}>
-                                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                  <Text style={{fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?20:18,color:Colors.white}}>Send</Text>
-                                </View>
-                          </ImageBackground>
-                       </TouchableOpacity>
-                  </View>
-                  <View style={{flex:2,borderWidth:0}}/>
-            </View>
-
+      <ImageBackground
+        style={{ backgroundColor: '#ccc', flex: 1, width: null,height: null, justifyContent: 'center'}} 
+        source={{ uri: 'splash_bg' }} >
+        <View style={{marginTop:30}}>
+          <TouchableOpacity onPress={()=> this.props.navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
         </View>
+        <View style={{ flex: 2, borderWidth: 0, alignItems: 'center', padding:40 }}>
+          <Image source={{ uri: 'splash_logo' }} resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
+        </View> 
+        <View style={{alignItems:'center'}}>
+          {this.loader()}
+        </View>
+        <MyStatusBar backgroundColor={Colors.header_red} barStyle="light-content" hidden={false}/>
+        <View style={{flex:6,borderWidth:0}}>
+          <View style={{flex:4,borderWidth:0}}>
+            <View style={{ borderWidth:0,justifyContent:'center',alignItems:'center'}}>
+              <Text style={{fontFamily:Fonts.regular,color:Colors.white,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>Enter your email address and</Text>
+              <Text style={{fontFamily:Fonts.regular,color:Colors.white,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>we will send you</Text>
+              <Text style={{fontFamily:Fonts.regular,color:Colors.white,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?22:(DeviceInfo.getModel() === 'iPhone SE')?16:19}}>a link to reset your password</Text>
+            </View>
+            <View style={{flex:0.3}} />
+            <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isEmail===true)?Colors.orange_text:Colors.white_underline,marginLeft:50,marginRight:50}}>
+              <TextInput
+                placeholder='E-mail'
+                style={{fontSize:15,color:Colors.orange_text,borderWidth:0,marginLeft:5,marginTop:12,flex:1}}
+                ref='email'
+                placeholderTextColor="rgb(241, 248, 247)"
+                underlineColorAndroid='transparent'
+                onChangeText={(text) => this.setState({email: text})}
+                value={this.state.email}
+                keyboardType="email-address"
+                onFocus={()=>this.onFocusText("email")}
+                onBlur={()=>this.onBlurText("email")}
+              />
+            </View>
+            <View style={{flex:0.3,marginLeft:50,marginRight:50,alignItems:'flex-end',marginTop:5}}>
+
+            </View>
+          </View>
+          <View style={{flex:2,borderWidth:0,justifyContent:'center',alignItems:'center'}}>
+            <TouchableOpacity onPress={()=>this.onClickSend()}>
+              <ImageBackground source={ require('../../assets/SignIn/03.png') }  style={{height:(deviceHeight >600)?110:80,width:(deviceHeight >600)?320:250}} resizeMode="contain">
+                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                  <Text style={{fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?20:18,color:Colors.white}}>Send</Text>
+                </View>
+              </ImageBackground>
+           </TouchableOpacity>
+          </View>
+          <View style={{flex:2,borderWidth:0}}/>
+        </View>
+       </ImageBackground>
     )
   }
 

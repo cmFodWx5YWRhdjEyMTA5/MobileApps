@@ -194,12 +194,12 @@ class DrawerMenu extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <ImageBackground style={{  flex: 1, width: null,height: null, justifyContent: 'center'}} source={ require('../../assets/Side-Menu/01.png')}>
         <StatusBar translucent={true} backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
         <View style={{ flex: 2 }}>
           <View style={{ flex: 2, borderWidth: 0 }}>
             <TouchableOpacity style={{ flexDirection: 'row', flex: 1 }} onPress={() => this._navigateToScreen('ProfileScreen1')}>
-              <View style={{ borderWidth: 0, flex: 0.3, justifyContent: 'center', marginRight: 10 }}>
+              <View style={{ borderWidth: 0, flex: 0.3, justifyContent: 'center', marginRight: 0 }}>
                 <View style={[styles.avatar, styles.avatarContainer]}>
                   <Image style={styles.avatar} source={{ uri: this.state.profileImage }} />
                 </View>
@@ -216,72 +216,114 @@ class DrawerMenu extends Component {
           </View>
 
         </View>
-
         <View style={{ flex: 8, padding: 10 }}>
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('Dashboard')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('Dashboard')}>{Strings.home}</Text>
+            <View style={{flexDirection:'row',height:33,widht:25,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/02.png')} style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain" />
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('Dashboard')}>{Strings.home}</Text>
+              </View>
             </View>
           </TouchableOpacity>
-
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('ProfileScreen1')}>
+          <View style={{flexDirection:'row',height:33,widht:25,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/04.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
             <View style={styles.drawerRow}>
               <Text style={styles.drawerText} onPress={() => this._navigateToScreen('ProfileScreen1')}>Profile</Text>
             </View>
+            </View>
           </TouchableOpacity>
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
 
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('GetCoins')}>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/05.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
             <View style={styles.drawerRow}>
               <Text style={styles.drawerText} onPress={() => this._navigateToScreen('GetCoins')}>Buy Coins</Text>
             </View>
+          </View>  
           </TouchableOpacity>
-
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
+  
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('ActivityScreen')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('ActivityScreen')}>{Strings.activity}</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/06.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('ActivityScreen')}>{Strings.activity}</Text>
+              </View>
+          </View>    
           </TouchableOpacity>
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
 
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('ProfileScreen')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('ProfileScreen')}>Share Coins</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/07.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('ProfileScreen')}>Share Coins</Text>
+              </View>
+          </View>    
           </TouchableOpacity>
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
 
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('PaymentDetails')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('PaymentDetails')}>Payment Details</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/08.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('PaymentDetails')}>Payment Details</Text>
+              </View>
+          </View>    
           </TouchableOpacity>
-
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
 
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('Help')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('Help')}>Help</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/09.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>  
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('Help')}>Help</Text>
+              </View>
+            </View>  
           </TouchableOpacity>
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
 
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._navigateToScreen('TermsAndConditionsDrawer')}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._navigateToScreen('TermsAndConditionsDrawer')}>Terms & Conditions</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/10.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._navigateToScreen('TermsAndConditionsDrawer')}>Terms & Conditions</Text>
+              </View>
+          </View>    
           </TouchableOpacity>
-
-
-          <View style={{ flex: 0.5 }}>
-          </View>
-
+          <View style={{ borderBottomColor: '#ccc', borderBottomWidth:0.5}}/>
           <TouchableOpacity style={styles.drawerRow} onPress={() => this._onClickLogout()}>
-            <View style={styles.drawerRow}>
-              <Text style={styles.drawerText} onPress={() => this._onClickLogout()}>{Strings.logout}</Text>
-            </View>
+          <View style={{flexDirection:'row',height:33,}}>
+              <View>
+                <Image source={ require('../../assets/Side-Menu/11.png')}style={{height:25,width:25,marginTop:10,resizeMode:"contain"}} resize="contain"/>
+              </View>
+              <View style={styles.drawerRow}>
+                <Text style={styles.drawerText} onPress={() => this._onClickLogout()}>{Strings.logout}</Text>
+              </View>
+          </View>    
           </TouchableOpacity>
-
-
         </View>
+      </ImageBackground>
 
-
-      </View>
     );
   }
 }
@@ -289,10 +331,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 10,
     backgroundColor: Colors.theme_background,
-    padding: 10,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT
+  },
+  icon:{
+    height:10,
+    width:10,
+    padding: 20,
   },
   appBar: {
     backgroundColor: '#79B45D',
@@ -301,8 +347,8 @@ const styles = StyleSheet.create({
   drawerText: {
     fontSize: 18,
     fontFamily: Fonts.regular,
-    color: Colors.redcolor,
-
+    color: Colors.white,
+    padding: 15,
   },
   drawerRow: {
     flex: 1,
@@ -311,8 +357,9 @@ const styles = StyleSheet.create({
   },
   avatar: {
     borderRadius: 28,
-    width: 56,
-    height: 56
+    width: 65,
+    height: 65,
+    
   }
 
 });

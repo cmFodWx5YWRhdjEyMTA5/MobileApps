@@ -83,20 +83,6 @@ class Signup extends Component{
       hideEmergencyContact:false,
     }
   }
-
-
-
-static navigationOptions = ({navigation, screenProps}) => {
-     const params = navigation.state.params || {};
-    return {
-          title:'',
-          gesturesEnabled:true,
-          headerStyle:{ backgroundColor: Colors.header_red,borderBottomWidth: 0,shadowColor: 'transparent',elevation:0,marginTop: (Platform.OS==='android')?20:0},
-          headerTitleStyle:HeaderStyle.titleCenter,
-          headerLeft: <TouchableOpacity onPress={()=> navigation.goBack()}><View style={{marginRight:10}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
-        }
-   }
-
    //loader
    loader()
    {
@@ -340,101 +326,98 @@ static navigationOptions = ({navigation, screenProps}) => {
   //Main View Rendering
   render(){
     return(
-        <View style={styles.container}>
-            <View style={{alignItems:'center'}}>
-                {this.loader()}
+      <ImageBackground style={{  flex: 1, width: null,height: null, justifyContent: 'center'}} source={{ uri: 'splash_bg' }}>
+        <View style={{alignItems:'center'}}>
+          {this.loader()}
+        </View>
+        <View style={{marginTop:30}}>
+          <TouchableOpacity onPress={()=> this.props.navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
+        </View>
+        <View style={{ flex: 2, borderWidth: 0, alignItems: 'center', padding:40 }}>
+          <Image source={{ uri: 'splash_logo' }} resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
+        </View> 
+        <View style={{flex:7,borderWidth:0,marginTop:-50}}>
+          <ScrollView>
+            <View style={{flex:2,borderWidth:0}}>
+                  <View style={{flex:0.5,justifyContent:'center',alignItems:'center'}}>
+                      <Text style={{fontFamily:Fonts.regular,color:Colors.white,fontSize:(deviceHeight >600)?25:20}}>Gender</Text>
+                  </View>
+                  <View style={{flex:1.5,flexDirection:'row'}}>
+
+                      <View style={{flex:0.75,borderWidth:0}}>
+                            <TouchableOpacity onPress={()=>this.onClickGender("male")} style={{flex:1,paddingTop:10,paddingBottom:10,backgroundColor:(this.state.isMaleSelected===true)?Colors.orange_text:"transparent",borderWidth:0,justifyContent:'center',alignItems:'center',margin:(deviceHeight >600)?25:20,borderRadius:40}}>
+                                  <Text style={{fontFamily:Fonts.regular,marginTop:(Platform.OS==='android')?0:7,color:(this.state.isMaleSelected===true)?Colors.white:Colors.orange_text,fontSize:(deviceHeight >600)?22:18}}>Male</Text>
+                            </TouchableOpacity>
+                      </View>
+
+                      <View style={{flex:0.75,borderWidth:0}}>
+                            <TouchableOpacity onPress={()=>this.onClickGender("female")} style={{flex:1,backgroundColor:(this.state.isMaleSelected===false)?Colors.orange_text:"transparent",borderWidth:0,justifyContent:'center',alignItems:'center',margin:(deviceHeight >600)?25:20,borderRadius:40}}>
+                              <Text style={{fontFamily:Fonts.regular,marginTop:(Platform.OS==='android')?0:7,color:(this.state.isMaleSelected===false)?Colors.white:Colors.orange_text,fontSize:(deviceHeight >600)?22:18}}>Female</Text>
+                            </TouchableOpacity>
+                      </View>
+
+                  </View>
             </View>
             <View style={{flex:3,borderWidth:0}}>
-                <ImageBackground source={{uri:'shape_red_top'}} resizeMode="contain" style={{height:null,width:null,flex:3,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?-110:(DeviceInfo.getModel() === 'iPhone SE')?-60:-90}}>
-                      <View style={{flex:3,justifyContent:'center',alignItems:'center',marginBottom:(Platform.OS==='android')?35:60}}>
-                            <Image source={{uri:'logo_white'}} resizeMode="contain" style={{height:35,width:Dimensions.get('window').width-100,borderWidth:0}} />
-                      </View>
-                </ImageBackground>
-            </View>
-
-            <View style={{flex:7,borderWidth:0,marginTop:-50}}>
-                <ScrollView>
-                  <View style={{flex:2,borderWidth:0}}>
-                        <View style={{flex:0.5,justifyContent:'center',alignItems:'center'}}>
-                            <Text style={{fontFamily:Fonts.regular,color:Colors.header_red,fontSize:(deviceHeight >600)?25:20}}>Gender</Text>
-                        </View>
-                        <View style={{flex:1.5,flexDirection:'row'}}>
-
-                            <View style={{flex:0.75,borderWidth:0}}>
-                                  <TouchableOpacity onPress={()=>this.onClickGender("male")} style={{flex:1,paddingTop:10,paddingBottom:10,backgroundColor:(this.state.isMaleSelected===true)?Colors.header_red:"transparent",borderWidth:0,justifyContent:'center',alignItems:'center',margin:(deviceHeight >600)?25:20,borderRadius:40}}>
-                                        <Text style={{fontFamily:Fonts.regular,marginTop:(Platform.OS==='android')?0:7,color:(this.state.isMaleSelected===true)?Colors.white:Colors.header_red,fontSize:(deviceHeight >600)?22:18}}>Male</Text>
-                                  </TouchableOpacity>
-                            </View>
-
-                            <View style={{flex:0.75,borderWidth:0}}>
-                                  <TouchableOpacity onPress={()=>this.onClickGender("female")} style={{flex:1,backgroundColor:(this.state.isMaleSelected===false)?Colors.header_red:"transparent",borderWidth:0,justifyContent:'center',alignItems:'center',margin:(deviceHeight >600)?25:20,borderRadius:40}}>
-                                        <Text style={{fontFamily:Fonts.regular,marginTop:(Platform.OS==='android')?0:7,color:(this.state.isMaleSelected===false)?Colors.white:Colors.header_red,fontSize:(deviceHeight >600)?22:18}}>Female</Text>
-                                  </TouchableOpacity>
-                            </View>
-
-                        </View>
+                  <View style={{flex:0.4,alignItems:'center'}}>
+                    <Text style={{fontFamily:Fonts.regular,color:Colors.white,fontSize:(deviceHeight >600)?24:20}}>Date of Birth</Text>
                   </View>
-                  <View style={{flex:3,borderWidth:0}}>
-                        <View style={{flex:0.4,alignItems:'center'}}>
-                          <Text style={{fontFamily:Fonts.regular,color:Colors.header_red,fontSize:(deviceHeight >600)?24:20}}>Date of birth</Text>
-                        </View>
 
-                        <View style={{flex:0.1}}/>
-                        <View style={{flex:2.5}}>
-                            <DatePicker
-                              textColor="white"
-                              style={{backgroundColor:'rgb(66,91,99)',justifyContent:'center'}}
-                              mode="date"
-                              date={this.state.bday}
-                              minimumDate={this.state.minDatePick}
-                              maximumDate={this.state.maxDatePick}
-                              onDateChange={date => this.onChangeDateData(date)}
-                            />
-                        </View>
-
-                  </View>
-                  <View style={{flex:0.3}}/>
-                  {(this.state.hideEmergencyContact)&&<View style={{flex:1,borderBottomWidth:0,marginLeft:40,marginRight:40,marginTop:10}}>
-                      <TextInput
-                          placeholder='Emergency Contact'
-                          style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                          ref='emergencyContactName'
-                          placeholderTextColor={Colors.header_red}
-                          underlineColorAndroid='transparent'
-                          onChangeText={(text) => this.setState({emergencyContactName: text})}
-                          value={this.state.emergencyContactName}
-                          onSubmitEditing={() => this.refs['emergencyContactNumber'].focus()}
-                          returnKeyType="next"
-
+                  <View style={{flex:0.1}}/>
+                  <View style={{flex:2.5}}>
+                      <DatePicker
+                        textColor="#fff"
+                        style={{backgroundColor:'#919599',justifyContent:'center'}}
+                        mode="date"
+                        date={this.state.bday}
+                        minimumDate={this.state.minDatePick}
+                        maximumDate={this.state.maxDatePick}
+                        onDateChange={date => this.onChangeDateData(date)}
                       />
-                  </View>}
-                  {(this.state.hideEmergencyContact)&&<View style={{flex:1,borderBottomWidth:0,marginLeft:40,marginRight:40,marginTop:-6}}>
-                      <TextInput
-                          placeholder='Emergency Contact Number'
-                          style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                          ref='emergencyContactNumber'
-                          placeholderTextColor={Colors.header_red}
-                          underlineColorAndroid='transparent'
-                          onChangeText={(text) => this.setState({emergencyContactNumber: text})}
-                          value={this.state.emergencyContactNumber}
-                          returnKeyType="done"
-                          keyboardType='phone-pad'
-
-                      />
-                  </View>}
-                  <View style={{flex:1.8,borderWidth:0,marginTop:0,alignItems:'center'}}>
-                        <TouchableOpacity style={{marginTop:10}} onPress={()=>this.onClickDone()}>
-                          <ImageBackground source={{uri:'btn_signup_big'}}  style={{height:(deviceHeight >600)?100:80,width:(deviceHeight >600)?300:250}}>
-                                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                  <Text style={{fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?20:18,color:Colors.white}}>Done</Text>
-                                </View>
-                          </ImageBackground>
-                       </TouchableOpacity>
                   </View>
-                </ScrollView>
-            </View>
 
+            </View>
+            <View style={{flex:0.3}}/>
+            {(this.state.hideEmergencyContact)&&<View style={{flex:1,borderBottomWidth:0,marginLeft:40,marginRight:40,marginTop:10}}>
+                <TextInput
+                    placeholder='Emergency Contact'
+                    style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                    ref='emergencyContactName'
+                    placeholderTextColor={Colors.header_red}
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({emergencyContactName: text})}
+                    value={this.state.emergencyContactName}
+                    onSubmitEditing={() => this.refs['emergencyContactNumber'].focus()}
+                    returnKeyType="next"
+
+                />
+            </View>}
+            {(this.state.hideEmergencyContact)&&<View style={{flex:1,borderBottomWidth:0,marginLeft:40,marginRight:40,marginTop:-6}}>
+                <TextInput
+                    placeholder='Emergency Contact Number'
+                    style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                    ref='emergencyContactNumber'
+                    placeholderTextColor={Colors.header_red}
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({emergencyContactNumber: text})}
+                    value={this.state.emergencyContactNumber}
+                    returnKeyType="done"
+                    keyboardType='phone-pad'
+
+                />
+            </View>}
+            <View style={{flex:1.8,borderWidth:0,marginTop:0,alignItems:'center'}}>
+                    <TouchableOpacity onPress={()=>this.onClickDone()}>
+                      <ImageBackground source={require('../../assets/SignIn/03.png')}  style={{height:(deviceHeight >600)?110:80,width:(deviceHeight >600)?320:250}} resizeMode="contain">
+                        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
+                          <Text style={{fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?20:18,color:Colors.white}}>Done</Text>
+                        </View>
+                      </ImageBackground>
+                  </TouchableOpacity>
+              </View>
+          </ScrollView>
         </View>
+      </ImageBackground>
     )
   }
 

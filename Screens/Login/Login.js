@@ -1,5 +1,4 @@
 //login
-
 import React, { Component } from "react";
 import {
   Text,
@@ -44,7 +43,6 @@ const StatusBarHeightIos = DeviceInfo.getModel() === ModelIphoneX ? 30 : 20;
 const STATUSBAR_HEIGHT =
   Platform.OS === "ios" ? StatusBarHeightIos : StatusBar.currentHeight;
 const APPBAR_HEIGHT = Platform.OS === "ios" ? 44 : 56;
-
 const MyStatusBar = ({ backgroundColor, ...props }) => (
   <View style={[styles.statusBar, { backgroundColor }]}>
     <StatusBar translucent backgroundColor={backgroundColor} {...props} />
@@ -1386,230 +1384,62 @@ class Login extends Component {
   //    />
   render() {
     return (
-      <View style={styles.container}>
-        <View style={{ alignItems: "center" }}>{this.loader()}</View>
-        <LinkedInModal
-          ref={ref => {
-            this.modal = ref;
-          }}
-          clientID={Strings.linkedin_clientID}
-          clientSecret={Strings.linkedin_clientSecret}
-          redirectUri={Strings.linkedin_redirectUri}
-          onSuccess={data => this.getUser(data)}
-          linkText=""
-        />
-        <MyStatusBar
-          backgroundColor={Colors.header_red}
-          barStyle="dark-content"
-          hidden={false}
-        />
-
-        <View style={{ flex: 3, borderWidth: 0 }}>
-          <ImageBackground
-            source={{ uri: "shape_red_top" }}
-            resizeMode="contain"
-            style={{
-              height: null,
-              width: null,
-              flex: 3,
-              marginTop:
-                DeviceInfo.getModel() === ModelIphoneX
-                  ? -55
-                  : DeviceInfo.getModel() === "iPhone 8 Plus"
-                    ? -20
-                    : DeviceInfo.getModel() === "iPhone 6 Plus"
-                      ? -20
-                      : Platform.OS === "android"
-                        ? -24
-                        : DeviceInfo.getModel() === "iPhone 6s Plus" ||
-                          DeviceInfo.getModel() === "iPhone 7 Plus" ||
-                          DeviceInfo.getModel() === "iPhone 7"
-                          ? -20
-                          : -10
-            }}
-          >
-            <View
-              style={{
-                flex: 3,
-                justifyContent: "center",
-                alignItems: "center",
-                marginBottom: 60
+          <ImageBackground source={{ uri: 'splash_bg' }} style={{ height: null, width: null, flex: 10 }}>
+           <View style={{ alignItems: "center" }}>{this.loader()}</View>
+            <LinkedInModal
+              ref={ref => {
+                this.modal = ref;
               }}
-            >
-              <Image
-                source={{ uri: "logo_white" }}
-                resizeMode="contain"
-                style={{
-                  height: 35,
-                  width: Dimensions.get("window").width - 100,
-                  borderWidth: 0
-                }}
-              />
+              clientID={Strings.linkedin_clientID}
+              clientSecret={Strings.linkedin_clientSecret}
+              redirectUri={Strings.linkedin_redirectUri}
+              onSuccess={data => this.getUser(data)}
+              linkText=""
+            />
+            <MyStatusBar backgroundColor={Colors.header_red}  barStyle="light-content" hidden={false} />
+            <View style={styles.topview}>
+              <Image source={{ uri: "splash_logo" }} style={styles.logo} resizeMode="contain"/>
+            </View>
+            <View style={styles.middleview}></View>
+            <View style={styles.bottomtopview}>
+              <Text style={{ fontFamily: Fonts.regular,color:'#fff', fontSize:DeviceInfo.getModel() === ModelIphoneX? 22
+                    : deviceHeight > 600 ? 22 : 19 }}>
+                Already a member?
+              </Text>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("Login_Main")}>
+                <Image source={ require('../../assets/continuewith/login.png') }   style={styles.buttonc1} resizeMode="contain"/>
+              </TouchableOpacity>
+            </View>
+            <View style={styles.bottomtopviewsignup}>
+              <TouchableOpacity onPress={() => this.props.navigation.navigate("Signup")}>
+                  <Image source={ require('../../assets/continuewith/signup.png') } style={styles.buttonc} resizeMode="contain"/>
+                </TouchableOpacity>  
+            </View>
+            <View style={styles.bottomview}>
+              <Text style={{ fontFamily: Fonts.regular,color:'#fff',fontSize:DeviceInfo.getModel() === ModelIphoneX? 22
+                    : deviceHeight > 600 ? 22 : 19 }}>
+                CONTINUE WITH
+              </Text>
+              <View style={styles.sociallogin}>
+                <TouchableOpacity onPress={() => this.fbLogin()} style={{ flex: 0.35, borderWidth: 0, alignItems: "flex-end" }}>
+                  <Image source={ require('../../assets/continuewith/04.png') } style={{ height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60,
+                    width: 100,borderWidth: 0}} resizeMode="contain" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.modal.open()} style={{ flex: 0.35, borderWidth: 0, alignItems: "center" }}>
+                  <Image source={ require('../../assets/continuewith/05.png') } style={{ height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60, width: 100,borderWidth: 0 }} resizeMode="contain" />
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => this.onClickGoogleLogin()} style={{ flex: 0.35, borderWidth: 0, alignItems: "flex-start" }} >
+                  <Image source={ require('../../assets/continuewith/06.png') } style={{ height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60,width: 100,borderWidth: 0}} resizeMode="contain"/>
+                </TouchableOpacity>
+              </View>
             </View>
           </ImageBackground>
-        </View>
-        <View style={{ flex: 7, borderWidth: 0 }}>
-          <View
-            style={{
-              flex: 2,
-              borderWidth: 0,
-              marginTop: Platform.OS === "android" ? 4 : -30
-            }}
-          >
-            <View
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                borderWidth: 0
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: deviceHeight > 600 ? 22 : 18,
-                  fontFamily: Fonts.regular,
-                  color: Colors.black
-                }}
-              >
-                Continue with
-              </Text>
-            </View>
-
-            <View
-              style={{
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 10
-              }}
-            >
-              <TouchableOpacity
-                onPress={() => this.fbLogin()}
-                style={{ flex: 0.35, borderWidth: 0, alignItems: "flex-end" }}
-              >
-                <Image
-                  source={{ uri: "facebook_btn" }}
-                  style={{
-                    height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60,
-                    width: 100,
-                    borderWidth: 0
-                  }}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => this.modal.open()}
-                style={{ flex: 0.35, borderWidth: 0, alignItems: "center" }}
-              >
-                <Image
-                  source={{ uri: "linkedin_btn" }}
-                  style={{
-                    height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60,
-                    width: 100,
-                    borderWidth: 0
-                  }}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-
-              <TouchableOpacity
-                onPress={() => this.onClickGoogleLogin()}
-                style={{ flex: 0.35, borderWidth: 0, alignItems: "flex-start" }}
-              >
-                <Image
-                  source={{ uri: "google_btn" }}
-                  style={{
-                    height: DeviceInfo.getModel() === ModelIphoneX ? 65 : 60,
-                    width: 100,
-                    borderWidth: 0
-                  }}
-                  resizeMode="contain"
-                />
-              </TouchableOpacity>
-            </View>
-          </View>
-
-          <View
-            style={{
-              flex: 3,
-              borderWidth: 0,
-              justifyContent: "center",
-              alignItems: "center"
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: Fonts.regular,
-                fontSize:
-                  DeviceInfo.getModel() === ModelIphoneX
-                    ? 22
-                    : deviceHeight > 600
-                      ? 22
-                      : 19
-              }}
-            >
-              Already a member?
-            </Text>
-
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Login_Main")}
-              style={{ marginTop: 15 }}
-            >
-              <Text
-                style={{
-                  fontFamily: Fonts.regular,
-                  fontSize:
-                    DeviceInfo.getModel() === ModelIphoneX
-                      ? 25
-                      : deviceHeight > 600
-                        ? 25
-                        : 21,
-                  color: "rgb(215,109,36)"
-                }}
-              >
-                SIGN IN
-              </Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={{ flex: 2, borderWidth: 0, alignItems: "center" }}>
-            <TouchableOpacity
-              onPress={() => this.props.navigation.navigate("Signup")}
-            >
-              <ImageBackground
-                source={{ uri: "btn_signup_small" }}
-                style={{
-                  height: deviceHeight > 600 ? 100 : 80,
-                  width: deviceHeight > 600 ? 250 : 200
-                }}
-              >
-                <View
-                  style={{
-                    flex: 1,
-                    justifyContent: "center",
-                    alignItems: "center"
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontFamily: Fonts.regular,
-                      fontSize: deviceHeight > 600 ? 21 : 17,
-                      color: Colors.white
-                    }}
-                  >
-                    Sign up
-                  </Text>
-                </View>
-              </ImageBackground>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    flex: 10,
+
     backgroundColor: Colors.theme_old_background
   },
   statusBar: {
@@ -1619,9 +1449,50 @@ const styles = StyleSheet.create({
     backgroundColor: "#79B45D",
     height: APPBAR_HEIGHT
   },
-  content: {
+  topview: {
+    flex: 2,
+    alignItems: 'center',
+  },
+  middleview: {
     flex: 1,
-    backgroundColor: "#33373B"
-  }
+    alignItems: 'center',
+  },
+  bottomtopview: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 15
+  },
+  bottomtopviewsignup: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    marginTop:5,
+  },
+  bottomview: {
+    flex: 2,
+    alignItems: 'center',
+  },
+  logo: {
+    flex: 1,
+    width: (Dimensions.get('window').width - 90),
+    height: 120,
+  },
+  buttonc: {
+    width: (Dimensions.get('window').width - 90),
+    height: 120,
+    borderRadius:10,
+  },
+  buttonc1: {
+    width: (Dimensions.get('window').width - 90),
+    borderRadius:10,
+    height: 120
+  },
+  sociallogin: {
+    flex: 1, 
+    flexDirection: 'row',
+    alignItems: 'center',
+    margin: 50,
+  },
 });
 module.exports = Login;

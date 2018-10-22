@@ -80,19 +80,6 @@ class FriendListScreen extends Component {
     const params = navigation.state.params || {};
     return {
       title: "Friends list",
-      header: <View style={{ marginTop: (DeviceInfo.getModel() === 'iPhone 7') ? -24 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -28 : -14, }}><ImageBackground source={{ uri: 'shape_red_top_without_shadow' }} resizeMode="contain" style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 160 : 150, width: deviceWidth }}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() =>
-            navigation.dispatch(NavigationActions.reset({
-              index: 0,
-              actions: [NavigationActions.navigate({ routeName: 'ProfileScreen', params: { comeFrom: 'share' } })],
-            }))} style={{ flex: 0.1, alignItems: 'center', borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40, justifyContent: 'center', padding: 10 }}><Image source={{ uri: "back_arrow_white" }} style={styles.back_icon} /></TouchableOpacity>
-          <View style={{ flex: 0.9, alignItems: 'flex-end', justifyContent: 'center', marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40 }}>
-
-            <Text style={{ color: '#ffffff', alignSelf: 'center', textAlign: 'center', fontSize: 18, justifyContent: 'center', fontWeight: '400', fontFamily: Fonts.SFU_REGULAR, paddingRight: 40 }}>Add Friends</Text>
-          </View>
-        </View>
-      </ImageBackground></View>,
       headerStyle: { backgroundColor: Colors.header_red, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
       headerTitleStyle: HeaderStyle.titleCenter,
 
@@ -377,11 +364,18 @@ class FriendListScreen extends Component {
       )
     } else if (btnText === 'Invite') {
       return (
+      
         <TouchableOpacity onPress={() => this.buttonClick(index)} style={{ borderWidth: 0, flex: 1, justifyContent: 'center' }}>
+        <ImageBackground source={ require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:80,width:80}}> 
           <View style={{ flex: 1, marginLeft: 20, marginRight: 20, marginTop: 15, marginBottom: 15, justifyContent: 'center', alignItems: 'center', borderWidth: 0, borderRadius: 20, backgroundColor: Colors.header_red }}>
-            <Text style={{ color: Colors.white, fontWeight: '600' }}>{btnText}</Text>
+            
+              <Text style={{ color: Colors.white, fontWeight: '600' }}>{btnText}</Text>
+            
+          
           </View>
+        </ImageBackground>  
         </TouchableOpacity>
+        
       )
     }
   }
@@ -404,7 +398,7 @@ class FriendListScreen extends Component {
         <Image source={{ uri: "placeholder_img" }} style={styles.logo} resizeMode="contain"></Image>
       </View>
       <View style={{ borderWidth: 0, flex: 1, justifyContent: 'center' }}>
-        <Text style={{ fontFamily: Fonts.regular, fontSize: 16 }}>{item.name}</Text>
+        <Text style={{ fontFamily: Fonts.regular, fontSize: 22 }}>{item.name}</Text>
       </View>
 
       {(item.userId !== '' && item.isFriend === '1') && this.renderTouchableView(index, "Remove")}
@@ -493,24 +487,23 @@ class FriendListScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
+        <ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -40 : 28 }}>
+        </ImageBackground>
 
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
-        <View style={{ flex: 1.5 }}>
+        <View style={{ flex: 9, borderWidth: 0 }}>
+          
 
-        </View>
-        <View style={{ flex: 8.5, borderWidth: 0 }}>
-          <View style={{ flex: 0.5 }} />
-
-          <View style={{ flex: (Platform.OS === 'android') ? 0.7 : 0.6, flexDirection: 'row', borderWidth: 1, borderColor: Colors.header_red, borderRadius: (Platform.OS === 'android') ? 15 : 10, marginLeft: 30, marginRight: 30 }}>
-            <View style={{ flex: 0.8 }}>
+          <View style={{ flex: (Platform.OS === 'android') ? 0.7 : 0.9, flexDirection: 'row', borderWidth: 1, borderColor: Colors.header_red, borderRadius: (Platform.OS === 'android') ? 15 : 10, marginLeft: 30, marginRight: 30 }}>
+            <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#fff',padding : 2,  }}>
               <TextInput
                 placeholder='Enter name to search'
-                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: Colors.header_red, borderWidth: 0, paddingHorizontal: 10, flex: 1 }}
+                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 20, color: '#fff', borderWidth: 0, paddingHorizontal: 10, flex: 1 }}
                 ref='search_text'
-                placeholderTextColor="rgb(115,119,118)"
+                placeholderTextColor="#fff"
                 underlineColorAndroid='transparent'
                 onChangeText={(text) => this.searchText(text)}
                 value={this.state.search_text}
@@ -531,7 +524,7 @@ class FriendListScreen extends Component {
             />
           </View>
         </View>
-
+      </ImageBackground>
       </View>
     );
   }

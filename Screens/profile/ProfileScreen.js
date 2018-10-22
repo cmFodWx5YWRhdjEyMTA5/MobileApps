@@ -367,7 +367,7 @@ class ProfileScreen extends Component {
 
           <View style={{ flex: 1.5, borderWidth: 0, alignItems: 'center' }}>
             <TouchableOpacity style={{ flex: 1 }} onPress={() => this.onClickAddMore()}>
-              <ImageBackground source={{ uri: 'btn_signup_big' }} style={{ height: (deviceHeight > 600) ? 90 : 70, width: (deviceHeight > 600) ? 300 : 250 }}>
+              <ImageBackground source={ require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:90,width:170}}>
                 <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                   <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 15 : 18, color: Colors.white }}>Add more friends</Text>
                 </View>
@@ -397,7 +397,7 @@ class ProfileScreen extends Component {
             </View>
             <View style={{ flex: 0.5, borderWidth: 0, alignItems: 'center', marginTop: 20 }}>
               <TouchableOpacity style={{ flex: 1 }} onPress={() => this.onClickProfileImage()}>
-                <ImageBackground source={{ uri: 'btn_signup_big' }} style={{ height: (deviceHeight > 600) ? 90 : 70, width: (deviceHeight > 600) ? 300 : 250 }}>
+                <ImageBackground source={ require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:90,width:120}}>
                   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 15 : 18, color: Colors.white }}>Edit</Text>
                   </View>
@@ -426,16 +426,6 @@ class ProfileScreen extends Component {
     const params = navigation.state.params || {};
     return {
       title: "Profile",
-      header: <View style={{ marginTop: (DeviceInfo.getModel() === 'iPhone 7') ? -24 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -28 : -14, }}><ImageBackground source={{ uri: 'shape_red_top_without_shadow' }} resizeMode="contain" style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 160 : 150, width: deviceWidth }}>
-
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} style={{ flex: 0.1, alignItems: 'center', borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40, justifyContent: 'center', padding: 10 }}><Image source={{ uri: "menu_icon_white" }} style={styles.menu_icon} /></TouchableOpacity>
-          <View style={{ flex: 0.9, alignItems: 'flex-end', justifyContent: 'center', marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40 }}>
-
-            <Text style={{ color: '#ffffff', alignSelf: 'center', textAlign: 'center', fontSize: 18, justifyContent: 'center', fontWeight: '400', fontFamily: Fonts.SFU_REGULAR, paddingRight: 50 }}>Profile</Text>
-          </View>
-        </View>
-      </ImageBackground></View>,
       headerStyle: { backgroundColor: Colors.header_red, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
       headerTitleStyle: HeaderStyle.titleCenter,
 
@@ -475,13 +465,12 @@ class ProfileScreen extends Component {
   render() {
     return (
       <View style={styles.container} >
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
 
-
-        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 80 : 90 }}>
+        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 80 : 160 }}>
           {/*Profile Image & Medal*/}
           <View style={{ flex: 1.5, borderWidth: 0, flexDirection: 'row' }}>
             <View style={{ flex: 0.5 }} />
@@ -505,16 +494,17 @@ class ProfileScreen extends Component {
           </View>
 
           {/*Switch*/}
-          <View style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 0.9 : 1, borderWidth: 0 }}>
+          <View style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 0.9 : 1, borderWidth: 0,backgroundColor:'#f5f5f0' }}>
 
             <View style={{ flex: 1, marginTop: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 5 : 10, marginBottom: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 5 : 10, borderWidth: 1, flexDirection: 'row', borderColor: Colors.header_red, borderRadius: 40, marginLeft: 30, marginRight: 30 }}>
 
               <TouchableOpacity onPress={() => this.onClickDetails()} style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center', backgroundColor: (this.state.isActiveFriends === false) ? Colors.header_red : 'transparent', borderRadius: 40 }}>
-                <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? 20 : 18, marginTop: 5, color: (this.state.isActiveFriends === false) ? Colors.white : Colors.header_red }}>Details</Text>
+                <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? 20 : 22, marginTop: 5, color: (this.state.isActiveFriends === false) ? '#ff6600' : 'red' }}>Details</Text>
+               
               </TouchableOpacity>
 
               <TouchableOpacity onPress={() => this.onClickFriends()} style={{ flex: 0.5, justifyContent: 'center', alignItems: 'center', backgroundColor: (this.state.isActiveFriends === true) ? Colors.header_red : 'transparent', borderRadius: 40 }}>
-                <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? 20 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 15 : 18, marginTop: 5, color: (this.state.isActiveFriends === true) ? Colors.white : Colors.header_red }}>Friends</Text>
+                <Text style={{ fontFamily: Fonts.regular, fontSize: 22, marginTop: 0, color: (this.state.isActiveFriends === true) ? '#ff6600' : 'red' }}>Friends</Text>
               </TouchableOpacity>
             </View>
 
@@ -531,6 +521,7 @@ class ProfileScreen extends Component {
 
           </View>
         </View>
+      </ImageBackground>  
       </View>
     )
   }
@@ -540,15 +531,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 10,
     marginTop: ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -120 : (DeviceInfo.getModel() === 'iPhone X') ? -170 : -150,
-    backgroundColor: Colors.theme_background,
+
   },
-  statusBar: {
-    height: STATUSBAR_HEIGHT
-  },
-  appBar: {
-    backgroundColor: '#79B45D',
-    height: APPBAR_HEIGHT,
-  },
+
   content: {
     flex: 1,
     backgroundColor: '#33373B',
@@ -575,7 +560,7 @@ const styles = StyleSheet.create({
 
   },
   details_label_orange: {
-    color: Colors.orange_text,
+    color: '#fff',
     fontFamily: Fonts.regular,
     fontSize: 20,
     marginTop: 5,

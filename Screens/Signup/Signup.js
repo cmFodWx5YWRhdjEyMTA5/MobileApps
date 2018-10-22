@@ -82,16 +82,6 @@ class Signup extends Component{
 
   }
 
-static navigationOptions = ({navigation, screenProps}) => {
-     const params = navigation.state.params || {};
-    return {
-          title:'',
-          gesturesEnabled:true,
-          headerStyle:{ backgroundColor: Colors.header_red,borderBottomWidth: 0,shadowColor: 'transparent',elevation:0,marginTop: (Platform.OS==='android')?20:0},
-          headerTitleStyle:HeaderStyle.titleCenter,
-          headerLeft: <TouchableOpacity onPress={()=> navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
-        }
-   }
 
   //Life Cycle Methods
   componentWillMount()
@@ -310,188 +300,156 @@ static navigationOptions = ({navigation, screenProps}) => {
   //Main View Rendering
   render(){
     return(
-        <View style={styles.container}>
-
-            <View style={{flex:3,borderWidth:0}}>
-                <ImageBackground source={{uri:'shape_red_top'}} resizeMode="contain" style={{height:null,width:null,flex:3,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?-95:(deviceHeight >600 && Platform.OS==='ios')?-90:(deviceHeight >600 && Platform.OS==='android')?-80:-65}}>
-                      <View style={{flex:3,justifyContent:'center',alignItems:'center',marginBottom:(Platform.OS==='android')?35:60}}>
-                            <Image source={{uri:'logo_white'}} resizeMode="contain" style={{height:(deviceHeight >600)?40:35,width:Dimensions.get('window').width-100,borderWidth:0}} />
-                      </View>
-                </ImageBackground>
-            </View>
-
-            <View style={{flex:7,borderWidth:0,marginTop:-40}}>
-
-
-                  <View style={{flex:3,borderWidth:0}}>
-
-
-                      <View style={{borderWidth:0,flex:1,flexDirection:'row',marginLeft:20,marginRight:20}}>
-                          <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isFirstname===true)?Colors.header_red:Colors.white_underline}}>
-                              <TextInput
-                                  placeholder='first name'
-                                  style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                                  ref='fname'
-                                  placeholderTextColor="rgb(115,119,118)"
-                                  underlineColorAndroid='transparent'
-                                  onChangeText={(text) => this.firstNameHandle(text)}
-                                  value={this.state.fname}
-                                  onFocus={()=>this.onFocusText("fname")}
-                                  onBlur={()=>this.onBlurText("fname")}
-                                  returnKeyType="next"
-                                  onSubmitEditing={() => this.refs['lname'].focus()}
-                              />
-                          </View>
-
-                            <View style={{flex:0.1}} />
-
-                          <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isLastname===true)?Colors.header_red:Colors.white_underline}}>
-                              <TextInput
-                                  placeholder='last name'
-                                  style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                                  ref='lname'
-                                  placeholderTextColor="rgb(115,119,118)"
-                                  underlineColorAndroid='transparent'
-                                  onChangeText={(text) => this.lastNameHandle(text)}
-                                  value={this.state.lname}
-                                  onFocus={()=>this.onFocusText("lname")}
-                                  onBlur={()=>this.onBlurText("lname")}
-                                  returnKeyType="next"
-                                  onSubmitEditing={() => this.refs['email'].focus()}
-                              />
-                          </View>
-                      </View>
-
-                      <View style={{flex:0.3}} />
-
-                      <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isEmail===true)?Colors.header_red:Colors.white_underline,marginLeft:40,marginRight:40}}>
-                          <TextInput
-                              placeholder='email'
-                              style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                              ref='email'
-                              keyboardType="email-address"
-                              placeholderTextColor="rgb(115,119,118)"
-                              underlineColorAndroid='transparent'
-                              onChangeText={(text) => this.setState({email: text})}
-                              value={this.state.email}
-                              onFocus={()=>this.onFocusText("email")}
-                              onBlur={()=>this.onBlurText("email")}
-                              returnKeyType="next"
-                              onSubmitEditing={() => this.refs['phone'].focus()}
-                          />
-                      </View>
-                      <View style={{flex:0.5}}/>
-
-                      <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isPhone===true)?Colors.header_red:Colors.white_underline,marginLeft:40,marginRight:40}}>
-                          <TextInput
-                              placeholder='phone number'
-                              style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                              ref='phone'
-                              keyboardType="numeric"
-                              placeholderTextColor="rgb(115,119,118)"
-                              underlineColorAndroid='transparent'
-                              onChangeText={(text) => this.setState({phone_number: text})}
-                              value={this.state.phone_number}
-                              onFocus={()=>this.onFocusText("phone")}
-                              onBlur={()=>this.onBlurText("phone")}
-                              returnKeyType="next"
-                              onSubmitEditing={() => this.refs['city'].focus()}
-                          />
-                      </View>
-                      <View style={{flex:0.5}}/>
-
-                      <View style={{borderWidth:0,flex:1,flexDirection:'row',marginLeft:40,marginRight:40}}>
-                          <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isCity===true)?Colors.header_red:Colors.white_underline}}>
-                              <TextInput
-                                  placeholder='city'
-                                  style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                                  ref='city'
-                                  placeholderTextColor="rgb(115,119,118)"
-                                  underlineColorAndroid='transparent'
-                                  onChangeText={(text) => this.setState({city: text})}
-                                  value={this.state.city}
-                                  onFocus={()=>this.onFocusText("city")}
-                                  onBlur={()=>this.onBlurText("city")}
-                                  returnKeyType="next"
-                                  onSubmitEditing={() => this.refs['password'].focus()}
-                              />
-                          </View>
-
-                            <View style={{flex:0.1}} />
-
-                          <View style={{flex:0.5,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?22:12,borderBottomWidth:1,borderBottomColor:(this.state.isState===true)?Colors.header_red:Colors.white_underline}}>
-
-
-                              <ModalDropdown
-                                  ref={el => this._dropdown_state = el}
-                                  textStyle={styles.dropdown_state_text}
-                                  dropdownStyle={styles.dropdown_state_style}
-                                  dropdownTextStyle={styles.dropdown_state_text}
-                                  options={this.state.stateList}
-                                  defaultValue='state'
-                                  renderRow={this._dropdown_state_row.bind(this)}
-                                  onSelect={(idx, value) => this._dropdownState_onSelect(idx, value)}
-                                  value={this.state.state}
-                                  //renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted)}
-                                  />
-
-                          </View>
-                      </View>
-
-                      <View style={{flex:0.5}}/>
-
-
-                      <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isPassword===true)?Colors.header_red:Colors.white1,marginLeft:40,marginRight:40}}>
-                          <TextInput
-                              placeholder='password'
-                              style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                              ref='password'
-                              placeholderTextColor="rgb(115,119,118)"
-                              underlineColorAndroid='transparent'
-                              onChangeText={(text) => this.setState({password: text})}
-                              value={this.state.password}
-                              onFocus={()=>this.onFocusText("password")}
-                              onBlur={()=>this.onBlurText("password")}
-                              secureTextEntry={true}
-                              returnKeyType="next"
-                              onSubmitEditing={() => this.refs['confpass'].focus()}
-                          />
-                      </View>
-
-                      <View style={{flex:0.3}}/>
-
-                      <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isConfPassword===true)?Colors.header_red:Colors.white_underline,marginLeft:40,marginRight:40}}>
-                          <TextInput
-                              placeholder='confirm password'
-                              style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.header_red,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
-                              ref='confpass'
-                              placeholderTextColor="rgb(115,119,118)"
-                              underlineColorAndroid='transparent'
-                              onChangeText={(text) => this.setState({confpass: text})}
-                              value={this.state.confpass}
-                              onFocus={()=>this.onFocusText("confpass")}
-                              onBlur={()=>this.onBlurText("confpass")}
-                              secureTextEntry={true}
-                          />
-                      </View>
-                  </View>
-
-                  <View style={{flex:0.3,borderWidth:0}}/>
-
-
-                  <View style={{flex:2,borderWidth:0,alignItems:'center'}}>
-                        <TouchableOpacity onPress={()=>this.onClickSignup()}>
-                          <ImageBackground source={{uri:'btn_signup_big'}}  style={{height:(deviceHeight >600)?100:80,width:(deviceHeight >600)?300:250}}>
-                                <View style={{flex:1,justifyContent:'center',alignItems:'center'}}>
-                                  <Text style={{fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?20:18,color:Colors.white}}>Sign up</Text>
-                                </View>
-                          </ImageBackground>
-                       </TouchableOpacity>
-                  </View>
-
-            </View>
-
+      <ImageBackground style={{  flex: 1, width: null,height: null, justifyContent: 'center'}} source={{ uri: 'splash_bg' }}>
+       <View style={{marginTop:30}}>
+          <TouchableOpacity onPress={()=> this.props.navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
         </View>
+        <View style={{ flex: 2, borderWidth: 0, alignItems: 'center', padding:40 }}>
+          <Image source={{ uri: 'splash_logo' }} resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
+        </View> 
+        <View style={{flex:7,borderWidth:0,marginTop:-40}}>
+          <View style={{flex:4,borderWidth:0}}>
+            <View style={{borderWidth:0,flex:1,flexDirection:'row',marginLeft:40,marginRight:40}}>
+              <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isFirstname===true)?Colors.white_underline:Colors.darkgrey}}>
+                  <TextInput
+                      placeholder='First Name'
+                      style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                      ref='fname'
+                      placeholderTextColor="rgb(241, 248, 247)"
+                      underlineColorAndroid='transparent'
+                      onChangeText={(text) => this.firstNameHandle(text)}
+                      value={this.state.fname}
+                      onFocus={()=>this.onFocusText("fname")}
+                      onBlur={()=>this.onBlurText("fname")}
+                      returnKeyType="next"
+                      onSubmitEditing={() => this.refs['lname'].focus()}
+                  />
+              </View>
+              <View style={{flex:0.1}} />
+              <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isLastname===true)?Colors.white_underline:Colors.darkgrey}}>
+                  <TextInput
+                      placeholder='Last Name'
+                      style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                      ref='lname'
+                      placeholderTextColor="rgb(241, 248, 247)"
+                      underlineColorAndroid='transparent'
+                      onChangeText={(text) => this.lastNameHandle(text)}
+                      value={this.state.lname}
+                      onFocus={()=>this.onFocusText("lname")}
+                      onBlur={()=>this.onBlurText("lname")}
+                      returnKeyType="next"
+                      onSubmitEditing={() => this.refs['email'].focus()}
+                  />
+              </View>
+            </View>
+            <View style={{flex:0.5}} />
+            <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isEmail===true)?Colors.white_underline:Colors.darkgrey,marginLeft:40,marginRight:40}}>
+              <TextInput
+                placeholder='Email'
+                style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                ref='email'
+                keyboardType="email-address"
+                placeholderTextColor="rgb(241, 248, 247)"
+                underlineColorAndroid='transparent'
+                onChangeText={(text) => this.setState({email: text})}
+                value={this.state.email}
+                onFocus={()=>this.onFocusText("email")}
+                onBlur={()=>this.onBlurText("email")}
+                returnKeyType="next"
+                onSubmitEditing={() => this.refs['phone'].focus()}
+              />
+            </View>
+            <View style={{flex:0.5}}/>
+            <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isPhone===true)?Colors.white_underline:Colors.darkgrey,marginLeft:40,marginRight:40}}>
+                <TextInput
+                    placeholder='Phone Number'
+                    style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                    ref='phone'
+                    keyboardType="numeric"
+                    placeholderTextColor="rgb(241, 248, 247)"
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({phone_number: text})}
+                    value={this.state.phone_number}
+                    onFocus={()=>this.onFocusText("phone")}
+                    onBlur={()=>this.onBlurText("phone")}
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.refs['city'].focus()}
+                />
+            </View>
+            <View style={{flex:0.5}}/>
+            <View style={{borderWidth:0,flex:1,flexDirection:'row',marginLeft:40,marginRight:40}}>
+                <View style={{flex:0.5,borderBottomWidth:1,borderBottomColor:(this.state.isCity===true)?Colors.white_underline:Colors.darkgrey}}>
+                    <TextInput
+                        placeholder='City'
+                        style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                        ref='city'
+                        placeholderTextColor="rgb(241, 248, 247)"
+                        underlineColorAndroid='transparent'
+                        onChangeText={(text) => this.setState({city: text})}
+                        value={this.state.city}
+                        onFocus={()=>this.onFocusText("city")}
+                        onBlur={()=>this.onBlurText("city")}
+                        returnKeyType="next"
+                        onSubmitEditing={() => this.refs['password'].focus()}
+                    />
+                </View>
+                <View style={{flex:0.1}} />
+                <View style={{flex:0.5,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?22:12,borderBottomWidth:1,borderBottomColor:(this.state.isState===true)?Colors.header_red:Colors.darkgrey}}>
+                    <ModalDropdown
+                        ref={el => this._dropdown_state = el}
+                        textStyle={styles.dropdown_state_text}
+                        dropdownStyle={styles.dropdown_state_style}
+                        dropdownTextStyle={styles.dropdown_state_text}
+                        options={this.state.stateList}
+                        defaultValue='State'
+                        renderRow={this._dropdown_state_row.bind(this)}
+                        onSelect={(idx, value) => this._dropdownState_onSelect(idx, value)}
+                        value={this.state.state}
+                        //renderSeparator={(sectionID, rowID, adjacentRowHighlighted) => this._dropdown_2_renderSeparator(sectionID, rowID, adjacentRowHighlighted)}
+                        />
+                </View>
+            </View>
+            <View style={{flex:0.5}}/>
+            <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isPassword===true)?Colors.white_underline:Colors.darkgrey,marginLeft:40,marginRight:40}}>
+                <TextInput
+                    placeholder='Password'
+                    style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                    ref='password'
+                    placeholderTextColor="rgb(241, 248, 247)"
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({password: text})}
+                    value={this.state.password}
+                    onFocus={()=>this.onFocusText("password")}
+                    onBlur={()=>this.onBlurText("password")}
+                    secureTextEntry={true}
+                    returnKeyType="next"
+                    onSubmitEditing={() => this.refs['confpass'].focus()}
+                />
+            </View>
+            <View style={{flex:0.5}}/>
+            <View style={{flex:1,borderBottomWidth:1,borderBottomColor:(this.state.isConfPassword===true)?Colors.white_underline:Colors.darkgrey,marginLeft:40,marginRight:40}}>
+                <TextInput
+                    placeholder='Confirm Password'
+                    style={{fontFamily:Fonts.regular,fontSize:(Platform.OS==='android')?16:15,color:Colors.white,borderWidth:0,paddingTop:5,paddingBottom:5,marginLeft:5,marginTop:(Platform.OS==='android')?0:(DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c')?0:8,flex:1}}
+                    ref='confpass'
+                    placeholderTextColor="rgb(241, 248, 247)"
+                    underlineColorAndroid='transparent'
+                    onChangeText={(text) => this.setState({confpass: text})}
+                    value={this.state.confpass}
+                    onFocus={()=>this.onFocusText("confpass")}
+                    onBlur={()=>this.onBlurText("confpass")}
+                    secureTextEntry={true}
+                />
+            </View>
+          </View>
+          <View style={{flex:0.5,borderWidth:0}}/>
+          <View style={{flex:1,borderWidth:0,alignItems:'center'}}>
+            <TouchableOpacity onPress={()=>this.onClickSignup()}>
+              <Image source={ require('../../assets/SignUp/02.png') }  style={{height:(deviceHeight >600)?100:80,width:(deviceHeight >600)?300:250}} resizeMode="contain"/>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </ImageBackground>
     )
   }
 
@@ -516,7 +474,7 @@ const styles = StyleSheet.create({
   dropdown_state_text: {
 
   fontSize:(Platform.OS==='android')?16:15,
-  color: Colors.header_red,
+  color: Colors.white,
   textAlignVertical: 'center',
   fontFamily:Fonts.regular,
   borderWidth:0
@@ -524,7 +482,7 @@ const styles = StyleSheet.create({
 dropdown_default_text: {
 
 fontSize:(Platform.OS==='android')?16:15,
-color: 'rgb(115,119,118)',
+color: 'rgb(241, 248, 247)',
 textAlignVertical: 'center',
 fontFamily:Fonts.regular,
 borderWidth:0

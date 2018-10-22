@@ -116,17 +116,7 @@ class TermsAndConditionsDrawer extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const params = navigation.state.params || {};
     return {
-      title: "Profile",
-      header: <View style={{ marginTop: (DeviceInfo.getModel() === 'iPhone 7') ? -24 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -28 : -14, }}><ImageBackground source={{ uri: 'shape_red_top_without_shadow' }} resizeMode="contain" style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 160 : 150, width: deviceWidth }}>
-
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() => navigation.navigate('DrawerOpen')} style={{ flex: 0.1, alignItems: 'center', borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40, justifyContent: 'center', padding: 10 }}><Image source={{ uri: "menu_icon_white" }} style={styles.menu_icon} /></TouchableOpacity>
-          <View style={{ flex: 0.9, alignItems: 'flex-end', justifyContent: 'center', marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40 }}>
-
-            <Text style={{ color: '#ffffff', alignSelf: 'center', textAlign: 'center', fontSize: 18, justifyContent: 'center', fontWeight: '400', fontFamily: Fonts.SFU_REGULAR, paddingRight: 50 }}>Terms & Conditions</Text>
-          </View>
-        </View>
-      </ImageBackground></View>,
+      title: "Terms & Conditions",
       headerStyle: { backgroundColor: Colors.header_red, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
       headerTitleStyle: HeaderStyle.titleCenter,
 
@@ -137,13 +127,14 @@ class TermsAndConditionsDrawer extends Component {
   render() {
     return (
       <View style={styles.container}>
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
 
 
-        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 80 : 90 }}>
+
+        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 80 : 160 }}>
 
           <View style={{ flex: 1, marginTop: 10 }}>
             <WebView
@@ -157,6 +148,7 @@ class TermsAndConditionsDrawer extends Component {
 
 
         </View>
+        </ImageBackground>
       </View>
     )
   }

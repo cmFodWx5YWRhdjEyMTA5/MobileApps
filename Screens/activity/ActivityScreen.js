@@ -67,15 +67,6 @@ class ActivityScreen extends Component{
       const params = navigation.state.params || {};
      return {
            title:"Activity",
-           header:<View><ImageBackground source={{uri:'shape_red_top'}} resizeMode="cover" style={{height:155,width:deviceWidth}}>
-
-           <View style={{flexDirection:'row',alignItems:'center'}}>
-           <TouchableOpacity onPress={()=> navigation.navigate('DrawerOpen')} style={{flex:0.1,alignItems:'center',borderWidth:0,marginTop:40,justifyContent:'center',padding:10}}><Image source={{uri: "menu_icon"}} style={{height: 20,width: 20}}/></TouchableOpacity>
-           <View style={{flex:0.9,alignItems:'flex-end',justifyContent:'center',marginTop:40}}>
-            <Text style={{color: '#ffffff',alignSelf: 'center',textAlign:'center',fontSize:18,justifyContent:'center',fontWeight:'400',fontFamily:Fonts.SFU_REGULAR,paddingRight:45}}>Activity</Text>
-           </View>
-           </View>
-           </ImageBackground></View>,
            headerStyle:{ backgroundColor: Colors.header_red,borderBottomWidth: 0,shadowColor: 'transparent',elevation:0,marginTop: (Platform.OS==='android')?20:0},
            headerTitleStyle:HeaderStyle.titleCenter,
        }
@@ -338,16 +329,19 @@ class ActivityScreen extends Component{
   render(){
     return(
       <View style={styles.container}>
-      <View style={{alignItems:'center'}}>
-          {this.loader()}
-      </View>
-          <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false}/>
-          <View style={{flex:2}}/>
-            <View style={{flex:7,borderWidth:0}}>
-                    <ScrollView>
-                      {this.displayActivityData()}
-                    </ScrollView>
-            </View>
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
+          <View style={{alignItems:'center'}}>
+              {this.loader()}
+          </View>
+           <ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -40 : 14 }}>
+            </ImageBackground>
+              <View style={{flex:2}}/>
+                <View style={{flex:7,borderWidth:0}}>
+                        <ScrollView>
+                          {this.displayActivityData()}
+                        </ScrollView>
+                </View>
+      </ImageBackground>     
       </View>
     )
   }

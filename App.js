@@ -79,7 +79,7 @@ const ScreenList= StackNavigator({
   ActivityScreen: {
     screen: ActivityScreen,
     navigationOptions: ({ navigation }) => ({
-                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon"}} style={styles.menu_icon} /></View></TouchableOpacity>
+                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon_white"}} style={styles.menu_icon} /></View></TouchableOpacity>
         }),
   },
   GetCoins: {
@@ -132,10 +132,17 @@ const ScreenList= StackNavigator({
     screen: Scanner
   },
   TermsAndConditionsDrawer: {
-    screen: TermsAndConditionsDrawer
+    screen: TermsAndConditionsDrawer,
+    navigationOptions: ({ navigation }) => ({
+                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon_white"}} style={styles.back_icon} /></View></TouchableOpacity>
+        }),
   },
   Help: {
-    screen: Help
+    screen: Help,
+    navigationOptions: ({ navigation }) => ({
+                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon_white"}} style={styles.back_icon} /></View></TouchableOpacity>
+        }),
+
   },
   OpenCameraView: {
     screen: OpenCameraView,
@@ -252,15 +259,28 @@ export default App= StackNavigator(
     },
    Login_Main:{
      screen: Login_Main,
+     navigationOptions: {
+      header:false ,
+    },
+     
     },
     Forgotpassword:{
       screen: Forgotpassword,
+      navigationOptions: {
+        header:false ,
+      },
      },
   Signup: {
     screen: Signup,
+    navigationOptions: {
+      header:false ,
+    },
    },
   Signup2: {
     screen: Signup2,
+    navigationOptions: {
+      header:false ,
+    },
    },
    TermsAndConditions: {
      screen: TermsAndConditions,

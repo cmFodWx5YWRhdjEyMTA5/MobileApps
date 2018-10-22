@@ -42,5 +42,8 @@ export default headerStyle = {
         marginRight: (Platform.OS==='ios')? 0:65,
         justifyContent:'center',
         fontWeight:'400',
+    },
+    headerLeft:{
+        backgroundColor:'#000'
     }
 }

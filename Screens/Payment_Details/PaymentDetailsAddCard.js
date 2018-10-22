@@ -514,16 +514,16 @@ class PaymentDetailsAddCard extends Component{
   render(){
     return(
         <View style={styles.container}>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false}/>
+        
+        
               <View style={{alignItems:'center'}}>
                   {this.loader()}
               </View>
 
-              <View style={{flex:10,backgroundColor:Colors.theme_background,}}>
+            <View style={{flex:10,backgroundColor:Colors.theme_background,}}>
+            <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
                   <View style={{flex:3,borderWidth:0}}>
-                      <ImageBackground source={{uri:'shape_red_top'}} resizeMode="contain" style={{height:null,width:null,flex:3,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?-55:(DeviceInfo.getModel() === 'iPhone 8 Plus')?-20:(DeviceInfo.getModel() === 'iPhone 6 Plus')?-20:(Platform.OS==='android')?-20:-10}}>
 
-                      </ImageBackground>
                   </View>
 
                   <View style={{flex:7,borderWidth:0,marginTop: (Platform.OS==='android')?-60:(DeviceInfo.getModel() === ModelIphoneX)?-90:-40}}>
@@ -620,7 +620,9 @@ class PaymentDetailsAddCard extends Component{
 
                       <View style={{flex:4,borderWidth:0}}/>
                   </View>
+            </ImageBackground>
             </View>
+            
         </View>
     )
   }

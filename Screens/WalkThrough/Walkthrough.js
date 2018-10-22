@@ -52,9 +52,9 @@ const MyStatusBar = ({backgroundColor, ...props}) => (
 );
 
 var IMGS = [
-  'onboarding_7',
-  'onboarding_8',
-  'onboarding_9'
+  'onboarding1',
+  'onboarding2',
+  'onboarding3'
 ];
 
 class Walkthrough extends Component{
@@ -102,8 +102,8 @@ class Walkthrough extends Component{
   render(){
     return(
         <View style={styles.container}>
-        <StatusBar hidden={true}/>
-              <View style={{flex:(DeviceInfo.getModel() === ModelIphoneX)?7.5:7.8}}>
+            <StatusBar hidden={true}/>
+              <View style={{flex:9}}>
                   <ViewPager
                             style={this.props.style}
                             dataSource={this.state.dataSource}
@@ -120,13 +120,13 @@ class Walkthrough extends Component{
                         autoPlay={false}
                   />
               </View>
-              <TouchableOpacity onPress={()=> this.gotoLogin()} style={{flex:(DeviceInfo.getModel() === ModelIphoneX)?2.5:2.2,height:null,width:null}}>
-                  <ImageBackground style={{flex:(DeviceInfo.getModel() === ModelIphoneX)?2.5:2.2,height:null,width:null}} source={{uri:'shape_red_bottom'}} resizeMode="stretch">
-                        <View style={{flex:1,justifyContent:'center',alignItems:'center',borderWidth:0,marginTop:50}}>
-                          <Text style={{color:Colors.white,fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?26:(DeviceInfo.getModel() === 'iPhone 6')?24:20}}>Next</Text>
-                        </View>
-                  </ImageBackground>
-              </TouchableOpacity>
+              <View style={{flex:1,backgroundColor:'#b34700'}}>
+                  <TouchableOpacity onPress={()=> this.gotoLogin()} style={{flex:(DeviceInfo.getModel() === ModelIphoneX)?2.5:2.2,height:null,width:null}}>
+                    <View style={{flex:1,justifyContent:'center',alignItems:'center',borderWidth:0,marginTop:30}}>
+                      <Text style={{color:Colors.white,fontFamily:Fonts.regular,fontSize:(DeviceInfo.getModel() === ModelIphoneX)?26:(DeviceInfo.getModel() === 'iPhone 6')?24:20}}>Next</Text>
+                    </View>
+                  </TouchableOpacity>
+              </View>
         </View>
     )
   }
@@ -134,7 +134,7 @@ class Walkthrough extends Component{
 }
 const styles = StyleSheet.create({
   container: {
-   flex: 10,
+   flex: 1,
    backgroundColor:Colors.theme_old_background,
  },
  page: {

@@ -364,23 +364,6 @@ class ProfileScreenEdit extends Component {
     return {
       title: "Edit Profile",
       headerStyle: { backgroundColor: Colors.header_red, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
-      header: <View style={{ marginTop: (DeviceInfo.getModel() === 'iPhone 7') ? -24 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? -28 : -14, }}><ImageBackground source={{ uri: 'shape_red_top_without_shadow' }} resizeMode="contain" style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 160 : 150, width: deviceWidth }}>
-
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <TouchableOpacity onPress={() =>
-
-            navigation.dispatch(NavigationActions.reset({
-              index: 0,
-              actions: [NavigationActions.navigate({ routeName: 'ProfileScreen', params: { comeFrom: 'profile' } })],
-
-            }))} style={{ flex: 0.1, alignItems: 'center', borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40, justifyContent: 'center', padding: 10 }}><Image source={{ uri: "back_arrow_white" }} style={styles.back_icon} /></TouchableOpacity>
-          <View style={{ flex: 0.9, alignItems: 'flex-end', justifyContent: 'center', marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 50 : 40 }}>
-
-            <Text style={{ color: '#ffffff', alignSelf: 'center', textAlign: 'center', fontSize: 18, justifyContent: 'center', fontWeight: '400', fontFamily: Fonts.SFU_REGULAR, paddingRight: 30 }}>Edit Profile</Text>
-          </View>
-        </View>
-      </ImageBackground></View>,
-      headerStyle: { backgroundColor: Colors.header_red, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
       headerTitleStyle: HeaderStyle.titleCenter,
     }
   }
@@ -969,7 +952,7 @@ class ProfileScreenEdit extends Component {
       return (
         <DatePicker
           textColor="white"
-          style={{ backgroundColor: 'rgb(66,91,99)', justifyContent: 'center' }}
+          style={{ backgroundColor: '#f5f5f0', justifyContent: 'center' }}
           mode="date"
           date={this.state.bday}
           minimumDate={this.state.minDatePick}
@@ -1010,12 +993,14 @@ class ProfileScreenEdit extends Component {
 
     return (
       <View style={styles.container}>
+      <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
+
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
 
-        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 100 : 120 }}>
+
+        <View style={{ flex: 7, borderWidth: 0, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 100 : 160 }}>
           <ScrollView showsVerticalScrollIndicator={false} style={{ borderWidth: 0, flex: 6 }}>
             {/*Profile Image & Medal*/}
             <View style={{ flex: 1.5, borderWidth: 0, alignItems: 'center' }}>
@@ -1031,10 +1016,10 @@ class ProfileScreenEdit extends Component {
 
 
             <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isFirstname === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isFirstname === true) ? Colors.header_red : 'white' }}>
                 <TextInput
                   placeholder='first name'
-                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                   ref='fname'
                   placeholderTextColor="rgb(115,119,118)"
                   underlineColorAndroid='transparent'
@@ -1049,10 +1034,10 @@ class ProfileScreenEdit extends Component {
 
               <View style={{ flex: 0.1 }} />
 
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isLastname === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isLastname === true) ? 'white' : 'white' }}>
                 <TextInput
                   placeholder='last name'
-                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 5, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 5, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                   ref='lname'
                   placeholderTextColor="rgb(115,119,118)"
                   underlineColorAndroid='transparent'
@@ -1067,10 +1052,10 @@ class ProfileScreenEdit extends Component {
             </View>
 
 
-            <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: (this.state.isEmail === true) ? Colors.header_red : Colors.white_underline, marginLeft: 20, marginRight: 20 }}>
+            <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: (this.state.isEmail === true) ? 'white' : 'white', marginLeft: 20, marginRight: 20 }}>
               <TextInput
                 placeholder='email'
-                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 25, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 25, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                 ref='email'
                 keyboardType="email-address"
                 placeholderTextColor="rgb(115,119,118)"
@@ -1084,10 +1069,10 @@ class ProfileScreenEdit extends Component {
 
               />
             </View>
-            <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: (this.state.isPhone === true) ? Colors.header_red : Colors.white_underline, marginLeft: 20, marginRight: 20 }}>
+            <View style={{ flex: 1, borderBottomWidth: 1, borderBottomColor: (this.state.isPhone === true) ? 'white' : 'white', marginLeft: 20, marginRight: 20 }}>
               <TextInput
                 placeholder='phone number'
-                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 25, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 25, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                 ref='phone'
                 keyboardType="numeric"
                 placeholderTextColor="rgb(115,119,118)"
@@ -1102,10 +1087,10 @@ class ProfileScreenEdit extends Component {
               />
             </View>
             <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isCity === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isCity === true) ? 'white' : 'white' }}>
                 <TextInput
                   placeholder='city'
-                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                   ref='city'
                   placeholderTextColor="rgb(115,119,118)"
                   underlineColorAndroid='transparent'
@@ -1120,7 +1105,7 @@ class ProfileScreenEdit extends Component {
 
               <View style={{ flex: 0.1 }} />
 
-              <View style={{ flex: 0.5, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 38 : 32, borderBottomWidth: 1, borderBottomColor: (this.state.isState === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 38 : 32, borderBottomWidth: 1, borderBottomColor: (this.state.isState === true) ? 'white' : 'white' }}>
                 <ModalDropdown
                   ref={el => this._dropdown_state = el}
                   textStyle={styles.dropdown_state_text}
@@ -1137,14 +1122,14 @@ class ProfileScreenEdit extends Component {
             </View>
 
             {(this.state.hideEmergencyContact) && <View style={{ flex: 1, borderWidth: 0, flexDirection: 'row', marginLeft: 20, marginRight: 20 }}>
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: Colors.white_underline, }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: 'white', }}>
                 <Text style={styles.labelText}>Emergency Contact:</Text>
               </View>
 
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isEmergencyContactName === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isEmergencyContactName === true) ? 'white' : 'white' }}>
                 <TextInput
                   placeholder=''
-                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                   ref='emergencyContactName'
                   placeholderTextColor="rgb(115,119,118)"
                   underlineColorAndroid='transparent'
@@ -1165,10 +1150,10 @@ class ProfileScreenEdit extends Component {
 
 
 
-              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isEmergencyContactNumber === true) ? Colors.header_red : Colors.white_underline }}>
+              <View style={{ flex: 0.5, marginTop: 15, borderBottomWidth: 1, borderBottomColor: (this.state.isEmergencyContactNumber === true) ? 'white' : Colors.white_underline }}>
                 <TextInput
                   placeholder=''
-                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 15, color: Colors.header_red, borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
+                  style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 16 : 20, color: 'white', borderWidth: 0, paddingTop: 15, paddingBottom: 5, marginLeft: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 8, flex: 1 }}
                   ref='emergencyContactNumber'
                   placeholderTextColor="rgb(115,119,118)"
                   underlineColorAndroid='transparent'
@@ -1199,7 +1184,7 @@ class ProfileScreenEdit extends Component {
           <View style={{ flex: 0.15 }}>
             <View style={{ flex: 1.5, borderWidth: 0, alignItems: 'center' }}>
               <TouchableOpacity disabled={this.state.isConfirm} style={{ flex: 1.5, marginTop: 0 }} onPress={() => this._onClickConfirm()}>
-                <ImageBackground source={{ uri: 'btn_signup_big' }} style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 80 : (DeviceInfo.getModel() === 'iPhone 6') ? 80 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? 80 : 70, width: (DeviceInfo.getModel() === ModelIphoneX || DeviceInfo.getModel() === 'iPhone 8 Plus') ? 300 : (DeviceInfo.getModel() === 'iPhone 6') ? 250 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? 250 : (Platform.OS === 'android') ? 280 : 250 }}>
+                <ImageBackground source={ require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:90,width:120}}>
                   <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                     <Text style={{ fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 20 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 15 : 18, color: Colors.white }}>Confirm</Text>
                   </View>
@@ -1208,6 +1193,7 @@ class ProfileScreenEdit extends Component {
             </View>
           </View>
         </View>
+      </ImageBackground>  
       </View>
     )
   }
@@ -1250,7 +1236,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.regular,
     fontSize: (Platform.OS === 'android') ? 16 : ((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c')) ? 12 : 15,
     marginTop: 20,
-    color: Colors.black,
+    color: Colors.white,
     marginLeft: 5,
   },
   dob_label: {
@@ -1260,8 +1246,8 @@ const styles = StyleSheet.create({
   },
   dropdown_state_text: {
 
-    fontSize: (Platform.OS === 'android') ? 16 : 15,
-    color: Colors.header_red,
+    fontSize: (Platform.OS === 'android') ? 16 : 20,
+    color: 'white',
     textAlignVertical: 'center',
     fontFamily: Fonts.regular,
     borderWidth: 0

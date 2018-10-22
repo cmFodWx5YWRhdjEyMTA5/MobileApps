@@ -670,14 +670,15 @@ class PaymentDetails extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
+       
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
 
         <View style={{ flex: 10, backgroundColor: Colors.theme_background, }}>
+         <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
           <View style={{ flex: 3, borderWidth: 0 }}>
-            <ImageBackground source={{ uri: 'shape_red_top' }} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -20 : -10 }}>
+            <ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -10 : (Platform.OS === 'android') ? -20 : -10 }}>
 
             </ImageBackground>
           </View>
@@ -685,7 +686,7 @@ class PaymentDetails extends Component {
             <View style={{ flex: 0.7, borderWidth: 0, margin: 5, marginLeft: 10 }}>
               <TextInput
                 placeholder='Coupon code'
-                style={{ fontFamily: Fonts.regular, fontSize: (deviceHeight > 600) ? 20 : 18, backgroundColor: 'white', color: Colors.orange_text, borderWidth: 1, borderColor: Colors.placeholdar, paddingHorizontal: 10, marginTop: 10, flex: (DeviceInfo.getModel() === ModelIphoneX) ? 0.7 : 0.8 }}
+                style={{ borderRadius: 20,fontFamily: Fonts.regular, fontSize: (deviceHeight > 600) ? 20 : 18, backgroundColor: 'white', color: Colors.orange_text, borderWidth: 1, borderColor: Colors.placeholdar, paddingHorizontal: 10, marginTop: 10, flex: (DeviceInfo.getModel() === ModelIphoneX) ? 0.7 : 0.8 }}
                 ref='coupon_code'
                 placeholderTextColor="rgb(115,119,118)"
                 underlineColorAndroid='transparent'
@@ -714,13 +715,17 @@ class PaymentDetails extends Component {
             <View style={{ flex: 1, borderWidth: 0, marginTop: 20, padding: (DeviceInfo.getModel() === ModelIphoneX) ? 25 : 10 }}>
 
               {(this.state.isAlreadyCard === false) ? <TouchableOpacity onPress={() => this._gotoAddNewCardScreen()} style={{ flex: 1, borderWidth: 0, backgroundColor: Colors.header_red, borderRadius: 6, justifyContent: 'center', alignItems: 'center' }}>
-                <Text style={{ fontSize: 18, color: 'white', fontFamily: Fonts.regular }}>ADD NEW CARD</Text>
+                <Text style={{ fontSize: 18, color: 'black', fontFamily: Fonts.regular }}>ADD NEW CARD</Text>
               </TouchableOpacity> : <View />}
 
             </View>
 
           </View>
+        
+
+      </ImageBackground>     
         </View>
+
       </View>
     )
   }

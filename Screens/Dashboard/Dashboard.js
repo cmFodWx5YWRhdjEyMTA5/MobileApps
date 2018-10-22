@@ -483,7 +483,7 @@ class Dashboard extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
+        
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
 
@@ -493,11 +493,25 @@ class Dashboard extends Component {
         <View style={{ flex: 10, backgroundColor: Colors.theme_background, }}>
 
           <View style={{ flex: 3, borderWidth: 0 }}>
-            <ImageBackground source={{ uri: 'shape_red_top' }} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -20 : -10 }}>
+            <ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{ height: null, width: null, flex: 3, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -55 : (DeviceInfo.getModel() === 'iPhone 8 Plus') ? -20 : (DeviceInfo.getModel() === 'iPhone 6 Plus') ? -20 : (Platform.OS === 'android') ? -40 : -10 }}>
 
             </ImageBackground>
           </View>
-
+          <View>
+            <TextInput
+                  placeholder='Password'
+                  style={{ fontFamily: Fonts.regular, fontSize: 15, color: Colors.white, borderWidth: 0, marginLeft: 5, marginTop: 12, flex: 1 }}
+                  ref='password'
+                  placeholderTextColor="rgb(241, 248, 247)"
+                  secureTextEntry={true}
+                  underlineColorAndroid='transparent'
+                  onChangeText={(text) => this.setState({ password: text })}
+                  value={this.state.password}
+                  onFocus={() => this.onFocusText("password")}
+                  onBlur={() => this.onBlurText("password")}
+                  borderColor='#000'
+                />
+          </View>
           <View style={{ flex: 7, marginTop: (Platform.OS === 'android') ? -60 : (DeviceInfo.getModel() === ModelIphoneX) ? -90 : -40 }}>
             <View style={{ flex: 1, padding: (Platform.OS === 'android') ? 20 : 20, flexDirection: 'row' }}>
 
@@ -586,7 +600,7 @@ const styles = StyleSheet.create({
   coin_count_text: {
     fontSize: (deviceHeight > 600) ? 40 : 30,
     fontFamily: Fonts.SFU_BOLD,
-    color: Colors.redcolor,
+    color: Colors.orange_text,
   },
   coin_text: {
     fontSize: 22,

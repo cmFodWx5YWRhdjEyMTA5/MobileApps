@@ -181,7 +181,7 @@ _checkIn(gymName)
       const params = navigation.state.params || {};
      return {
            title:Strings.view_gym,
-           header:<View style={{marginTop:(DeviceInfo.getModel() === 'iPhone 7')?-24:((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c'))?-28:-14,}}><ImageBackground source={{uri:'shape_red_top_without_shadow'}} resizeMode="contain" style={{height:(DeviceInfo.getModel() === ModelIphoneX)?150:135,width:deviceWidth}}>
+           header:<View style={{marginTop:(DeviceInfo.getModel() === 'iPhone 7')?-24:((DeviceInfo.getModel() === 'iPhone SE') || (DeviceInfo.getModel() === 'iPhone 5s') || (DeviceInfo.getModel() === 'iPhone 5c'))?-28:-14,}}><ImageBackground source={ require('../../assets/Home-01/01.png')} resizeMode="contain" style={{height:(DeviceInfo.getModel() === ModelIphoneX)?150:100,width:deviceWidth}}>
 
            <View style={{flexDirection:'row',alignItems:'center'}}>
            <TouchableOpacity onPress={()=> navigation.goBack()} style={{flex:0.1,alignItems:'center',borderWidth:0,marginTop:(DeviceInfo.getModel() === ModelIphoneX)?50:40,justifyContent:'center',padding:10}}><Image source={{uri: "back_arrow"}} style={styles.back_icon} /></TouchableOpacity>
@@ -566,19 +566,24 @@ displayGymData()
                   </View>
                   <View>
                       <TouchableOpacity onPress={()=> this._checkIn(data.name)} style={{width:Dimensions.get('window').width,height:150,marginTop:20,borderWidth:0,borderColor:'grey'}}>
-                          <ImageBackground  source={{uri:'shape_red_bottom'}} resizeMode="contain" style={{width:Dimensions.get('window').width,height:(deviceHeight>600)?180:170}}>
-                                <View style={{flexDirection:'row',marginTop:74}}>
+                          
+                                <View style={{flexDirection:'row',marginTop:70}}>
                                     <View style={{alignItems:'center',flex:0.5}}>
-                                        <Text style={styles.coin_count_text_white}>{data.coins}</Text>
-                                        <View style={{marginTop:(Platform.OS==='android')?-10:-10}}>
-                                            <Text style={styles.coin_text}>Coins</Text>
-                                        </View>
+                                      <ImageBackground source={require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:90,width:120}}>    
+                                          <Text style={styles.coin_count_text_white}>{data.coins}</Text>
+                                          <View style={{marginTop:(Platform.OS==='android')?-10:-10}}>
+                                              <Text style={styles.coin_text}>Coins</Text>
+                                          </View>
+                                          </ImageBackground>  
+                                        
                                     </View>
+                                    
                                     <View style={{justifyContent:'center',flex:0.5}}>
-                                        <Text style={styles.check_in_text}>Swing In</Text>
+                                      <Image source={ require('../../assets/Home-01/swing.png')} resizeMode="contain" style={{height:90,width:120}}/>   
                                     </View>
+                      
                                 </View>
-                          </ImageBackground>
+
                       </TouchableOpacity>
                   </View>
 
@@ -596,7 +601,7 @@ displayGymData()
   render(){
     return(
         <View style={styles.container}>
-                <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false}/>
+                
 
                 <ScrollView showsVerticalScrollIndicator={false} bounces={false}>
                     {this.displayGymData()}
@@ -634,7 +639,7 @@ const styles = StyleSheet.create({
   gym_name_text:{
     fontSize: 22,
      fontFamily:Fonts.regular,
-    color:Colors.redcolor,
+    color:'#000',
 
   },
   gym_address_text:{
@@ -659,14 +664,19 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   coin_count_text_white:{
-      fontSize: (deviceHeight>600)?40:35,
+      fontSize: 30,
       fontFamily:Fonts.regular,
       color:Colors.white,
+      marginLeft:50,
+      marginTop:26
+
     },
     coin_text:{
       fontSize: 17,
       fontFamily:Fonts.regular,
       color:Colors.white,
+      marginLeft:50,
+    
     },
     check_in_text:{
       fontSize: (deviceHeight>600)?30:25,
