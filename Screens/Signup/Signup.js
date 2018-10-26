@@ -300,12 +300,12 @@ class Signup extends Component{
   //Main View Rendering
   render(){
     return(
-      <ImageBackground style={{  flex: 1, width: null,height: null, justifyContent: 'center'}} source={{ uri: 'splash_bg' }}>
+      <ImageBackground style={{  flex: 1, width: null,height: null, justifyContent: 'center'}} source={ require('../../assets/Splash/02.png') }>
        <View style={{marginTop:30}}>
           <TouchableOpacity onPress={()=> this.props.navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
         </View>
         <View style={{ flex: 2, borderWidth: 0, alignItems: 'center', padding:40 }}>
-          <Image source={{ uri: 'splash_logo' }} resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
+          <Image source={ require('../../assets/splash_logo.png') } resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
         </View> 
         <View style={{flex:7,borderWidth:0,marginTop:-40}}>
           <View style={{flex:4,borderWidth:0}}>

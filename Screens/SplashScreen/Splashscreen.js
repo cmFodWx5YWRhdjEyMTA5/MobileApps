@@ -305,10 +305,10 @@ class SplashScreen extends Component {
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        <ImageBackground source={{ uri: 'splash_bg' }} style={{ height: null, width: null, flex: 10 }}>
+        <ImageBackground source={ require('../../assets/Splash/02.png') } style={{ height: null, width: null, flex: 10 }}>
           <View style={styles.topview}></View>
           <View style={styles.middleview}>
-            <Image source={{ uri: "splash_logo" }} style={styles.logo} resizeMode="contain" />
+            <Image source={ require('../../assets/splash_logo.png') } style={styles.logo} resizeMode="contain" />
           </View>
           <View style={styles.bottomview}>
           </View>

@@ -324,10 +324,6 @@ class Scanner extends Component {
     return (
       <View style={styles.container}>
 
-        <MyStatusBar
-          backgroundColor={Colors.theme_background}
-          barStyle="light-content"
-        />
         {(this.state.comingFrom === "splash") ?
           <TouchableOpacity onPress={() => this._goToDashBoard()}>
             <View style={{ marginRight: 10 }}><Image source={{ uri: "back_arrow_red" }} style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 30 : 23, width: (DeviceInfo.getModel() === ModelIphoneX) ? 30 : 23, marginLeft: 10, }} /></View>
@@ -344,7 +340,7 @@ class Scanner extends Component {
         </View>
 
         <View style={{ flex: 1.5, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}>
-          <Text style={{ color: Colors.redcolor, fontFamily: Fonts.regular, fontSize: (deviceHeight >= 600) ? 26 : 20, textAlign: 'center' }}>{Strings.you_will_have_to}</Text>
+          <Text style={{ color: '#d86a1d', fontFamily: Fonts.regular, fontSize: (deviceHeight >= 600) ? 26 : 20, textAlign: 'center' }}>{Strings.you_will_have_to}</Text>
         </View>
 
         <View style={{ flex: 4.5, borderWidth: 0, justifyContent: 'center', alignItems: 'center' }}>
@@ -353,11 +349,10 @@ class Scanner extends Component {
 
         </View>
 
-        <View style={{ flex: 2, borderWidth: 0 }}>
-          <ImageBackground style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 2.5 : 2.2, height: null, width: null }} source={{ uri: 'shape_red_bottom' }}>
-            <View style={{ flex: 1, justifyContent: 'center' }}>
-              <View style={{ flex: 0.5 }}>
-              </View>
+        <View style={{ flex: 1.9, borderWidth: 0 }}>
+         
+            <View style={{ flex: 1, justifyContent: 'center',backgroundColor:'#d86a1d' }}>
+      
               <View style={{ flex: 0.2, alignItems: 'center' }}>
                 {(this.state.isOkBtnClickable === true) ? <Text onPress={() => this._navigateToOtherScreen("Rating")} style={{ color: Colors.white, fontFamily: Fonts.semi_bold, fontSize: (deviceHeight >= 600) ? 26 : 22 }}>OK</Text> : <Text style={{ color: Colors.white, fontFamily: Fonts.semi_bold, fontSize: (deviceHeight >= 600) ? 26 : 22 }}>OK</Text>}
               </View>
@@ -367,7 +362,7 @@ class Scanner extends Component {
               <View style={{ flex: 0.03 }}>
               </View>
             </View>
-          </ImageBackground>
+
         </View>
       </View>
     )

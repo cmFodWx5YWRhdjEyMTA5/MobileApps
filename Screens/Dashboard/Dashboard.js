@@ -188,9 +188,6 @@ class Dashboard extends Component {
   componentDidMount() {
     this.getCurrentLocation()
     this._startGpsLocation()
-
-    
-
     NetInfo.isConnected.addEventListener('connectionChange', this.handleConnectionChange);
     NetInfo.isConnected.fetch().done((isConnected) => { this.setState({ netStatus: isConnected }); });
 
@@ -273,7 +270,7 @@ class Dashboard extends Component {
     if (this.state.loader) {
       return (
         <View>
-          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color={Colors.header_red} />
+          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color='#000' />
         </View>
       )
     }

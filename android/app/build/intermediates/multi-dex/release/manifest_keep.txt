@@ -1,0 +1,3 @@
+# view AndroidManifest.xml #generated:49
+-keep class com.gymonkee.MainApplication { <init>(...); }
+

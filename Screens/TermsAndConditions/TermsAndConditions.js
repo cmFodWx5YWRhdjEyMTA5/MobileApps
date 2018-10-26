@@ -88,10 +88,9 @@ class TermsAndConditions extends Component {
     const params = navigation.state.params || {};
     return {
       title: 'Liability & Waiver',
-      gesturesEnabled: true,
       headerStyle: { backgroundColor: Colors.theme_background, borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
       headerTitleStyle: HeaderStyle.titleCenter_black,
-      headerLeft: <TouchableOpacity onPress={() => navigation.goBack()}><View style={{ padding: 10 }}><Image source={{ uri: "back_arrow_red" }} style={{ height: (DeviceInfo.getModel() === ModelIphoneX) ? 30 : 23, width: (DeviceInfo.getModel() === ModelIphoneX) ? 30 : 23, }} /></View></TouchableOpacity>
+     
     }
   }
 
@@ -448,7 +447,7 @@ class TermsAndConditions extends Component {
     if (this.state.loader) {
       return (
         <View>
-          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color={Colors.header_red} />
+          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color='#000' />
         </View>
       )
     }
@@ -457,10 +456,6 @@ class TermsAndConditions extends Component {
     return (
       <View style={styles.container}>
       <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
-        <MyStatusBar
-          backgroundColor={Colors.theme_background}
-          barStyle="light-content"
-        />
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
@@ -475,11 +470,11 @@ class TermsAndConditions extends Component {
         </View>
         <View>
           <TouchableOpacity style={{ height: 120, width: deviceWidth }} onPress={() => this._onClickAgree()}>
-            <ImageBackground style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 2.5 : 2.2, height: null, width: null }} source={{ uri: 'shape_red_bottom' }} resizeMode="stretch">
-              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, marginTop: 50 }}>
+            
+              <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, marginTop: 50,backgroundColor:'#d86a1d' }}>
                 <Text style={{ color: Colors.white, fontFamily: Fonts.regular, fontSize: (deviceHeight >= 600) ? 24 : 20 }}>Agree</Text>
               </View>
-            </ImageBackground>
+
           </TouchableOpacity>
 
         </View>

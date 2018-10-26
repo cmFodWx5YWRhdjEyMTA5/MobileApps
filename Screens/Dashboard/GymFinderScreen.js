@@ -163,7 +163,7 @@ class GymFinderScreen extends Component {
     if (this.state.loader) {
       return (
         <View>
-          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color={Colors.header_red} />
+          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color='#000'/>
         </View>
       )
     }
@@ -285,8 +285,8 @@ class GymFinderScreen extends Component {
                         count={5}
                         starSize={30}
                         backingColor='transparent'
-                        fullStar={require('./rating_fill.png')}
-                        emptyStar={require('./rating_outer.png')} />
+                        fullStar={ require('../../assets/rating/rating_fill.png')}
+                        emptyStar={ require('../../assets/rating/rating_outer.png')}  />
 
                     </View>
                     <View style={{ flex: 0.45, }}>
@@ -566,11 +566,10 @@ class GymFinderScreen extends Component {
               <View style={{ flex: 1, height: 50, borderWidth: 0, alignItems: 'flex-end', justifyContent: 'center' }}>
 
                 <View style={{ flex: 1, borderWidth: 1, borderRadius: 40, borderColor: Colors.header_red, flexDirection: 'row' }}>
-                  <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#ff3300', }}>
-                    
+                  <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#000',width:190 }}>
                     <TextInput
-                      placeholder='Search by City/State/ Zip code'
-                      style={{ flex: 1, borderWidth: 1, fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: 'black', borderWidth: 0, paddingTop: 5, paddingBottom: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : -10,marginLeft:20 }}
+                      placeholder='Search by City/State/Zip code'
+                      style={{ flex: 1, borderWidth: 1, fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: 'black', borderWidth: 0, paddingTop: 7, paddingBottom: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 0,marginLeft:10 }}
                       ref='search_text'
                       placeholderTextColor="rgb(115,119,118)"
                       underlineColorAndroid='transparent'

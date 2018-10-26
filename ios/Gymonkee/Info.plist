@@ -33,7 +33,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>com.googleusercontent.apps.1023271343111-21paobt8h7q0qdh6pujrbaqcj8l1fa59</string>
+				<string>com.googleusercontent.apps.283237532917-27riqkndfsanri1b0jigjcfohpmv79i6</string>
 			</array>
 		</dict>
 		<dict>
@@ -64,7 +64,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>5</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>

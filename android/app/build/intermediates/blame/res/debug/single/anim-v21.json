@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_out.xml",
+        "source": "/Users/user/.android/build-cache/f2170ab5b15c6842bac757be6a42ae958d4f3509/output/res/anim-v21/design_bottom_sheet_slide_out.xml"
+    },
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/anim-v21/design_bottom_sheet_slide_in.xml",
+        "source": "/Users/user/.android/build-cache/f2170ab5b15c6842bac757be6a42ae958d4f3509/output/res/anim-v21/design_bottom_sheet_slide_in.xml"
+    }
+]

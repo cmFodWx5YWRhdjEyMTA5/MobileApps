@@ -359,6 +359,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     width: 65,
     height: 65,
+    marginRight:20
     
   }
 

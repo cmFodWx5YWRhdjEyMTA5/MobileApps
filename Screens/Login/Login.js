@@ -1384,7 +1384,7 @@ class Login extends Component {
   //    />
   render() {
     return (
-          <ImageBackground source={{ uri: 'splash_bg' }} style={{ height: null, width: null, flex: 10 }}>
+          <ImageBackground source={ require('../../assets/Splash/02.png') } style={{ height: null, width: null, flex: 10 }}>
            <View style={{ alignItems: "center" }}>{this.loader()}</View>
             <LinkedInModal
               ref={ref => {
@@ -1398,7 +1398,7 @@ class Login extends Component {
             />
             <MyStatusBar backgroundColor={Colors.header_red}  barStyle="light-content" hidden={false} />
             <View style={styles.topview}>
-              <Image source={{ uri: "splash_logo" }} style={styles.logo} resizeMode="contain"/>
+              <Image source={ require('../../assets/splash_logo.png') } style={styles.logo} resizeMode="contain"/>
             </View>
             <View style={styles.middleview}></View>
             <View style={styles.bottomtopview}>
@@ -1418,7 +1418,7 @@ class Login extends Component {
             <View style={styles.bottomview}>
               <Text style={{ fontFamily: Fonts.regular,color:'#fff',fontSize:DeviceInfo.getModel() === ModelIphoneX? 22
                     : deviceHeight > 600 ? 22 : 19 }}>
-                CONTINUE WITH
+                CONNECT WITH
               </Text>
               <View style={styles.sociallogin}>
                 <TouchableOpacity onPress={() => this.fbLogin()} style={{ flex: 0.35, borderWidth: 0, alignItems: "flex-end" }}>

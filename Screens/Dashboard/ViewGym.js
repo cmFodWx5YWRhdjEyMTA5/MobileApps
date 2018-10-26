@@ -483,9 +483,9 @@ displayGymData()
                        opacity={true}
                        starSize={30}
                        backingColor='transparent'
-                       fullStar={{uri:'rating_fill'}}
-                       halfStar={{uri:'rating_half_fill'}}
-                       emptyStar= {{uri:'rating_outer'}}/>
+                       fullStar={ require('../../assets/rating/other_rating_fill.png')}
+                       halfStar={ require('../../assets/rating/other_half.png')}
+                       emptyStar= { require('../../assets/rating/other_rating_outer.png')}/>
 
 
                   </View>

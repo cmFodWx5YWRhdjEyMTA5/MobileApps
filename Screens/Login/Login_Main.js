@@ -256,14 +256,14 @@ class Login_Main extends Component {
     return (
       <ImageBackground
         style={{ backgroundColor: '#ccc', flex: 1, width: null,height: null, justifyContent: 'center'}} 
-        source={{ uri: 'splash_bg' }}
+        source={ require('../../assets/Splash/02.png') }
       >
         <MyStatusBar backgroundColor="rgba(245,75,49,0.01)"  barStyle="light-content" hidden={false} />
         <View style={{marginTop:30}}>
           <TouchableOpacity onPress={()=> this.props.navigation.goBack()}><View style={{marginRight:10,borderWidth:0,padding:(deviceHeight >600)?10:5}}><Image source={{uri: "back_arrow_white"}} style={{height: (DeviceInfo.getModel() === ModelIphoneX)?30:23, width: (DeviceInfo.getModel() === ModelIphoneX)?30:23,marginLeft:10,}} /></View></TouchableOpacity>
         </View>
         <View style={{ flex: 2, borderWidth: 0, alignItems: 'center', padding:40 }}>
-          <Image source={{ uri: 'splash_logo' }} resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
+          <Image source={ require('../../assets/splash_logo.png') } resizeMode="contain" style={{ height: (deviceHeight > 600) ? 40 : 35, width: Dimensions.get('window').width - 100, borderWidth: 0 }} />
         </View> 
         <View style={{ flex: 8, borderWidth: 0 }}>
             <View style={{ flex: 3, borderWidth: 0 }}>

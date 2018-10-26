@@ -1,0 +1,14 @@
+[
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml",
+        "source": "/Users/user/.android/build-cache/7e49799cf0bc67c855d43c89ce07ef205611d47b/output/res/drawable-watch-v20/common_google_signin_btn_text_dark_normal.xml"
+    },
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml",
+        "source": "/Users/user/.android/build-cache/7e49799cf0bc67c855d43c89ce07ef205611d47b/output/res/drawable-watch-v20/common_google_signin_btn_text_light_normal.xml"
+    },
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/drawable-watch-v20/common_google_signin_btn_text_disabled.xml",
+        "source": "/Users/user/.android/build-cache/7e49799cf0bc67c855d43c89ce07ef205611d47b/output/res/drawable-watch-v20/common_google_signin_btn_text_disabled.xml"
+    }
+]

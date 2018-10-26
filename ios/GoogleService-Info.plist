@@ -7,34 +7,36 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>283237532917-27riqkndfsanri1b0jigjcfohpmv79i6.apps.googleusercontent.com</string>
+	<string>363912616541-rkonb842lqn7olcqopekufqrr1g6qis9.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.283237532917-27riqkndfsanri1b0jigjcfohpmv79i6</string>
+	<string>com.googleusercontent.apps.363912616541-rkonb842lqn7olcqopekufqrr1g6qis9</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>363912616541-fiftgqrbv6c2bhc9fc5pus0ll9m5fi98.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBkpET5VijDqXmKlfIfBFB71CLiJeuwuLc</string>
+	<string>AIzaSyA1_dNO1_653zamZ_m0YUkYV1bV3QbNcTU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>283237532917</string>
+	<string>363912616541</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.gymonkee</string>
 	<key>PROJECT_ID</key>
-	<string>gymonkeetest-adcd6</string>
+	<string>gymonkee-8b57b</string>
 	<key>STORAGE_BUCKET</key>
-	<string>gymonkeetest-adcd6.appspot.com</string>
+	<string>gymonkee-8b57b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true></true>
 	<key>IS_ANALYTICS_ENABLED</key>
 	<false></false>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<true></true>
 	<key>IS_GCM_ENABLED</key>
 	<true></true>
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:283237532917:ios:a055ce14a3882f97</string>
+	<string>1:363912616541:ios:a055ce14a3882f97</string>
 	<key>DATABASE_URL</key>
-	<string>https://gymonkeetest-adcd6.firebaseio.com</string>
+	<string>https://gymonkee-8b57b.firebaseio.com</string>
 </dict>
 </plist>

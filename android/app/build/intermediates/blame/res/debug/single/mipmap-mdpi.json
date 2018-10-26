@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/mipmap-mdpi/app_icon.png",
+        "source": "/Users/user/Desktop/gymonkee/android/app/src/main/res/mipmap-mdpi/app_icon.png"
+    },
+    {
+        "merged": "/Users/user/Desktop/gymonkee/android/app/build/intermediates/res/merged/debug/mipmap-mdpi/ic_launcher.png",
+        "source": "/Users/user/Desktop/gymonkee/android/app/src/main/res/mipmap-mdpi/ic_launcher.png"
+    }
+]

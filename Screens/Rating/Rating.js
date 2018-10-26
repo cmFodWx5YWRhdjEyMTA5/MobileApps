@@ -250,7 +250,7 @@ class Rating extends Component {
         <View style={{ alignItems: 'center' }}>
           {this.loader()}
         </View>
-        <ImageBackground style={{ flex: 10, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? -140 : 0 }} source={{ uri: 'gym_rating' }} resizeMode="contain">
+        <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
 
           <View style={{ flex: 0.5, marginTop: (DeviceInfo.getModel() === ModelIphoneX) ? 180 : 40, marginLeft: 4, borderWidth: 0, justifyContent: 'center' }}>
             <TouchableOpacity onPress={() => this.gotoDashboard()}><View><Image source={{ uri: "back_arrow_red" }} style={styles.back_icon} /></View></TouchableOpacity>
@@ -260,18 +260,18 @@ class Rating extends Component {
 
           <View style={{ flex: 3.5, borderWidth: 0 }}>
             <View style={{ flex: 1, borderWidth: 0, alignItems: 'center', justifyContent: 'center' }}>
-              <Text style={{ fontSize: (deviceHeight >= 600) ? 30 : 25, fontFamily: Fonts.regular, color: Colors.header_red }}>Rate the Gym</Text>
+              <Text style={{ fontSize: (deviceHeight >= 600) ? 30 : 25, fontFamily: Fonts.regular, color: '#fff' }}>Rate the Gym</Text>
             </View>
 
             <View style={{ flex: 1, borderWidth: 0, alignItems: 'center' }}>
-              <Text style={{ fontSize: (deviceHeight >= 600) ? 22 : 18, fontFamily: Fonts.regular, color: Colors.header_red }}>You have completed your workout!!</Text>
+              <Text style={{ fontSize: (deviceHeight >= 600) ? 22 : 18, fontFamily: Fonts.regular, color: '#fff' }}>You have completed your workout!!</Text>
             </View>
 
 
 
             <View style={{ flex: 1.9, borderWidth: 0, justifyContent: 'center' }}>
               <View style={{ flex: 0.5, borderWidth: 0, alignItems: 'center' }}>
-                <Text style={{ marginTop: 10, fontSize: (deviceHeight >= 600) ? 25 : 20, fontFamily: Fonts.regular, color: Colors.header_red }}>Please rate the gym</Text>
+                <Text style={{ marginTop: 10, fontSize: (deviceHeight >= 600) ? 25 : 20, fontFamily: Fonts.regular, color: '#fff' }}>Please rate the gym</Text>
               </View>
               <View style={{ flex: 0.4 }} />
               <View style={{ flex: 0.8 }}>
@@ -280,10 +280,10 @@ class Rating extends Component {
                   rating={0}
                   update={(val) => { this.setState({ rateVal: val }) }}
                   spacing={4}
-                  starSize={(deviceHeight >= 600) ? 60 : 45}
+                  starSize={(deviceHeight >= 600) ? 40 : 30}
                   count={5}
-                  fullStar={{ uri: 'rating_fill' }}
-                  emptyStar={{ uri: 'rating_outer'}} 
+                  fullStar={ require('../../assets/rating/rating_fill.png')}
+                  emptyStar={ require('../../assets/rating/rating_outer.png')} 
                 />
               </View>
             </View>
@@ -291,9 +291,9 @@ class Rating extends Component {
 
           <View style={{ flex: 0.1 }}>
           </View>
-          <View style={{ flex: 1.3, borderWidth: 1, backgroundColor: Colors.white, borderColor: Colors.header_red, marginLeft: 40, marginRight: 40 }}>
+          <View style={{ flex: 1.3, borderWidth: 1, backgroundColor:'#ff9c66', borderColor: Colors.header_red, marginLeft: 40, marginRight: 40 }}>
             <TextInput
-              style={{ fontSize: 15, color: Colors.header_red, borderWidth: 0, flex: 1, paddingHorizontal: 10, textAlignVertical: "top" }}
+              style={{ fontSize: 15, color: '#fff', borderWidth: 0, flex: 1, paddingHorizontal: 10, textAlignVertical: "top" }}
               placeholderTextColor="rgb(115,119,118)"
               underlineColorAndroid='transparent'
               onChangeText={(text) => this.setState({ rateComment: text })}
@@ -310,11 +310,11 @@ class Rating extends Component {
 
           <View style={{ flex: 1.8, borderWidth: 0, marginTop: (Platform.OS === 'android') ? -20 : -30 }}>
             <TouchableOpacity style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 2.5 : 2.2, height: null, width: null }} onPress={() => { this.onSubmit() }}>
-              <ImageBackground style={{ flex: (DeviceInfo.getModel() === ModelIphoneX) ? 2.5 : 2.2, height: null, width: null }} source={{ uri: 'shape_red_bottom' }} resizeMode="stretch">
-                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, marginTop: (Platform.OS === 'android') ? 50 : 60 }}>
+             
+                <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center', borderWidth: 0, marginTop: (Platform.OS === 'android') ? 50 : 60,backgroundColor:'#d86a1d' }}>
                   <Text style={{ color: Colors.white, fontFamily: Fonts.regular, fontSize: (DeviceInfo.getModel() === ModelIphoneX) ? 26 : (DeviceInfo.getModel() === 'iPhone 6') ? 24 : 20 }}>Submit</Text>
                 </View>
-              </ImageBackground>
+
             </TouchableOpacity>
           </View>
         </ImageBackground>
@@ -342,7 +342,7 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   how_visit_text: {
-    color: Colors.header_red,
+    color: '#000',
     fontFamily: Fonts.regular,
     fontSize: (deviceHeight >= 600) ? 25 : 20,
     textAlign: 'center'

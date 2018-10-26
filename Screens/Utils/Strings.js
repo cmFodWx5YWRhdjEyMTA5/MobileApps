@@ -52,8 +52,8 @@ module.exports = {
     linkedin_redirectUri: 'https://www.gymonkee.com/',
 
     //Developments3
-    // google_iosClientId:'1023271343111-21paobt8h7q0qdh6pujrbaqcj8l1fa59.apps.googleusercontent.com',
-    // google_webClientId:'283237532917-n8tub2l5a0rjpnbfedsicbvc9kc1tm7n.apps.googleusercontent.com',
+     //google_iosClientId:'283237532917-sm1u5eh9p56o24g11pt61v30n1tskr84.apps.googleusercontent.com',
+     //google_webClientId:'283237532917-n8tub2l5a0rjpnbfedsicbvc9kc1tm7n.apps.googleusercontent.com',
 
 
     //Production

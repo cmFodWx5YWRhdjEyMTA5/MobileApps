@@ -934,8 +934,7 @@ class GetCoins extends Component {
           <View style={{ alignItems: 'center' }}>
             {this.loader()}
           </View>
-          <MyStatusBar backgroundColor={Colors.header_red} barStyle="dark-content" hidden={false} />
-        <View style={{ flex: 3, borderWidth: 0 }}>
+        <View style={{ flex: 2, borderWidth: 0 }}>
           
 
           

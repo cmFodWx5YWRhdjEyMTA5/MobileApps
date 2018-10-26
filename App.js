@@ -103,7 +103,7 @@ const ScreenList= StackNavigator({
   ProfileScreen: {
     screen: ProfileScreen,
     navigationOptions: ({ navigation }) => ({
-                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon"}} style={styles.menu_icon} /></View></TouchableOpacity>
+                             headerLeft:<TouchableOpacity onPress={() =>navigation.navigate('DrawerOpen')}><View style={styles.icon_padding}><Image source={{uri: "menu_icon_white"}} style={styles.menu_icon} /></View></TouchableOpacity>
         }),
   },
   ProfileScreenEdit: {
@@ -284,6 +284,7 @@ export default App= StackNavigator(
    },
    TermsAndConditions: {
      screen: TermsAndConditions,
+
     },
     SendCoins_Main: {
       screen: SendCoins_Main,

@@ -951,7 +951,7 @@ class ProfileScreenEdit extends Component {
     } else {
       return (
         <DatePicker
-          textColor="white"
+          textColor="black"
           style={{ backgroundColor: '#f5f5f0', justifyContent: 'center' }}
           mode="date"
           date={this.state.bday}
@@ -1242,7 +1242,7 @@ const styles = StyleSheet.create({
   dob_label: {
     fontFamily: Fonts.regular,
     fontSize: (deviceHeight > 600) ? 28 : 24,
-    color: Colors.header_red,
+    color: '#fff',
   },
   dropdown_state_text: {
 

@@ -149,7 +149,7 @@ class FriendListScreen extends Component {
     if (this.state.loader) {
       return (
         <View>
-          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color={Colors.header_red} />
+          <Spinner visible={this.state.loader} textContent={""} textStyle={{ color: '#3e4095' }} color='#000' />
         </View>
       )
     }
@@ -497,8 +497,8 @@ class FriendListScreen extends Component {
         <View style={{ flex: 9, borderWidth: 0 }}>
           
 
-          <View style={{ flex: (Platform.OS === 'android') ? 0.7 : 0.9, flexDirection: 'row', borderWidth: 1, borderColor: Colors.header_red, borderRadius: (Platform.OS === 'android') ? 15 : 10, marginLeft: 30, marginRight: 30 }}>
-            <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#fff',padding : 2,  }}>
+          <View style={{ flex: (Platform.OS === 'android') ? 0.9 : 0.9, flexDirection: 'row', borderWidth: 1, borderColor: Colors.header_red, borderRadius: (Platform.OS === 'android') ? 15 : 10, marginLeft: 30, marginRight: 30 }}>
+            <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#fff',padding : 2, width:190 }}>
               <TextInput
                 placeholder='Enter name to search'
                 style={{ fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 20, color: '#fff', borderWidth: 0, paddingHorizontal: 10, flex: 1 }}
