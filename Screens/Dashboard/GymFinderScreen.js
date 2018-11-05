@@ -549,8 +549,8 @@ class GymFinderScreen extends Component {
           <View style={{ flex: 7, marginTop: (Platform.OS === 'android') ? -60 : (DeviceInfo.getModel() === ModelIphoneX) ? -90 : -40 }}>
             <View style={{ flex: 1, padding: (Platform.OS === 'android') ? 20 : 20, flexDirection: 'row' }}>
 
-              <View style={{ flex: 1, flexDirection: 'column' }}>
-                <View style={{ flex: 0.5 }}>
+              <View style={{ flex: 0.7, flexDirection: 'column' }}>
+                <View style={{ flex: 0. }}>
                   <Text style={styles.current_balance_text}>{Strings.current_balance}</Text>
                 </View>
 
@@ -565,8 +565,8 @@ class GymFinderScreen extends Component {
               </View>
               <View style={{ flex: 1, height: 50, borderWidth: 0, alignItems: 'flex-end', justifyContent: 'center' }}>
 
-                <View style={{ flex: 1, borderWidth: 1, borderRadius: 40, borderColor: Colors.header_red, flexDirection: 'row' }}>
-                  <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#000',width:190 }}>
+                <View style={{ flex: 1, borderWidth: 1, borderRadius: 40, borderColor: Colors.header_red, flexDirection: 'row',width:180 }}>
+                  <View style={{ borderRadius: 20, borderWidth: 2,borderColor: '#000',width: (Platform.OS === 'android') ? 175 : 190 }}>
                     <TextInput
                       placeholder='Search by City/State/Zip code'
                       style={{ flex: 1, borderWidth: 1, fontFamily: Fonts.regular, fontSize: (Platform.OS === 'android') ? 14 : 15, color: 'black', borderWidth: 0, paddingTop: 7, paddingBottom: 5, marginTop: (Platform.OS === 'android') ? 0 : (DeviceInfo.getModel() === 'iPhone SE' || DeviceInfo.getModel() === 'iPhone 5s' || DeviceInfo.getModel() === 'iPhone 5c') ? 0 : 0,marginLeft:10 }}

@@ -302,7 +302,10 @@ export default App= StackNavigator(
         },
       },
       EditProfileScreen: {
-        screen: EditProfileScreen
+        screen: EditProfileScreen,
+        navigationOptions: {
+          header:false ,
+        },
       }
    // TermsAndConditions: {
    //   screen: TermsAndConditions,

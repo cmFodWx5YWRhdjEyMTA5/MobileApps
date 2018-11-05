@@ -325,85 +325,11 @@ class EditProfileScreen extends Component {
   static navigationOptions = ({ navigation, screenProps }) => {
     const params = navigation.state.params || {};
     return {
-      title: "Setup Profile",
-      headerStyle: {
-        backgroundColor: Colors.header_red,
-        borderBottomWidth: 0,
-        shadowColor: "transparent",
-        elevation: 0,
-        marginTop: Platform.OS === "android" ? 20 : 0
-      },
-      header: (
-        <View
-          style={{
-            marginTop:
-              DeviceInfo.getModel() === "iPhone 7"
-                ? -24
-                : DeviceInfo.getModel() === "iPhone SE" ||
-                  DeviceInfo.getModel() === "iPhone 5s" ||
-                  DeviceInfo.getModel() === "iPhone 5c"
-                  ? -28
-                  : -14
-          }}
-        >
-          <ImageBackground
-            source={{ uri: "shape_red_top_without_shadow" }}
-            resizeMode="contain"
-            style={{
-              height: DeviceInfo.getModel() === ModelIphoneX ? 160 : 150,
-              width: deviceWidth
-            }}
-          >
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
-              <View
-                style={{
-                  flex: 0.1,
-                  alignItems: "center",
-                  borderWidth: 0,
-                  marginTop: DeviceInfo.getModel() === ModelIphoneX ? 50 : 40,
-                  justifyContent: "center",
-                  padding: 10
-                }}
-              >
-
-              </View>
-              <View
-                style={{
-                  flex: 0.9,
-                  alignItems: "flex-end",
-                  justifyContent: "center",
-                  marginTop: DeviceInfo.getModel() === ModelIphoneX ? 50 : 40
-                }}
-              >
-                <Text
-                  style={{
-                    color: "#ffffff",
-                    alignSelf: "center",
-                    textAlign: "center",
-                    fontSize: 18,
-                    justifyContent: "center",
-                    fontWeight: "400",
-                    fontFamily: Fonts.SFU_REGULAR,
-                    paddingRight: 30
-                  }}
-                >
-                  Setup Profile
-                </Text>
-              </View>
-            </View>
-          </ImageBackground>
-        </View>
-      ),
-      headerStyle: {
-        backgroundColor: Colors.header_red,
-        borderBottomWidth: 0,
-        shadowColor: "transparent",
-        elevation: 0,
-        marginTop: Platform.OS === "android" ? 20 : 0
-      },
-      headerTitleStyle: HeaderStyle.titleCenter
-    };
-  };
+      title: "Edit Profile",
+      headerStyle: { backgroundColor: '#FFF', borderBottomWidth: 0, shadowColor: 'transparent', elevation: 0, marginTop: (Platform.OS === 'android') ? 20 : 0 },
+      headerTitleStyle: HeaderStyle.titleCenter,
+    }
+  }
 
   onFocusText(txtName) {
     if (txtName === "fname") {
@@ -1157,7 +1083,7 @@ class EditProfileScreen extends Component {
       return (
         <DatePicker
           textColor="white"
-          style={{ backgroundColor: "rgb(66,91,99)", justifyContent: "center" }}
+          style={{ backgroundColor: "#ff6600", justifyContent: "center" }}
           mode="date"
           date={this.state.bday}
           minimumDate={this.state.minDatePick}
@@ -1195,18 +1121,14 @@ class EditProfileScreen extends Component {
   render() {
     return (
       <View style={styles.container}>
+        <ImageBackground source={ require('../../assets/Home-01/06.png')}  style={{ height: '100%', width: '100%'}}>
         <View style={{ alignItems: "center" }}>{this.loader()}</View>
-        <MyStatusBar
-          backgroundColor={Colors.header_red}
-          barStyle="dark-content"
-          hidden={false}
-        />
 
         <View
           style={{
             flex: 7,
             borderWidth: 0,
-            marginTop: DeviceInfo.getModel() === ModelIphoneX ? 100 : 120
+            marginTop: DeviceInfo.getModel() === ModelIphoneX ? 100 : 200
           }}
         >
           <ScrollView
@@ -1214,7 +1136,7 @@ class EditProfileScreen extends Component {
             style={{ borderWidth: 0, flex: 6 }}
           >
             {/*Profile Image & Medal*/}
-            <View style={{ flex: 1.5, borderWidth: 0, alignItems: "center" }}>
+            <View style={{ flex: 1, borderWidth: 0, alignItems: "center" }}>
               <TouchableOpacity
                 style={[
                   styles.avatar,
@@ -1248,7 +1170,7 @@ class EditProfileScreen extends Component {
                   borderBottomWidth: 1,
                   borderBottomColor:
                     this.state.isFirstname === true
-                      ? Colors.header_red
+                      ? '#FFF'
                       : Colors.white_underline
                 }}
               >
@@ -1257,7 +1179,7 @@ class EditProfileScreen extends Component {
                   style={{
                     fontFamily: Fonts.regular,
                     fontSize: Platform.OS === "android" ? 16 : 15,
-                    color: Colors.header_red,
+                    color: '#FFF',
                     borderWidth: 0,
                     paddingTop: 15,
                     paddingBottom: 5,
@@ -1293,7 +1215,7 @@ class EditProfileScreen extends Component {
                   borderBottomWidth: 1,
                   borderBottomColor:
                     this.state.isLastname === true
-                      ? Colors.header_red
+                      ? '#FFF'
                       : Colors.white_underline
                 }}
               >
@@ -1302,7 +1224,7 @@ class EditProfileScreen extends Component {
                   style={{
                     fontFamily: Fonts.regular,
                     fontSize: Platform.OS === "android" ? 16 : 15,
-                    color: Colors.header_red,
+                    color: '#FFF',
                     borderWidth: 0,
                     paddingTop: 5,
                     paddingBottom: 5,
@@ -1336,7 +1258,7 @@ class EditProfileScreen extends Component {
                 borderBottomWidth: 1,
                 borderBottomColor:
                   this.state.isEmail === true
-                    ? Colors.header_red
+                    ? '#FFF'
                     : Colors.white_underline,
                 marginLeft: 20,
                 marginRight: 20
@@ -1347,7 +1269,7 @@ class EditProfileScreen extends Component {
                 style={{
                   fontFamily: Fonts.regular,
                   fontSize: Platform.OS === "android" ? 16 : 15,
-                  color: Colors.header_red,
+                  color: '#FFF',
                   borderWidth: 0,
                   paddingTop: 25,
                   paddingBottom: 5,
@@ -1381,7 +1303,7 @@ class EditProfileScreen extends Component {
                 borderBottomWidth: 1,
                 borderBottomColor:
                   this.state.isPhone === true
-                    ? Colors.header_red
+                    ? '#FFF'
                     : Colors.white_underline,
                 marginLeft: 20,
                 marginRight: 20
@@ -1392,7 +1314,7 @@ class EditProfileScreen extends Component {
                 style={{
                   fontFamily: Fonts.regular,
                   fontSize: Platform.OS === "android" ? 16 : 15,
-                  color: Colors.header_red,
+                  color: '#FFF',
                   borderWidth: 0,
                   paddingTop: 25,
                   paddingBottom: 5,
@@ -1436,7 +1358,7 @@ class EditProfileScreen extends Component {
                   borderBottomWidth: 1,
                   borderBottomColor:
                     this.state.isCity === true
-                      ? Colors.header_red
+                      ? '#FFF'
                       : Colors.white_underline
                 }}
               >
@@ -1445,7 +1367,7 @@ class EditProfileScreen extends Component {
                   style={{
                     fontFamily: Fonts.regular,
                     fontSize: Platform.OS === "android" ? 16 : 15,
-                    color: Colors.header_red,
+                    color: '#FFF',
                     borderWidth: 0,
                     paddingTop: 15,
                     paddingBottom: 5,
@@ -1481,7 +1403,7 @@ class EditProfileScreen extends Component {
                   borderBottomWidth: 1,
                   borderBottomColor:
                     this.state.isState === true
-                      ? Colors.header_red
+                      ? '#FFF'
                       : Colors.white_underline
                 }}
               >
@@ -1529,7 +1451,7 @@ class EditProfileScreen extends Component {
                   borderBottomWidth: 1,
                   borderBottomColor:
                     this.state.isEmergencyContactNumber === true
-                      ? Colors.header_red
+                      ? '#FFF'
                       : Colors.white_underline
                 }}
               >
@@ -1538,7 +1460,7 @@ class EditProfileScreen extends Component {
                   style={{
                     fontFamily: Fonts.regular,
                     fontSize: Platform.OS === "android" ? 16 : 15,
-                    color: Colors.header_red,
+                    color: '#FFF',
                     borderWidth: 0,
                     paddingTop: 15,
                     paddingBottom: 5,
@@ -1592,37 +1514,14 @@ class EditProfileScreen extends Component {
 
             {/*Add more Button*/}
           </ScrollView>
-          <View style={{ flex: 0.15 }}>
-            <View style={{ flex: 1.5, borderWidth: 0, alignItems: "center" }}>
+          <View style={{ flex: .15,backgroundColor:'#d86a1d'}}>
+            <View style={{ flex: 1.5, borderWidth: 0, alignItems: "center", }}>
               <TouchableOpacity
                 disabled={this.state.isConfirm}
                 style={{ flex: 1.5, marginTop: 0 }}
                 onPress={() => this._onClickConfirm()}
               >
-                <ImageBackground
-                  source={{ uri: "btn_signup_big" }}
-                  style={{
-                    height:
-                      DeviceInfo.getModel() === ModelIphoneX
-                        ? 80
-                        : DeviceInfo.getModel() === "iPhone 6"
-                          ? 80
-                          : DeviceInfo.getModel() === "iPhone 6 Plus"
-                            ? 80
-                            : 70,
-                    width:
-                      DeviceInfo.getModel() === ModelIphoneX ||
-                        DeviceInfo.getModel() === "iPhone 8 Plus"
-                        ? 300
-                        : DeviceInfo.getModel() === "iPhone 6"
-                          ? 250
-                          : DeviceInfo.getModel() === "iPhone 6 Plus"
-                            ? 250
-                            : Platform.OS === "android"
-                              ? 280
-                              : 250
-                  }}
-                >
+                <ImageBackground source={ require('../../assets/Home-01/coins.png')} resizeMode="contain" style={{height:90,width:120}}>
                   <View
                     style={{
                       flex: 1,
@@ -1652,6 +1551,7 @@ class EditProfileScreen extends Component {
             </View>
           </View>
         </View>
+        </ImageBackground>
       </View>
     );
   }
@@ -1711,11 +1611,11 @@ const styles = StyleSheet.create({
   dob_label: {
     fontFamily: Fonts.regular,
     fontSize: deviceHeight > 600 ? 28 : 24,
-    color: Colors.header_red
+    color: '#FFF'
   },
   dropdown_state_text: {
     fontSize: Platform.OS === "android" ? 16 : 15,
-    color: Colors.header_red,
+    color: '#FFF',
     textAlignVertical: "center",
     fontFamily: Fonts.regular,
     borderWidth: 0

@@ -8,7 +8,7 @@ package com.google.android.gms.appinvite;
 
 public final class R {
     public static final class style {
-        public static final int Theme_AppInvite_Preview = 0x7f0a0152;
-        public static final int Theme_AppInvite_Preview_Base = 0x7f0a0025;
+        public static final int Theme_AppInvite_Preview = 0x7f0f014e;
+        public static final int Theme_AppInvite_Preview_Base = 0x7f0f014f;
     }
 }
